@@ -1,11 +1,11 @@
-# Reproducibility Package: Publisher Bias in Widely-Used Scientist Rankings
+# Publisher Bias in Widely-Used Scientist Rankings
 
 Complete reproducibility package for our study documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
 
 ## Contents
 
 ```
-reproducibility_package/
+top2percent/
 ├── README.md                          # This file
 ├── SUPPLEMENTARY_MATERIALS.md         # Detailed supplementary information
 ├── data/                              # Data files
