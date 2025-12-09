@@ -1,7 +1,7 @@
 # Reproducibility Package Manifest
 
 **Version**: 2.0  
-**Date**: November 19, 2024  
+**Date**: December 8, 2025  
 **Sample Size**: 600 researchers (570 matched to OpenAlex)
 
 ---
