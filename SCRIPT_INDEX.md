@@ -154,6 +154,104 @@ python scripts/python/test_ranking_coverage_correlation.py
 
 ---
 
+### award_winners_case_studies.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Analyze exclusion of high-profile award winners (Nobel, Pulitzer) due to book bias
+
+**Inputs**:
+- `data/comprehensive_sample.csv` (field classifications)
+- Manual curation of award winners in book-heavy fields
+
+**Outputs**:
+- `data/award_winners_case_studies.csv` (9 high-profile cases)
+- Console output with exclusion evidence
+
+**Key Findings**:
+- 9 researchers with highest external recognition likely excluded
+- Nobel laureates: Claudia Goldin (Economics 2023), Elinor Ostrom (Economics 2009)
+- Pulitzer Prize winners: Eric Foner, Annette Gordon-Reed, Jill Lepore
+- Major scholars: Ernst Gombrich (40M+ copies), Clifford Geertz (Nat'l Humanities Medal)
+- Pattern: Even top scholars in book-heavy fields face systematic exclusion
+
+**Dependencies**:
+- pandas, numpy
+
+**Runtime**: ~2 seconds
+
+**Usage**:
+```bash
+python scripts/python/award_winners_case_studies.py
+```
+
+---
+
+### citation_quality_analysis.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Test whether journal citation impact explains Elsevier coverage advantage
+
+**Inputs**:
+- `data/openalex_comprehensive_data.csv` (coverage and publisher data)
+- OpenAlex API (journal citation impact metrics)
+
+**Outputs**:
+- `data/citation_quality_stratified.csv` (tertile analysis)
+- `data/citation_quality_relative.csv` (relative quality comparison)
+- `data/citation_quality_regression.csv` (regression with controls)
+- Console output with three independent tests
+
+**Key Findings**:
+- **Stratified analysis**: Effect persists in ALL tertiles (low: 15.3 pp, medium: 24.7 pp, high: 34.6 pp)
+- **Relative quality**: Effect remains when Elsevier journals have LOWER impact (32.3 pp, p<0.0001)
+- **Regression**: Effect significant (β=-6.05, p=0.0065) controlling for citations-per-publication
+- **Conclusion**: Journal prestige does NOT explain Elsevier advantage
+
+**Dependencies**:
+- pandas, scipy, statsmodels, requests
+
+**Runtime**: ~10-15 minutes (API calls for journal metrics)
+
+**Usage**:
+```bash
+python scripts/python/citation_quality_analysis.py
+```
+
+---
+
+### comprehensive_statistical_analysis.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Apply robust non-parametric effect sizes and multiple comparisons corrections
+
+**Inputs**:
+- `data/openalex_comprehensive_data.csv` (coverage analysis)
+
+**Outputs**:
+- `data/effect_sizes_comparison.csv` (Cliff's delta vs Cohen's d)
+- `data/comprehensive_statistics.csv` (Bonferroni corrections)
+- Console output with power analysis
+
+**Key Findings**:
+- **Cliff's delta vs Cohen's d**:
+  - Elsevier: δ=0.539 (large) vs d=-0.120 (negligible)
+  - Books: δ=-0.749 (large) vs d=-0.155 (negligible)
+- **Bonferroni correction**: All 5 primary effects remain p<0.010
+- **Power analysis**: >99.9% power for primary effects
+- **Conclusion**: Effects 4-5x larger with appropriate non-parametric measures
+
+**Dependencies**:
+- pandas, scipy, numpy
+
+**Runtime**: ~3 seconds
+
+**Usage**:
+```bash
+python scripts/python/comprehensive_statistical_analysis.py
+```
+
+---
+
 ## OpenAlex Ranking Replication Pipeline
 
 ### fetch_all_550_researchers.py
