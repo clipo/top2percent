@@ -624,5 +624,5 @@ We thank the OpenAlex team for providing free, open access to scholarly publicat
 ---
 
 **Version:** 1.0
-**Last updated:** [Date]
-**Corresponding author:** [Contact information]
+**Last updated:** December 8, 2025
+**Corresponding author:** Carl Lipo, clipo@binghamton.edu
