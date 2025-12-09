@@ -5,8 +5,8 @@ If you use this data or code in your research, please cite:
 
 MAIN PAPER (to be added upon publication):
 -------------------------------------------
-Carl P. Lipo, Robert J. DiNapoli, Ben Andrus. (2025). Systematic Bias in "Top 2%" Scientist Rankings:
-Evidence from Multi-Database Comparison. *Nature Communications* (in review).
+[Authors]. (2025). Systematic Bias in "Top 2%" Scientist Rankings:
+Evidence from Multi-Database Comparison. [Journal], [Volume], [Pages].
 
 
 SOURCE DATA:

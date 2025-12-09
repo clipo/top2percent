@@ -550,4 +550,3 @@ If results differ substantially, please report.
 ---
 
 **Last updated**: December 2025 (Version 3.0)
-

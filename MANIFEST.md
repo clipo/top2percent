@@ -348,6 +348,6 @@ For questions or issues:
 
 ---
 
-**Package validated**: December 8, 2025
+**Package validated**: December 8, 2024
 **Test environment**: macOS 14.x (Darwin 25.2.0), Python 3.12, R 4.4
 **Status**: ✅ All components functional (6 main figures + 6 supplementary + 10 new analyses)

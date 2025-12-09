@@ -3,7 +3,7 @@
 ## Publisher Bias in Widely-Used Scientist Rankings
 
 ---
- 
+
 ## Table of Contents
 
 1. [Supplementary Methods](#supplementary-methods)
