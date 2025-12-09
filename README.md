@@ -1,11 +1,11 @@
-# Publisher Bias in Widely-Used Scientist Rankings
+# Reproducibility Package: Publisher Bias in Widely-Used Scientist Rankings
 
 Complete reproducibility package for our study documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
 
 ## Contents
 
 ```
-top2percent/
+reproducibility_package/
 ├── README.md                          # This file
 ├── SUPPLEMENTARY_MATERIALS.md         # Detailed supplementary information
 ├── data/                              # Data files
@@ -17,6 +17,12 @@ top2percent/
 │   ├── scopus_vs_openalex_rankings.csv # Ranking comparison (ρ=0.567)
 │   ├── ranking_coverage_correlation_results.csv # Rank-coverage analysis
 │   ├── evidence_summary_table.csv     # Statistical evidence summary
+│   ├── award_winners_case_studies.csv # Nobel/Pulitzer winner case studies (NEW)
+│   ├── citation_quality_stratified.csv # Citation impact tertile analysis (NEW)
+│   ├── citation_quality_relative.csv  # Relative quality analysis (NEW)
+│   ├── citation_quality_regression.csv # Regression with citation controls (NEW)
+│   ├── comprehensive_statistics.csv   # Bonferroni corrections (NEW)
+│   ├── effect_sizes_comparison.csv    # Cliff's delta vs Cohen's d (NEW)
 │   └── university_adoption/           # Institutional adoption evidence
 │       ├── university_adoption_data.csv
 │       └── university_details.csv
@@ -31,6 +37,9 @@ top2percent/
 │   │   ├── create_manuscript_visualizations.py # Figures 5-6 (OpenAlex)
 │   │   ├── fetch_all_550_researchers.py       # Fetch OpenAlex data
 │   │   ├── create_openalex_top2percent.py     # Calculate OpenAlex rankings
+│   │   ├── award_winners_case_studies.py      # Nobel/Pulitzer case studies (NEW)
+│   │   ├── citation_quality_analysis.py       # Journal impact controls (NEW)
+│   │   ├── comprehensive_statistical_analysis.py # Effect sizes & corrections (NEW)
 │   │   ├── figureS1_sample_characteristics.py # Supplementary figures
 │   │   ├── figureS2_coverage_distribution.py
 │   │   ├── figureS3_publisher_breakdown.py
@@ -39,13 +48,13 @@ top2percent/
 │   │   └── figureS6_extreme_cases.py
 │   └── data_collection/              # Optional: reproduce data collection
 │       └── (data collection scripts)
-└── figures/                           # Generated figures
-    ├── Figure1_Coverage_by_Field.png
-    ├── Figure2_Elsevier_vs_Coverage.png
-    ├── Figure3_Books_vs_Coverage.png
-    ├── Figure4_university_adoption.png
-    ├── Figure5_Scopus_vs_OpenAlex_Rankings.png
-    ├── Figure6_Ranking_Changes_Distribution.png
+└── figures/                           # Generated figures (PNG + PDF)
+    ├── Figure1_Coverage_by_Field.png/.pdf
+    ├── Figure2_Elsevier_vs_Coverage.png/.pdf
+    ├── Figure3_Books_vs_Coverage.png/.pdf
+    ├── Figure4_university_adoption.png/.pdf
+    ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
+    ├── Figure6_Ranking_Changes_Distribution.png/.pdf
     ├── FigureS1_sample_characteristics.png
     ├── FigureS2_coverage_distribution.png
     ├── FigureS3_publisher_breakdown.png
@@ -94,6 +103,28 @@ top2percent/
 - **Extreme cases**: Individual researchers shift up to 1.2 million positions
 - **Top 2% divergence**: OpenAlex top 2% have 6.2 pp lower Elsevier coverage
 
+### Award Winners Exclusion Evidence (NEW)
+- **9 high-profile researchers** likely excluded despite highest external recognition
+- **Nobel laureates**: Claudia Goldin (Economics 2023), Elinor Ostrom (Economics 2009) in book-heavy subdisciplines
+- **Pulitzer Prize winners**: Eric Foner (2011), Annette Gordon-Reed (2009), Jill Lepore (multiple Bancroft Prizes)
+- **Major scholars**: Ernst Gombrich (40M+ copies sold), Clifford Geertz (National Humanities Medal)
+- **Pattern**: Even top scholars in book-heavy fields face systematic exclusion due to publication format
+
+### Journal Citation Impact Controls (NEW)
+- **Three independent tests** rule out journal quality as explanation for Elsevier effect
+- **Stratified analysis**: Effect persists in ALL citation-impact tertiles (low: 15.3 pp, medium: 24.7 pp, high: 34.6 pp)
+- **Relative quality**: Researchers whose Elsevier journals have LOWER citation impact still show 32.3 pp better coverage (p<0.0001)
+- **Regression**: Effect remains significant (β=-6.05, p=0.0065) controlling for citations-per-publication
+- **Conclusion**: Journal prestige does NOT explain Elsevier coverage advantage
+
+### Comprehensive Statistical Rigor (NEW)
+- **Non-parametric effect sizes**: Cliff's delta alongside Cohen's d for skewed bibliometric data
+  - Elsevier effect: Cliff's δ=0.539 (large) vs Cohen's d=-0.120 (negligible)
+  - Book effect: Cliff's δ=-0.749 (large) vs Cohen's d=-0.155 (negligible)
+- **Multiple comparisons correction**: Bonferroni correction applied to all 5 primary effects
+  - All remain highly significant (all p<0.010 after correction)
+- **Robust findings**: Effects 4-5x larger with appropriate non-parametric measures
+
 ### Sample
 - **n=600 researchers** from "top 2%" dataset
 - **570 matched** to OpenAlex (95% match rate)
@@ -131,7 +162,7 @@ python3 scripts/python/figureS5_oa_analysis.py
 python3 scripts/python/figureS6_extreme_cases.py
 ```
 
-All figures saved to `figures/` directory at 300 DPI.
+All main figures saved to `figures/` directory in both PNG (300 DPI) and PDF (vector) formats. Supplementary figures in PNG format.
 
 ---
 
@@ -459,6 +490,27 @@ Includes:
 
 ## Version History
 
+**Version 3.0** (December 2025) - CURRENT
+- **NEW**: ORCID verification analysis (362 researchers, 60.3% with unique identifiers)
+  - Validates findings independent of name-based matching
+  - Bias persists in ORCID subset (Elsevier: 28.0 pp, books: r=-0.494)
+  - Breaks sampling circularity concern
+- **NEW**: Ranking-coverage correlation analysis
+  - Spearman ρ=-0.297 (p<0.0001) between rank position and coverage
+  - 25.5 pp gradient (top vs bottom quartile)
+  - Evidence that coverage acts as barrier to entry
+- **NEW**: OpenAlex ranking replication (Figures 5-6)
+  - 537 researchers ranked using same Ioannidis formula
+  - ρ=0.567 correlation with Scopus rankings
+  - Median shift: 142,276 positions with complete data
+  - Extreme cases: up to 1.2 million position changes
+- **NEW**: Expanded to 6 main figures (was 4)
+- **NEW**: SCRIPT_INDEX.md - comprehensive script documentation
+- Added 5 new data files (ORCID, rankings, correlations)
+- Added 5 new analysis scripts
+- Updated generate_all_figures.py to produce all 6 figures
+- Enhanced documentation with complete workflows
+
 **Version 2.0** (November 2025)
 - Expanded sample: n=600 (from n=397)
 - Perfect field stratification: 198/210/192
@@ -497,4 +549,4 @@ If results differ substantially, please report.
 
 ---
 
-**Last updated**: January 2025
+**Last updated**: December 2025 (Version 3.0)

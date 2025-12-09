@@ -1,0 +1,3 @@
+group,n,mean_citation_quality_ratio,correlation_rho,correlation_p,coverage_diff_pp,mann_whitney_p,effect_present
+Lower citation-impact Elsevier journals,177,0.5450080616644786,0.5362839252067628,6.839895924006634e-11,32.34307325092246,8.383065250298746e-08,True
+Higher citation-impact Elsevier journals,283,2.567608013240711,0.6225695949360927,6.00726610527512e-20,34.197459233913484,4.1359107995689466e-17,True

@@ -1,0 +1,6 @@
+test,test_name,n1,n2,median1,median2,difference,statistic,p_value,cohens_d,cliffs_delta,cliff_interpretation,rank_biserial,rb_interpretation,bonferroni_threshold,bonferroni_significant,holm_bonferroni_significant
+Elsevier_high_vs_low,Elsevier effect (high vs low),174,200.0,0.6536163040147104,0.33538618964602435,0.31823011436868603,26780.5,2.367958044444666e-19,-0.12018917314149165,0.5391091954022988,large,-0.5391091954022988,large,0.01,True,True
+Book_heavy_vs_journal_heavy,Book effect (book-heavy vs journal-heavy),122,115.0,0.31819202809768843,0.7375,-0.4193079719023116,1764.0,2.4356484913154213e-23,-0.15530583172152215,-0.7485388453314327,large,0.7485388453314327,large,0.01,True,True
+Field_type_omnibus,Field type (3-group comparison),122,137.0,0.31819202809768843,0.3625730994152046,,127.84334069618806,1.7344879770280996e-28,,,N/A (omnibus),,N/A (omnibus),0.01,True,True
+Books_pct_correlation,Books percentage (Spearman correlation),374,,,,,-0.5331885777319147,7.374133502833159e-29,,,N/A (correlation),,N/A (correlation),0.01,True,True
+OA_high_vs_low,Open Access effect (high vs low),185,189.0,0.5391304347826087,0.3629032258064516,0.17622720897615707,21744.5,4.5656724861970595e-05,-0.12061722808140685,0.24378664378664378,small,-0.24378664378664383,small,0.01,True,True

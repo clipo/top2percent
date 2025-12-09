@@ -1,0 +1,71 @@
+CITATION INFORMATION
+====================
+
+If you use this data or code in your research, please cite:
+
+MAIN PAPER (to be added upon publication):
+-------------------------------------------
+[Authors]. (2025). Systematic Bias in "Top 2%" Scientist Rankings:
+Evidence from Multi-Database Comparison. [Journal], [Volume], [Pages].
+
+
+SOURCE DATA:
+-----------
+"Top 2%" Dataset:
+Ioannidis JPA, Boyack KW, Baas J. (2020). Updated science-wide author
+databases of standardized citation indicators. PLOS Biology, 18(10):e3000918.
+
+Ioannidis JPA, Boyack KW, Baas J. (2024). Updated August 2024 data for
+"Updated science-wide author databases of standardized citation indicators".
+Elsevier Data Repository. https://elsevier.digitalcommonsdata.com/datasets/btchxktzyw
+
+OpenAlex:
+Priem J, Piwowar H, Orr R. (2022). OpenAlex: A fully-open index of scholarly
+works, authors, venues, institutions, and concepts. arXiv preprint arXiv:2205.01833.
+
+
+BIBTEX:
+-------
+% Main paper (to be updated upon publication)
+@article{author2025bias,
+  author = {[Authors]},
+  title = {Systematic Bias in "Top 2\%" Scientist Rankings: Evidence from Multi-Database Comparison},
+  journal = {[Journal]},
+  year = {2025},
+  volume = {[Volume]},
+  pages = {[Pages]}
+}
+
+% Original "top 2%" paper
+@article{ioannidis2020updated,
+  author = {Ioannidis, John P. A. and Boyack, Kevin W. and Baas, Jeroen},
+  title = {Updated science-wide author databases of standardized citation indicators},
+  journal = {PLOS Biology},
+  year = {2020},
+  volume = {18},
+  number = {10},
+  pages = {e3000918},
+  doi = {10.1371/journal.pbio.3000918}
+}
+
+% OpenAlex
+@article{priem2022openalex,
+  author = {Priem, Jason and Piwowar, Heather and Orr, Richard},
+  title = {OpenAlex: A fully-open index of scholarly works, authors, venues, institutions, and concepts},
+  journal = {arXiv preprint arXiv:2205.01833},
+  year = {2022}
+}
+
+
+DATA AVAILABILITY:
+-----------------
+All data and code available at: [GitHub repository URL to be added]
+Archived data at: [Zenodo DOI to be added]
+
+
+LICENSE:
+--------
+Data: CC-BY 4.0
+Code: MIT License
+
+See LICENSE file for full terms.

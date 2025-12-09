@@ -1,0 +1,4 @@
+test_name,cohens_d,cliffs_delta,cliff_interpretation,rank_biserial,rb_interpretation
+Elsevier effect (high vs low),-0.12018917314149165,0.5391091954022988,large,-0.5391091954022988,large
+Book effect (book-heavy vs journal-heavy),-0.15530583172152215,-0.7485388453314327,large,0.7485388453314327,large
+Open Access effect (high vs low),-0.12061722808140685,0.24378664378664378,small,-0.24378664378664383,small

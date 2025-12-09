@@ -1,0 +1,203 @@
+================================================================================
+COMPREHENSIVE COVERAGE BIAS ANALYSIS
+================================================================================
+Excluded 212 researchers due to missing data or extreme coverage (>150%)
+Loaded 358 researchers with OpenAlex matches
+  Book-heavy: 117
+  Mixed: 135
+  Journal-heavy: 106
+
+================================================================================
+HYPOTHESIS 1: PUBLISHER BIAS
+================================================================================
+
+Do researchers who publish more in Elsevier journals have better
+Scopus coverage?
+
+--- Overall Correlation ---
+Correlation (Elsevier % vs Coverage): r = 0.563
+Sample size: n = 358
+p-value: 0.000000
+*** HIGHLY SIGNIFICANT (p < 0.001) ***
+
+--- Group Comparison ---
+High Elsevier group (>5.1%): n=179
+  Median coverage: 60.55%
+  Mean coverage: 60.53%
+
+Low Elsevier group (≤5.1%): n=179
+  Median coverage: 32.94%
+  Mean coverage: 34.14%
+
+Difference: 27.61% (High - Low)
+Mann-Whitney U test: p = 0.000000
+⚠️  BIAS DETECTED: High-Elsevier researchers have better coverage!
+Effect size (Cohen's d): 1.171
+  (Large effect)
+
+================================================================================
+HYPOTHESIS 2: BOOK BIAS
+================================================================================
+
+Do researchers who publish more books have worse Scopus coverage?
+
+--- Overall Correlation ---
+Correlation (Book % vs Coverage): r = -0.505
+p-value: 0.000000
+⚠️  BIAS DETECTED: More books = worse coverage
+
+--- Within Field Types ---
+
+BOOK_HEAVY:
+  n = 117
+  Correlation: r = -0.360, p = 0.0001
+  Median book %: 30.5%
+  Median coverage: 31.30%
+
+MIXED:
+  n = 135
+  Correlation: r = -0.200, p = 0.0203
+  Median book %: 20.5%
+  Median coverage: 36.25%
+
+JOURNAL_HEAVY:
+  n = 106
+  Correlation: r = -0.042, p = 0.6670
+  Median book %: 3.0%
+  Median coverage: 71.18%
+
+--- Book-Heavy Fields Only ---
+High book % (>30.5%): coverage = 29.54%
+Low book % (≤30.5%): coverage = 32.35%
+Mann-Whitney U test: p = 0.0468
+
+================================================================================
+HYPOTHESIS 3: OPEN ACCESS PENALTY
+================================================================================
+
+Do researchers who publish more in OA venues have worse coverage?
+
+--- Overall Correlation ---
+Correlation (OA Publisher % vs Coverage): r = 0.250
+p-value: 0.000002
+✓ Positive correlation (OA publishers well-indexed)
+
+--- Specific OA Publishers ---
+PLOS:
+  Researchers publishing in PLOS: 89
+  Median coverage (PLOS authors): 60.55%
+  Median coverage (non-PLOS): 36.28%
+
+Frontiers:
+  Researchers publishing in Frontiers: 78
+  Median coverage (Frontiers authors): 56.46%
+  Median coverage (non-Frontiers): 36.82%
+
+================================================================================
+HYPOTHESIS 4: FIELD-LEVEL BIAS
+================================================================================
+
+Do book-heavy fields have worse coverage than journal-heavy fields?
+
+--- Coverage by Field Type ---
+
+BOOK_HEAVY:
+  n = 117
+  Median coverage: 31.30%
+  Mean coverage: 33.40%
+  Std dev: 0.176
+
+MIXED:
+  n = 135
+  Median coverage: 36.25%
+  Mean coverage: 40.11%
+  Std dev: 0.195
+
+JOURNAL_HEAVY:
+  n = 106
+  Median coverage: 71.18%
+  Mean coverage: 71.93%
+  Std dev: 0.244
+
+--- Statistical Test ---
+Kruskal-Wallis H test: H = 131.112, p = 0.000000
+*** SIGNIFICANT FIELD DIFFERENCES DETECTED ***
+
+--- Post-hoc Pairwise Comparisons ---
+
+Book-heavy vs Journal-heavy:
+  Median difference: -39.88%
+  p-value: 0.000000
+  ⚠️  Book-heavy fields significantly worse!
+
+Book-heavy vs Mixed:
+  Median difference: -4.95%
+  p-value: 0.002751
+
+Mixed vs Journal-heavy:
+  Median difference: -34.93%
+  p-value: 0.000000
+
+================================================================================
+MULTIVARIATE ANALYSIS
+================================================================================
+
+Regression: Coverage ~ Elsevier% + Books% + OA% + Field
+
+Model R²: 0.448
+
+Coefficients:
+  elsevier_pct             : +0.0054
+    → 10% more Elsevier = 5.40% better coverage
+  books_pct                : -0.0018
+    → 10% more books = 1.83% worse coverage
+  oa_publisher_pct         : +0.0060
+  is_book_heavy            : -0.2389
+  is_mixed                 : -0.1923
+
+Intercept: 0.6017
+
+================================================================================
+PUBLICATION-READY SUMMARY
+================================================================================
+
+SUMMARY TABLE
+--------------------------------------------------------------------------------
+Sample size                    358
+Median coverage ratio          41.8%
+Median Elsevier %              5.1%
+Median book %                  17.0%
+Median OA %                    0.0%
+
+H1 (Publisher bias)            DETECTED
+H1 correlation                 r = 0.563, p = 0.0000
+H1 effect size                 d = 1.171
+
+H2 (Book bias)                 DETECTED
+H2 correlation                 r = -0.505, p = 0.0000
+
+H3 (OA penalty)                Not detected
+H3 correlation                 r = 0.250, p = 0.0000
+
+H4 (Field bias)                DETECTED
+H4 test                        H = 131.112, p = 0.0000
+
+✓ Summary saved to: ANALYSIS_SUMMARY.txt
+
+✓ Detailed results saved to: analysis_results.json
+
+================================================================================
+FINAL VERDICT
+================================================================================
+
+⚠️  SYSTEMATIC BIAS DETECTED
+
+Significant findings:
+  • Publisher bias (H1)
+  • Book bias (H2)
+  • Field bias (H4)
+
+The 'top 2%' rankings are SYSTEMATICALLY BIASED and should
+NOT be used for hiring, promotion, or funding decisions.
+
+Recommendation: Multi-database rankings required (Scopus + OpenAlex + others)
