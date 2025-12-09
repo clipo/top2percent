@@ -25,6 +25,8 @@ reproducibility_package/
 │   ├── citation_quality_regression.csv    # Regression with citation controls
 │   ├── comprehensive_statistics.csv       # Bonferroni corrections
 │   ├── effect_sizes_comparison.csv        # Cliff's delta vs Cohen's d
+│   ├── confidence_intervals.csv           # Bootstrap 95% CIs (H1, H2)
+│   ├── sensitivity_analysis_results.csv   # Outlier capping sensitivity (120-150%)
 │   └── university_adoption/               # Institutional adoption data
 │       ├── university_adoption_data.csv
 │       └── university_details.csv
@@ -42,6 +44,7 @@ reproducibility_package/
 │   │   ├── award_winners_case_studies.py       # Nobel/Pulitzer case studies
 │   │   ├── citation_quality_analysis.py        # Journal impact controls
 │   │   ├── comprehensive_statistical_analysis.py # Effect sizes & corrections
+│   │   ├── statistical_validity_enhancements.py  # Assumption tests, CIs, VIF, sensitivity
 │   │   ├── figureS1_sample_characteristics.py
 │   │   ├── figureS2_coverage_distribution.py
 │   │   ├── figureS3_publisher_breakdown.py
@@ -73,6 +76,7 @@ reproducibility_package/
 ├── README.md                  # Main documentation
 ├── SUPPLEMENTARY_MATERIALS.md # Detailed supplementary information
 ├── CODE_DOCUMENTATION.md      # Technical documentation
+├── STATISTICAL_VALIDITY_REPORT.md # Assumption testing & robustness checks
 ├── MANIFEST.md                # This file
 ├── ANALYSIS_SUMMARY.txt       # Statistical results summary
 ├── analysis_results.json      # Machine-readable results
@@ -88,6 +92,7 @@ reproducibility_package/
 - [x] `README.md` - Main documentation (comprehensive guide)
 - [x] `SUPPLEMENTARY_MATERIALS.md` - Detailed supplementary information
 - [x] `CODE_DOCUMENTATION.md` - Technical code documentation
+- [x] `STATISTICAL_VALIDITY_REPORT.md` - Assumption testing & robustness checks (NEW)
 - [x] `MANIFEST.md` - This file (package contents)
 - [x] `LICENSE.txt` - License information
 - [x] `CITATION.txt` - Citation information
