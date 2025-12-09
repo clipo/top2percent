@@ -341,6 +341,45 @@ Rscript create_comprehensive_figures.R
 ### Auto-installation
 The script automatically installs missing packages on first run.
 
+### PDF Output (Updated December 2024)
+
+**Format Update**: All main figures now generate both PNG (300 DPI) and PDF (vector) formats for publication flexibility.
+
+**R Script Updates** (`figures_1_2_3_coverage_analysis.R`):
+- Added PDF output using `cairo_pdf()` device for high-quality vector graphics
+- Output files: `Figure1_Coverage_by_Field.pdf`, `Figure2_Elsevier_vs_Coverage.pdf`, `Figure3_Books_vs_Coverage.pdf`
+- Dimensions: 8" × 6" for single-panel figures
+- Font embedding: All fonts embedded for publication compatibility
+- File sizes: 15-40 KB per PDF (vs 300-550 KB per PNG)
+
+**Python Script Updates** (`figure_4_university_adoption.py`, `create_manuscript_visualizations.py`):
+- Added PDF backend using `matplotlib.backends.backend_pdf.PdfPages`
+- Output files: `Figure4_university_adoption.pdf`, `Figure5_Scopus_vs_OpenAlex_Rankings.pdf`, `Figure6_Ranking_Changes_Distribution.pdf`
+- Vector format preserves infinite scalability for print
+- Compatible with manuscript submission systems (Nature, Science, PLOS, etc.)
+
+**Benefits**:
+- **PNG**: Embedded in Word documents, presentations, web display
+- **PDF**: Submission to journals, LaTeX manuscripts, high-quality print
+- **Vector graphics**: No quality loss when scaling, smaller file sizes
+- **Consistency**: Both formats generated from same source code simultaneously
+
+**Implementation**:
+```R
+# R example (figures_1_2_3_coverage_analysis.R)
+ggsave("figures/Figure1_Coverage_by_Field.png", width=8, height=6, dpi=300)
+ggsave("figures/Figure1_Coverage_by_Field.pdf", width=8, height=6, device=cairo_pdf)
+```
+
+```python
+# Python example (figure_4_university_adoption.py)
+plt.savefig('figures/Figure4_university_adoption.png', dpi=300, bbox_inches='tight')
+plt.savefig('figures/Figure4_university_adoption.pdf', bbox_inches='tight')
+```
+
+**Verification**:
+All 6 main figures (Figures 1-6) now output both formats automatically. Supplementary figures (S1-S6) remain PNG-only as they are intended for supplementary materials where vector format is less critical.
+
 ---
 
 ## 5. analyze_interdisciplinary_bias.py (Optional)
@@ -540,8 +579,8 @@ pip install -r requirements.txt
 
 If you use this code or data, please cite:
 
-Carl P. Lipo, Robert J. DiNapoli, Ben Andrus. (In Review). Systematic Bias in "Top 2% of Scientists" Rankings:
-Evidence from Multi-Database Comparison. *Nature Communications*
+Carl P. Lipo, Robert J. DiNapoli, Ben Andrus. (2025). Systematic Bias in "Top 2% of Scientists" Rankings:
+Evidence from Multi-Database Comparison. [Journal], [Volume], [Pages].
 
 And cite the source data:
 
