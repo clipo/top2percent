@@ -540,8 +540,8 @@ pip install -r requirements.txt
 
 If you use this code or data, please cite:
 
-Carl P. Lipo, Robert J. DiNapoli, Ben Andrus. (2025). Systematic Bias in "Top 2% of Scientists" Rankings:
-Evidence from Multi-Database Comparison. [Journal], [Volume], [Pages].
+Carl P. Lipo, Robert J. DiNapoli, Ben Andrus. (In Review). Systematic Bias in "Top 2% of Scientists" Rankings:
+Evidence from Multi-Database Comparison. *Nature Communications*
 
 And cite the source data:
 
@@ -554,6 +554,6 @@ works, authors, venues, institutions, and concepts. arXiv:2205.01833.
 
 ---
 
-**Last updated**: November 2024
+**Last updated**: November 2025
 **Code version**: 1.0
 **Contact**: Carl Lipo clipo@binghamton.edu
