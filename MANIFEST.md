@@ -1,8 +1,8 @@
 # Reproducibility Package Manifest
 
-**Version**: 2.0  
-**Date**: December 8, 2025  
-**Sample Size**: 600 researchers (570 matched to OpenAlex)
+**Version**: 3.0
+**Date**: December 8, 2025
+**Sample Size**: 600 researchers (570 matched to OpenAlex, 362 ORCID-verified)
 
 ---
 
@@ -13,7 +13,18 @@ reproducibility_package/
 ├── data/                      # Research data
 │   ├── comprehensive_sample.csv           # 600 researcher sample
 │   ├── openalex_comprehensive_data.csv    # Coverage analysis (570 matched)
+│   ├── openalex_data_with_orcid.csv       # ORCID-verified subset (362 researchers)
+│   ├── openalex_rankings_full.csv         # OpenAlex ranking replication (537 researchers)
+│   ├── openalex_top_2_percent.csv         # Top 10 by OpenAlex composite score
+│   ├── scopus_vs_openalex_rankings.csv    # Ranking comparison (ρ=0.567)
+│   ├── ranking_coverage_correlation_results.csv # Rank-coverage analysis
 │   ├── evidence_summary_table.csv         # Statistical evidence
+│   ├── award_winners_case_studies.csv     # Nobel/Pulitzer winner case studies
+│   ├── citation_quality_stratified.csv    # Citation impact tertile analysis
+│   ├── citation_quality_relative.csv      # Relative quality analysis
+│   ├── citation_quality_regression.csv    # Regression with citation controls
+│   ├── comprehensive_statistics.csv       # Bonferroni corrections
+│   ├── effect_sizes_comparison.csv        # Cliff's delta vs Cohen's d
 │   └── university_adoption/               # Institutional adoption data
 │       ├── university_adoption_data.csv
 │       └── university_details.csv
@@ -22,8 +33,15 @@ reproducibility_package/
 │   │   ├── figures_1_2_3_coverage_analysis.R
 │   │   └── install_r_dependencies.R
 │   ├── python/                # Python scripts
-│   │   ├── analyze_coverage_bias.py
 │   │   ├── figure_4_university_adoption.py
+│   │   ├── create_manuscript_visualizations.py # Figures 5-6 (OpenAlex)
+│   │   ├── fetch_all_550_researchers.py        # Fetch OpenAlex data
+│   │   ├── create_openalex_top2percent.py      # Calculate OpenAlex rankings
+│   │   ├── extract_orcid_validation.py         # ORCID verification analysis
+│   │   ├── test_ranking_coverage_correlation.py # Ranking-coverage gradient
+│   │   ├── award_winners_case_studies.py       # Nobel/Pulitzer case studies
+│   │   ├── citation_quality_analysis.py        # Journal impact controls
+│   │   ├── comprehensive_statistical_analysis.py # Effect sizes & corrections
 │   │   ├── figureS1_sample_characteristics.py
 │   │   ├── figureS2_coverage_distribution.py
 │   │   ├── figureS3_publisher_breakdown.py
@@ -33,11 +51,13 @@ reproducibility_package/
 │   └── data_collection/       # Data collection scripts (optional)
 │       ├── create_stratified_sample.py
 │       └── fetch_openalex_comprehensive.py
-├── figures/                   # Generated output (created by scripts)
-│   ├── Figure1_Coverage_by_Field.png
-│   ├── Figure2_Elsevier_vs_Coverage.png
-│   ├── Figure3_Books_vs_Coverage.png
-│   ├── Figure4_university_adoption.png
+├── figures/                   # Generated output (PNG + PDF formats)
+│   ├── Figure1_Coverage_by_Field.png/.pdf
+│   ├── Figure2_Elsevier_vs_Coverage.png/.pdf
+│   ├── Figure3_Books_vs_Coverage.png/.pdf
+│   ├── Figure4_university_adoption.png/.pdf
+│   ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
+│   ├── Figure6_Ranking_Changes_Distribution.png/.pdf
 │   ├── FigureS1_sample_characteristics.png
 │   ├── FigureS2_coverage_distribution.png
 │   ├── FigureS3_publisher_breakdown.png
@@ -94,6 +114,31 @@ reproducibility_package/
 **Evidence summary:**
 - [x] `evidence_summary_table.csv` - Statistical evidence summary table
 
+**ORCID verification data** (NEW):
+- [x] `openalex_data_with_orcid.csv` (362 ORCID-verified researchers)
+  - Size: ~185 KB
+  - High-confidence subset for validation
+
+**OpenAlex ranking replication** (NEW):
+- [x] `openalex_rankings_full.csv` (537 researchers with complete data)
+  - Rankings using complete OpenAlex publication data
+  - Same composite score formula as Ioannidis et al.
+- [x] `openalex_top_2_percent.csv` - Top 10 by OpenAlex ranking
+- [x] `scopus_vs_openalex_rankings.csv` - Side-by-side comparison (ρ=0.567)
+- [x] `ranking_coverage_correlation_results.csv` - Rank-coverage gradient analysis
+
+**Citation quality controls** (NEW):
+- [x] `citation_quality_stratified.csv` - Analysis by citation impact tertiles
+- [x] `citation_quality_relative.csv` - Relative journal quality comparison
+- [x] `citation_quality_regression.csv` - Regression model with quality controls
+
+**Award winners case studies** (NEW):
+- [x] `award_winners_case_studies.csv` - Nobel/Pulitzer winners likely excluded
+
+**Comprehensive statistics** (NEW):
+- [x] `comprehensive_statistics.csv` - Bonferroni corrections
+- [x] `effect_sizes_comparison.csv` - Cliff's delta vs Cohen's d
+
 **University adoption data** (`data/university_adoption/`):
 - [x] `university_adoption_data.csv` - Yearly adoption metrics
 - [x] `university_details.csv` - Institution details
@@ -102,21 +147,44 @@ reproducibility_package/
 ### Analysis Scripts (`scripts/`)
 
 **Master scripts:**
-- [x] `generate_all_figures.py` - Generate all 4 figures in one command
+- [x] `generate_all_figures.py` - Generate all 6 main figures in one command
   - Runs both R and Python figure generation
-  - Output: All 4 figures + summary table
-  - Runtime: ~5 seconds
+  - Output: All 6 figures (PNG + PDF) + summary table
+  - Runtime: ~10 seconds
 
 **Python scripts (`scripts/python/`):**
-- [x] `analyze_coverage_bias.py` - Main statistical analysis
-  - Hypothesis testing (H1-H4)
-  - Correlation analysis
-  - Effect size calculations
-  - Multivariate regression
-  - Output: ANALYSIS_SUMMARY_n600.txt
 - [x] `figure_4_university_adoption.py` - Figure 4: University adoption
   - University adoption visualization over time
-  - Output: figures/Figure4_university_adoption.png
+  - Output: figures/Figure4_university_adoption.png/.pdf
+- [x] `create_manuscript_visualizations.py` - Figures 5-6: OpenAlex rankings
+  - Figure 5: Scopus vs OpenAlex ranking comparison
+  - Figure 6: Ranking changes distribution
+  - Output: figures/Figure5_*.png/.pdf, Figure6_*.png/.pdf
+- [x] `fetch_all_550_researchers.py` - Fetch OpenAlex metrics for 537 researchers
+  - Retrieves complete publication data from OpenAlex API
+  - Output: researcher_metrics_all_550.csv
+- [x] `create_openalex_top2percent.py` - Calculate OpenAlex-based rankings
+  - Replicates Ioannidis composite score formula
+  - Output: openalex_rankings_full.csv, openalex_top_2_percent.csv
+- [x] `extract_orcid_validation.py` - ORCID verification analysis
+  - Identifies high-confidence matches using ORCID
+  - Tests bias persistence in verified subset
+  - Output: openalex_data_with_orcid.csv
+- [x] `test_ranking_coverage_correlation.py` - Ranking-coverage gradient analysis
+  - Tests correlation between rank position and coverage
+  - Output: ranking_coverage_correlation_results.csv
+- [x] `award_winners_case_studies.py` - Nobel/Pulitzer winner case studies
+  - Identifies high-profile researchers likely excluded
+  - Output: award_winners_case_studies.csv
+- [x] `citation_quality_analysis.py` - Journal citation impact controls
+  - Stratified analysis by citation tertiles
+  - Relative quality comparison
+  - Regression with quality controls
+  - Output: citation_quality_*.csv files
+- [x] `comprehensive_statistical_analysis.py` - Effect sizes & corrections
+  - Cliff's delta calculations
+  - Bonferroni corrections for multiple comparisons
+  - Output: comprehensive_statistics.csv, effect_sizes_comparison.csv
 
 **R scripts (`scripts/R/`):**
 - [x] `figures_1_2_3_coverage_analysis.R` - Figures 1-3: Coverage analysis
@@ -131,11 +199,14 @@ reproducibility_package/
 
 ### Output Files (`figures/`)
 
-**Publication-ready figures:**
-- [x] `Figure1_Coverage_by_Field.png` (3000×2100 px, 300 DPI, ~375 KB)
-- [x] `Figure2_Elsevier_vs_Coverage.png` (3000×2100 px, 300 DPI, ~475 KB)
-- [x] `Figure3_Books_vs_Coverage.png` (3000×2100 px, 300 DPI, ~540 KB)
-- [x] `Figure4_university_adoption.png` (3000×2100 px, 300 DPI, ~460 KB)
+**Publication-ready figures (PNG + PDF):**
+- [x] `Figure1_Coverage_by_Field.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure2_Elsevier_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure3_Books_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure4_university_adoption.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf` (2369×1768 px, 300 DPI / vector) (NEW)
+- [x] `Figure6_Ranking_Changes_Distribution.png/.pdf` (3563×1470 px, 300 DPI / vector) (NEW)
+- [x] `FigureS1-S6_*.png` - Supplementary figures (PNG only)
 - [x] `Table1_Summary.csv` - Summary statistics table
 
 **Analysis output:**
@@ -147,11 +218,11 @@ reproducibility_package/
 
 | Category | Size |
 |----------|------|
-| Data files | ~350 KB |
-| Code files | ~150 KB |
-| Figures | ~1.9 MB |
-| Documentation | ~50 KB |
-| **Total** | **~2.5 MB** |
+| Data files | ~1.2 MB |
+| Code files | ~200 KB |
+| Figures | ~2.5 MB (PNG + PDF) |
+| Documentation | ~80 KB |
+| **Total** | **~4 MB** |
 
 ---
 
@@ -277,6 +348,6 @@ For questions or issues:
 
 ---
 
-**Package validated**: November 19, 2024  
-**Test environment**: macOS 14.x, Python 3.12, R 4.3  
-**Status**: ✅ All components functional
+**Package validated**: December 8, 2025
+**Test environment**: macOS 14.x (Darwin 25.2.0), Python 3.12, R 4.4
+**Status**: ✅ All components functional (6 main figures + 6 supplementary + 10 new analyses)
