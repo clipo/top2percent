@@ -93,6 +93,110 @@ python scripts/python/create_manuscript_visualizations.py
 
 ## Validation and Robustness Analyses
 
+### create_replicate_samples.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Generate 5 independent stratified random samples for robustness testing
+
+**Inputs**:
+- Full 2024 rankings Excel file (230,333 researchers)
+
+**Outputs**:
+- `data/robustness_analysis/replicates/replicate_1_n400.csv` - Replicate 1 sample
+- `data/robustness_analysis/replicates/replicate_2_n400.csv` - Replicate 2 sample
+- `data/robustness_analysis/replicates/replicate_3_n400.csv` - Replicate 3 sample
+- `data/robustness_analysis/replicates/replicate_4_n400.csv` - Replicate 4 sample
+- `data/robustness_analysis/replicates/replicate_5_n400.csv` - Replicate 5 sample
+- `data/robustness_analysis/replicate_metadata.csv` - Sample metadata
+
+**Dependencies**:
+- pandas, openpyxl
+
+**Runtime**: ~2 seconds
+
+**Usage**:
+```bash
+python scripts/python/create_replicate_samples.py
+```
+
+**Details**: Creates 5 independent samples (n=400 each) using stratified random sampling by rank percentile (5 bins) and field type (book-heavy/mixed/journal-heavy). Uses different random seeds (2000-2004) to ensure independence.
+
+---
+
+### match_replicates_to_openalex.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Match all 2,000 researchers from 5 replicates to OpenAlex
+
+**Inputs**:
+- `data/robustness_analysis/replicates/replicate_*_n400.csv` (5 files)
+
+**Outputs**:
+- `data/robustness_analysis/openalex_matched/replicate_*_openalex_data.csv` (5 files)
+- `data/robustness_analysis/openalex_matched/all_replicates_combined.csv` (2,000 researchers)
+
+**Dependencies**:
+- pandas, requests, time
+
+**Runtime**: ~87 minutes (2,000 API calls with 0.5s delays)
+
+**Usage**:
+```bash
+python scripts/python/match_replicates_to_openalex.py
+```
+
+**Details**: For each of 2,000 researchers:
+1. Searches OpenAlex by name and institution
+2. Fetches complete publication history
+3. Calculates publisher percentages (Elsevier, Wiley, Springer, Oxford, Cambridge)
+4. Calculates books percentage
+5. Calculates OA publisher percentage (PLOS, Frontiers, MDPI)
+6. Determines coverage ratio (Scopus pubs / OpenAlex total works)
+
+Match rates: 87.8-94.2% (mean: 91.5%)
+
+---
+
+### analyze_all_replicates.py
+**Location**: `scripts/python/`
+**Language**: Python 3.8+
+**Purpose**: Calculate effect sizes across all 5 replicates to test robustness
+
+**Inputs**:
+- `data/robustness_analysis/openalex_matched/replicate_*_openalex_data.csv` (5 files)
+- `data/robustness_analysis/replicates/replicate_*_n400.csv` (5 files)
+
+**Outputs**:
+- `data/robustness_analysis/replicate_effect_sizes.csv` - Effect sizes for each replicate
+- `data/robustness_analysis/replicate_summary_statistics.csv` - Summary statistics (means/SDs)
+
+**Dependencies**:
+- pandas, numpy, scipy
+
+**Runtime**: ~30 seconds
+
+**Usage**:
+```bash
+python scripts/python/analyze_all_replicates.py
+```
+
+**Details**: For each replicate, calculates:
+- **H1 (Elsevier effect)**: Cohen's d, Pearson r, mean difference, p-value
+- **H2 (Book penalty)**: Cliff's delta, Pearson r, mean difference, p-value (where applicable)
+- **H3 (Field bias)**: Cohen's d, mean difference, p-value (where applicable)
+
+Then computes summary statistics across all 5 replicates:
+- Mean effect size ± SD
+- Range (min to max)
+- Tests stability (SD < 0.10 indicates excellent stability)
+
+**Key findings**:
+- Elsevier effect: d=0.58±0.09 (highly stable), all p<0.001
+- Book penalty: δ=-0.08±0.01 (very stable where detected)
+- Demonstrates findings do NOT depend on sample selection
+
+---
+
 ### extract_orcid_validation.py
 **Location**: `scripts/python/`
 **Language**: Python 3.8+

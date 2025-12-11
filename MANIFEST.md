@@ -1,8 +1,8 @@
 # Reproducibility Package Manifest
 
-**Version**: 3.0
-**Date**: December 8, 2025
-**Sample Size**: 600 researchers (570 matched to OpenAlex, 362 ORCID-verified)
+**Version**: 3.1
+**Date**: December 10, 2025
+**Sample Size**: 600 researchers (570 matched to OpenAlex, 362 ORCID-verified) + 2,000 robustness replicates
 
 ---
 
@@ -27,6 +27,23 @@ reproducibility_package/
 │   ├── effect_sizes_comparison.csv        # Cliff's delta vs Cohen's d
 │   ├── confidence_intervals.csv           # Bootstrap 95% CIs (H1, H2)
 │   ├── sensitivity_analysis_results.csv   # Outlier capping sensitivity (120-150%)
+│   ├── robustness_analysis/               # Independent replicate analysis (NEW)
+│   │   ├── replicate_metadata.csv         # 5 replicate sample metadata
+│   │   ├── replicate_effect_sizes.csv     # Effect sizes across replicates
+│   │   ├── replicate_summary_statistics.csv # Summary with means/SDs
+│   │   ├── replicates/                    # Individual replicate samples
+│   │   │   ├── replicate_1_n400.csv       # Replicate 1 (n=400)
+│   │   │   ├── replicate_2_n400.csv       # Replicate 2 (n=400)
+│   │   │   ├── replicate_3_n400.csv       # Replicate 3 (n=400)
+│   │   │   ├── replicate_4_n400.csv       # Replicate 4 (n=400)
+│   │   │   └── replicate_5_n400.csv       # Replicate 5 (n=400)
+│   │   └── openalex_matched/              # OpenAlex matched data
+│   │       ├── replicate_1_openalex_data.csv
+│   │       ├── replicate_2_openalex_data.csv
+│   │       ├── replicate_3_openalex_data.csv
+│   │       ├── replicate_4_openalex_data.csv
+│   │       ├── replicate_5_openalex_data.csv
+│   │       └── all_replicates_combined.csv # All 2,000 researchers
 │   └── university_adoption/               # Institutional adoption data
 │       ├── university_adoption_data.csv
 │       └── university_details.csv
@@ -45,6 +62,9 @@ reproducibility_package/
 │   │   ├── citation_quality_analysis.py        # Journal impact controls
 │   │   ├── comprehensive_statistical_analysis.py # Effect sizes & corrections
 │   │   ├── statistical_validity_enhancements.py  # Assumption tests, CIs, VIF, sensitivity
+│   │   ├── create_replicate_samples.py         # Generate 5 independent samples (NEW)
+│   │   ├── match_replicates_to_openalex.py     # Match replicates to OpenAlex (NEW)
+│   │   ├── analyze_all_replicates.py           # Calculate replicate effect sizes (NEW)
 │   │   ├── figureS1_sample_characteristics.py
 │   │   ├── figureS2_coverage_distribution.py
 │   │   ├── figureS3_publisher_breakdown.py
@@ -144,6 +164,22 @@ reproducibility_package/
 - [x] `comprehensive_statistics.csv` - Bonferroni corrections
 - [x] `effect_sizes_comparison.csv` - Cliff's delta vs Cohen's d
 
+**Robustness analysis data** (NEW - Dec 10, 2024):
+- [x] `robustness_analysis/replicate_metadata.csv` - 5 replicate sample metadata
+- [x] `robustness_analysis/replicate_effect_sizes.csv` - Effect sizes across replicates
+- [x] `robustness_analysis/replicate_summary_statistics.csv` - Summary statistics (means/SDs)
+- [x] `robustness_analysis/replicates/replicate_1_n400.csv` - Replicate 1 sample
+- [x] `robustness_analysis/replicates/replicate_2_n400.csv` - Replicate 2 sample
+- [x] `robustness_analysis/replicates/replicate_3_n400.csv` - Replicate 3 sample
+- [x] `robustness_analysis/replicates/replicate_4_n400.csv` - Replicate 4 sample
+- [x] `robustness_analysis/replicates/replicate_5_n400.csv` - Replicate 5 sample
+- [x] `robustness_analysis/openalex_matched/replicate_1_openalex_data.csv` - Replicate 1 matched
+- [x] `robustness_analysis/openalex_matched/replicate_2_openalex_data.csv` - Replicate 2 matched
+- [x] `robustness_analysis/openalex_matched/replicate_3_openalex_data.csv` - Replicate 3 matched
+- [x] `robustness_analysis/openalex_matched/replicate_4_openalex_data.csv` - Replicate 4 matched
+- [x] `robustness_analysis/openalex_matched/replicate_5_openalex_data.csv` - Replicate 5 matched
+- [x] `robustness_analysis/openalex_matched/all_replicates_combined.csv` - All 2,000 researchers combined
+
 **University adoption data** (`data/university_adoption/`):
 - [x] `university_adoption_data.csv` - Yearly adoption metrics
 - [x] `university_details.csv` - Institution details
@@ -190,6 +226,21 @@ reproducibility_package/
   - Cliff's delta calculations
   - Bonferroni corrections for multiple comparisons
   - Output: comprehensive_statistics.csv, effect_sizes_comparison.csv
+- [x] `create_replicate_samples.py` - Generate 5 independent samples (NEW)
+  - Creates 5 stratified random samples (n=400 each)
+  - Same stratification as original sample
+  - Different random seeds for independence
+  - Output: robustness_analysis/replicates/replicate_*_n400.csv
+- [x] `match_replicates_to_openalex.py` - Match replicates to OpenAlex (NEW)
+  - Matches all 2,000 researchers to OpenAlex
+  - Retrieves complete publication histories
+  - Calculates publisher percentages (Elsevier, books, etc.)
+  - Output: robustness_analysis/openalex_matched/*.csv
+- [x] `analyze_all_replicates.py` - Calculate replicate effect sizes (NEW)
+  - Calculates Cohen's d, Pearson r, Cliff's δ for each replicate
+  - Generates summary statistics with means and SDs
+  - Tests stability of findings across independent samples
+  - Output: robustness_analysis/replicate_effect_sizes.csv, replicate_summary_statistics.csv
 
 **R scripts (`scripts/R/`):**
 - [x] `figures_1_2_3_coverage_analysis.R` - Figures 1-3: Coverage analysis
@@ -223,11 +274,11 @@ reproducibility_package/
 
 | Category | Size |
 |----------|------|
-| Data files | ~1.2 MB |
-| Code files | ~200 KB |
+| Data files | ~3.5 MB (includes 2,000 robustness replicates) |
+| Code files | ~250 KB |
 | Figures | ~2.5 MB (PNG + PDF) |
-| Documentation | ~80 KB |
-| **Total** | **~4 MB** |
+| Documentation | ~100 KB |
+| **Total** | **~6.5 MB** |
 
 ---
 
@@ -353,6 +404,6 @@ For questions or issues:
 
 ---
 
-**Package validated**: December 8, 2024
+**Package validated**: December 10, 2024
 **Test environment**: macOS 14.x (Darwin 25.2.0), Python 3.12, R 4.4
-**Status**: ✅ All components functional (6 main figures + 6 supplementary + 10 new analyses)
+**Status**: ✅ All components functional (6 main figures + 6 supplementary + robustness analysis + 13 validation analyses)
