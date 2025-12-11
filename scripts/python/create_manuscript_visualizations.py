@@ -2,10 +2,9 @@
 Create Publication-Ready Visualizations and Tables for Manuscript
 
 Generates:
-1. Scatter plot: Scopus vs OpenAlex rankings
-2. LaTeX table: Top 10 OpenAlex researchers
-3. Summary statistics table
-4. Extreme cases analysis
+- Figure 5: Scatter plot of Scopus vs OpenAlex rankings
+- Figure S1: Distribution of ranking changes
+- Tables: Top 10 OpenAlex researchers, summary statistics, extreme cases
 """
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -28,6 +27,8 @@ print("="*80)
 script_dir = Path(__file__).parent
 data_dir = script_dir / ".." / ".." / "data"
 output_dir = script_dir / ".." / ".." / "figures"
+tables_dir = script_dir / ".." / ".." / "tables"
+tables_dir.mkdir(exist_ok=True)
 
 # Load data
 print("\nLoading comparison data...")
@@ -69,18 +70,42 @@ for category in ['Other', 'Scopus Top 2% Only', 'OpenAlex Top 2%']:
               alpha=0.6,
               s=50 if category == 'OpenAlex Top 2%' else 20)
 
-# Add diagonal reference line
-max_rank = max(df_both['rank_global'].max(), df_both['rank_openalex'].max())
-ax.plot([0, max_rank], [0, max_rank], 'k--', alpha=0.3, linewidth=1, label='Equal Ranking')
+# Add diagonal reference line (scaled to visible range)
+# For different axis scales, show diagonal for equal PERCENTILE, not equal absolute rank
+ax.plot([0, 300000], [0, 550], 'k--', alpha=0.5, linewidth=2, label='Equal Ranking', zorder=1)
 
-# Label extreme cases
-extreme_cases = df_both.nlargest(5, 'rank_change')
-for _, row in extreme_cases.iterrows():
-    if row['rank_global'] < 300000:  # Only label if visible on plot
-        ax.annotate(row['authfull'].split(',')[0],
+# Label specific researchers mentioned in manuscript with manual positioning to avoid overlap
+specific_researchers = {
+    'Hofstede': (-70, -20),      # Top left corner
+    'Castells': (10, 15),        # Early, mid-range
+    'Fletcher': (-70, 15),       # Mid-range, avoid overlap
+    'Buck-Morss': (10, -15),     # Mid-range, below
+    'Rosenwein': (-70, 10),      # Right side, upper
+    'Butler': (10, 15),          # Right side, mid
+    'Crystal': (10, -20)         # Right side, lower
+}
+
+for name, text_offset in specific_researchers.items():
+    match = df_both[df_both['authfull'].str.contains(name, case=False, na=False)]
+    if len(match) > 0:
+        row = match.iloc[0]
+        ax.scatter(row['rank_global'], row['rank_openalex'],
+                  s=120, c='red', marker='*', zorder=5, edgecolors='black', linewidths=1.5)
+        # Abbreviate name for less clutter
+        display_name = name.split()[-1] if len(name.split()) > 1 else name
+        ax.annotate(f"{display_name}\n+{row['rank_change']/1000:.0f}K",
                    xy=(row['rank_global'], row['rank_openalex']),
-                   xytext=(5, 5), textcoords='offset points',
-                   fontsize=8, alpha=0.7)
+                   xytext=text_offset, textcoords='offset points',
+                   fontsize=6, fontweight='bold',
+                   bbox=dict(boxstyle='round,pad=0.25', facecolor='yellow', alpha=0.8, edgecolor='black', linewidth=0.5),
+                   arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.2', lw=0.8, color='black'))
+
+# Add annotation for Gombrich (off-scale)
+ax.text(0.98, 0.35, 'Gombrich\n+1.21M\n(off scale →)',
+        transform=ax.transAxes, ha='right', va='center',
+        fontsize=6, fontweight='bold',
+        bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.8, edgecolor='black', linewidth=0.5),
+        zorder=10)
 
 ax.set_xlabel('Scopus Global Rank', fontsize=12)
 ax.set_ylabel('OpenAlex Rank (Composite Score)', fontsize=12)
@@ -102,10 +127,10 @@ print("\n✓ Saved: Figure5_Scopus_vs_OpenAlex_Rankings.png")
 print("✓ Saved: Figure5_Scopus_vs_OpenAlex_Rankings.pdf")
 
 # =============================================================================
-# FIGURE 2: Ranking Changes Distribution
+# FIGURE S1: Ranking Changes Distribution
 # =============================================================================
 print("\n" + "="*80)
-print("FIGURE 2: Distribution of Ranking Changes")
+print("FIGURE S1: Distribution of Ranking Changes")
 print("="*80)
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
@@ -117,7 +142,7 @@ ax1.axvline(rank_changes.median(), color='red', linestyle='--', linewidth=2, lab
 ax1.axvline(0, color='black', linestyle='-', linewidth=1, alpha=0.5)
 ax1.set_xlabel('Rank Change (Scopus - OpenAlex)', fontsize=11)
 ax1.set_ylabel('Number of Researchers', fontsize=11)
-ax1.set_title('Distribution of Ranking Changes', fontsize=12, fontweight='bold')
+ax1.set_title('(a) Distribution of Ranking Changes', fontsize=12, fontweight='bold', loc='left')
 ax1.legend()
 
 # Field type breakdown
@@ -127,7 +152,7 @@ ax2.barh(field_stats.index, field_stats['median'], color='steelblue', alpha=0.7)
 ax2.axvline(0, color='black', linestyle='-', linewidth=1, alpha=0.5)
 ax2.set_xlabel('Median Rank Change', fontsize=11)
 ax2.set_ylabel('Field Type', fontsize=11)
-ax2.set_title('Median Ranking Change by Field Type', fontsize=12, fontweight='bold')
+ax2.set_title('(b) Median Ranking Change by Field Type', fontsize=12, fontweight='bold', loc='left')
 
 # Add counts
 for i, (idx, row) in enumerate(field_stats.iterrows()):
@@ -135,10 +160,10 @@ for i, (idx, row) in enumerate(field_stats.iterrows()):
             va='center', fontsize=9)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'Figure6_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
-plt.savefig(output_dir / 'Figure6_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
-print("\n✓ Saved: Figure6_Ranking_Changes_Distribution.png")
-print("✓ Saved: Figure6_Ranking_Changes_Distribution.pdf")
+plt.savefig(output_dir / 'FigureS1_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig(output_dir / 'FigureS1_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
+print("\n✓ Saved: FigureS1_Ranking_Changes_Distribution.png")
+print("✓ Saved: FigureS1_Ranking_Changes_Distribution.pdf")
 
 # =============================================================================
 # TABLE 1: Top 10 OpenAlex Researchers (LaTeX)
@@ -192,7 +217,7 @@ latex_table += r"""\bottomrule
 \end{table}
 """
 
-with open(output_dir / 'table_openalex_top10.tex', 'w') as f:
+with open(tables_dir / 'table_openalex_top10.tex', 'w') as f:
     f.write(latex_table)
 
 print("\n✓ Saved: table_openalex_top10.tex")
@@ -247,7 +272,7 @@ summary_stats = pd.DataFrame({
     ]
 })
 
-summary_stats.to_csv(output_dir / 'table_summary_statistics.csv', index=False)
+summary_stats.to_csv(tables_dir / 'table_summary_statistics.csv', index=False)
 print("\n✓ Saved: table_summary_statistics.csv")
 print("\nSummary Statistics:")
 print(summary_stats.to_string(index=False))
@@ -264,7 +289,7 @@ extreme_df = df_both.nlargest(10, 'rank_change')[['authfull', 'field', 'rank_ope
                                                     'c_score_openalex', 'elsevier_pct',
                                                     'nc', 'h']]
 
-extreme_df.to_csv(output_dir / 'extreme_ranking_improvements.csv', index=False)
+extreme_df.to_csv(tables_dir / 'extreme_ranking_improvements.csv', index=False)
 print("\n✓ Saved: extreme_ranking_improvements.csv")
 print("\nTop 10 Ranking Improvements:")
 for idx, (_, row) in enumerate(extreme_df.iterrows(), 1):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S4: Regression Diagnostics
+Generate Supplementary Figure S5: Regression Diagnostics
 
 Shows diagnostic plots for the multivariate regression model.
 
@@ -66,7 +66,7 @@ ax1.scatter(predictions, residuals, alpha=0.5, s=20, color='#0072B2', edgecolors
 ax1.axhline(0, color='red', linestyle='--', linewidth=2)
 ax1.set_xlabel('Fitted Values', fontsize=11, fontweight='bold')
 ax1.set_ylabel('Residuals', fontsize=11, fontweight='bold')
-ax1.set_title('A. Residuals vs Fitted Values', fontsize=12, fontweight='bold', pad=15)
+ax1.set_title('(a) Residuals vs Fitted Values', fontsize=12, fontweight='bold', loc='left', pad=15)
 
 # Add loess smooth
 from scipy.signal import savgol_filter
@@ -80,7 +80,7 @@ if len(sorted_residuals) > 51:
 # Panel B: Q-Q Plot
 ax2 = axes[0, 1]
 stats.probplot(standardized_residuals, dist="norm", plot=ax2)
-ax2.set_title('B. Normal Q-Q Plot', fontsize=12, fontweight='bold', pad=15)
+ax2.set_title('(b) Normal Q-Q Plot', fontsize=12, fontweight='bold', loc='left', pad=15)
 ax2.set_xlabel('Theoretical Quantiles', fontsize=11, fontweight='bold')
 ax2.set_ylabel('Standardized Residuals', fontsize=11, fontweight='bold')
 
@@ -90,7 +90,7 @@ sqrt_abs_resid = np.sqrt(np.abs(standardized_residuals))
 ax3.scatter(predictions, sqrt_abs_resid, alpha=0.5, s=20, color='#0072B2', edgecolors='none')
 ax3.set_xlabel('Fitted Values', fontsize=11, fontweight='bold')
 ax3.set_ylabel('√|Standardized Residuals|', fontsize=11, fontweight='bold')
-ax3.set_title('C. Scale-Location Plot', fontsize=12, fontweight='bold', pad=15)
+ax3.set_title('(c) Scale-Location Plot', fontsize=12, fontweight='bold', loc='left', pad=15)
 
 # Add loess smooth
 sorted_sqrt_resid = sqrt_abs_resid.iloc[sorted_indices]
@@ -108,15 +108,15 @@ ax4.plot(x_range, stats.norm.pdf(x_range) * len(standardized_residuals) *
          color='red', linewidth=2, label='Normal distribution')
 ax4.set_xlabel('Standardized Residuals', fontsize=11, fontweight='bold')
 ax4.set_ylabel('Frequency', fontsize=11, fontweight='bold')
-ax4.set_title('D. Distribution of Residuals', fontsize=12, fontweight='bold', pad=15)
+ax4.set_title('(d) Distribution of Residuals', fontsize=12, fontweight='bold', loc='left', pad=15)
 ax4.legend(fontsize=9)
 
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS4_regression_diagnostics.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS5_Regression_Diagnostics.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S4 saved: {output_path}")
+print(f"✓ Figure S5 saved: {output_path}")
 
 # Print regression summary
 print(f"\nRegression Model Summary:")

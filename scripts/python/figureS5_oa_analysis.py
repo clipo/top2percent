@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S5: Open Access Publisher Analysis
+Generate Supplementary Figure S6: Open Access Publisher Analysis
 
 Detailed breakdown of coverage by open access publishers.
 
@@ -100,7 +100,7 @@ bars2 = ax1.bar(x + width/2, comp_df['Without Publisher'], width,
 
 ax1.set_xlabel('Open Access Publisher', fontsize=12, fontweight='bold')
 ax1.set_ylabel('Median Coverage Ratio', fontsize=12, fontweight='bold')
-ax1.set_title('A. Coverage by Open Access Publisher', fontsize=13, fontweight='bold', pad=15)
+ax1.set_title('(a) Coverage by Open Access Publisher', fontsize=13, fontweight='bold', loc='left', pad=15)
 ax1.set_xticks(x)
 ax1.set_xticklabels(comp_df['Publisher'], fontsize=10)
 ax1.legend(fontsize=10)
@@ -158,7 +158,7 @@ if 'plos_count' in df.columns and 'frontiers_count' in df.columns:
     ax2.set_xticks([1.5, 4.5])
     ax2.set_xticklabels(['PLOS', 'Frontiers'], fontsize=11, fontweight='bold')
     ax2.set_ylabel('Coverage Ratio', fontsize=12, fontweight='bold')
-    ax2.set_title('B. Distribution Comparison for Major OA Publishers', fontsize=13, fontweight='bold', pad=15)
+    ax2.set_title('(b) Distribution Comparison for Major OA Publishers', fontsize=13, fontweight='bold', loc='left', pad=15)
     ax2.axhline(1.0, color='gray', linestyle=':', linewidth=1.5, alpha=0.5, label='100% coverage')
 
     # Add custom legend
@@ -174,9 +174,9 @@ if 'plos_count' in df.columns and 'frontiers_count' in df.columns:
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS5_oa_analysis.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS6_OA_Analysis.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S5 saved: {output_path}")
+print(f"✓ Figure S6 saved: {output_path}")
 
 # Print summary table
 print(f"\nOpen Access Publisher Analysis:")

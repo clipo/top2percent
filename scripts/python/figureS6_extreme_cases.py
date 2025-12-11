@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S6: Extreme Undercounting Cases
+Generate Supplementary Figure S7: Extreme Undercounting Cases
 
 Detailed profiles of the 7 researchers with 300+ publications and ≤10% coverage.
 
@@ -65,7 +65,7 @@ if len(extreme_cases) > 0:
 
     ax1.set_xlabel('Researcher', fontsize=12, fontweight='bold')
     ax1.set_ylabel('Number of Publications', fontsize=12, fontweight='bold')
-    ax1.set_title('A. Publication Counts for Extreme Undercounting Cases', fontsize=13, fontweight='bold', pad=15)
+    ax1.set_title('(a) Publication Counts for Extreme Undercounting Cases', fontsize=13, fontweight='bold', loc='left', pad=15)
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels, fontsize=9, rotation=0, ha='center')
     ax1.legend(fontsize=11, loc='upper right')
@@ -116,7 +116,7 @@ if len(extreme_cases) > 0:
 
     ax2.set_xlabel('Researcher', fontsize=12, fontweight='bold')
     ax2.set_ylabel('Publisher Distribution (%)', fontsize=12, fontweight='bold')
-    ax2.set_title('B. Publisher Breakdown for Extreme Cases', fontsize=13, fontweight='bold', pad=15)
+    ax2.set_title('(b) Publisher Breakdown for Extreme Cases', fontsize=13, fontweight='bold', loc='left', pad=15)
     ax2.set_xticks(x)
     ax2.set_xticklabels(labels, fontsize=9, rotation=0, ha='center')
     ax2.legend(fontsize=9, loc='upper right', ncol=2)
@@ -125,9 +125,9 @@ if len(extreme_cases) > 0:
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS6_extreme_cases.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS7_Extreme_Cases.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S6 saved: {output_path}")
+print(f"✓ Figure S7 saved: {output_path}")
 
 # Print detailed table
 print(f"\nExtreme Undercounting Cases (300+ publications, ≤10% coverage):")

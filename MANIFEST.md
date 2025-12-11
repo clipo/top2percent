@@ -65,38 +65,41 @@ reproducibility_package/
 │   │   ├── create_replicate_samples.py         # Generate 5 independent samples (NEW)
 │   │   ├── match_replicates_to_openalex.py     # Match replicates to OpenAlex (NEW)
 │   │   ├── analyze_all_replicates.py           # Calculate replicate effect sizes (NEW)
-│   │   ├── figureS1_sample_characteristics.py
-│   │   ├── figureS2_coverage_distribution.py
-│   │   ├── figureS3_publisher_breakdown.py
-│   │   ├── figureS4_regression_diagnostics.py
-│   │   ├── figureS5_oa_analysis.py
-│   │   └── figureS6_extreme_cases.py
+│   │   ├── figureS1_sample_characteristics.py     # → FigureS2
+│   │   ├── figureS2_coverage_distribution.py      # → FigureS3
+│   │   ├── figureS3_publisher_breakdown.py        # → FigureS4
+│   │   ├── figureS4_regression_diagnostics.py     # → FigureS5
+│   │   ├── figureS5_oa_analysis.py                # → FigureS6
+│   │   └── figureS6_extreme_cases.py              # → FigureS7
 │   └── data_collection/       # Data collection scripts (optional)
 │       ├── create_stratified_sample.py
 │       └── fetch_openalex_comprehensive.py
 ├── figures/                   # Generated output (PNG + PDF formats)
-│   ├── Figure1_Coverage_by_Field.png/.pdf
-│   ├── Figure2_Elsevier_vs_Coverage.png/.pdf
-│   ├── Figure3_Books_vs_Coverage.png/.pdf
-│   ├── Figure4_university_adoption.png/.pdf
+│   ├── Figure1_University_Adoption.png/.pdf
+│   ├── Figure2_Coverage_by_Field.png/.pdf
+│   ├── Figure3_Elsevier_vs_Coverage.png/.pdf
+│   ├── Figure4_Books_vs_Coverage.png/.pdf
 │   ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
-│   ├── Figure6_Ranking_Changes_Distribution.png/.pdf
-│   ├── FigureS1_sample_characteristics.png
-│   ├── FigureS2_coverage_distribution.png
-│   ├── FigureS3_publisher_breakdown.png
-│   ├── FigureS4_regression_diagnostics.png
-│   ├── FigureS5_oa_analysis.png
-│   ├── FigureS6_extreme_cases.png
-│   └── Table1_Summary.csv
+│   ├── FigureS1_Ranking_Changes_Distribution.png/.pdf
+│   ├── FigureS2_Sample_Characteristics.png/.pdf
+│   ├── FigureS3_Coverage_Distribution.png/.pdf
+│   ├── FigureS4_Publisher_Breakdown.png/.pdf
+│   ├── FigureS5_Regression_Diagnostics.png/.pdf
+│   ├── FigureS6_OA_Analysis.png/.pdf
+│   └── FigureS7_Extreme_Cases.png/.pdf
+├── tables/                    # Generated tables (CSV + TEX formats)
+│   ├── Table1_Summary.csv
+│   ├── table_summary_statistics.csv
+│   ├── extreme_ranking_improvements.csv
+│   └── table_openalex_top10.tex
 ├── generate_all_figures.py    # Master script: generate all figures
 ├── run_all_analyses.py        # Master script: complete pipeline
 ├── verify_setup.py            # Verification script
 ├── install_r_dependencies.R   # R package installer
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # Main documentation
-├── SUPPLEMENTARY_MATERIALS.md # Detailed supplementary information
 ├── CODE_DOCUMENTATION.md      # Technical documentation
-├── STATISTICAL_VALIDITY_REPORT.md # Assumption testing & robustness checks
+├── FIGURE_CAPTIONS.md         # Technical figure captions
 ├── MANIFEST.md                # This file
 ├── ANALYSIS_SUMMARY.txt       # Statistical results summary
 ├── analysis_results.json      # Machine-readable results
@@ -112,6 +115,7 @@ reproducibility_package/
 - [x] `README.md` - Main documentation (comprehensive guide)
 - [x] `SUPPLEMENTARY_MATERIALS.md` - Detailed supplementary information
 - [x] `CODE_DOCUMENTATION.md` - Technical code documentation
+- [x] `FIGURE_CAPTIONS.md` - Technical figure captions with statistical details
 - [x] `STATISTICAL_VALIDITY_REPORT.md` - Assumption testing & robustness checks (NEW)
 - [x] `MANIFEST.md` - This file (package contents)
 - [x] `LICENSE.txt` - License information
@@ -243,11 +247,11 @@ reproducibility_package/
   - Output: robustness_analysis/replicate_effect_sizes.csv, replicate_summary_statistics.csv
 
 **R scripts (`scripts/R/`):**
-- [x] `figures_1_2_3_coverage_analysis.R` - Figures 1-3: Coverage analysis
-  - Figure 1: Coverage by field type
-  - Figure 2: Elsevier % vs coverage
-  - Figure 3: Book % vs coverage
-  - Output: figures/*.png (300 DPI)
+- [x] `figures_1_2_3_coverage_analysis.R` - Figures 2-4: Coverage analysis
+  - Figure 2: Coverage by field type
+  - Figure 3: Elsevier % vs coverage
+  - Figure 4: Book % vs coverage
+  - Output: figures/*.png (300 DPI) + tables/*.csv
 
 **Data collection scripts (`scripts/data_collection/`):**
 - [x] `fetch_openalex_comprehensive.py` - OpenAlex data collection
@@ -256,14 +260,24 @@ reproducibility_package/
 ### Output Files (`figures/`)
 
 **Publication-ready figures (PNG + PDF):**
-- [x] `Figure1_Coverage_by_Field.png/.pdf` (3000×2100 px, 300 DPI / vector)
-- [x] `Figure2_Elsevier_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
-- [x] `Figure3_Books_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
-- [x] `Figure4_university_adoption.png/.pdf` (3000×2100 px, 300 DPI / vector)
-- [x] `Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf` (2369×1768 px, 300 DPI / vector) (NEW)
-- [x] `Figure6_Ranking_Changes_Distribution.png/.pdf` (3563×1470 px, 300 DPI / vector) (NEW)
-- [x] `FigureS1-S6_*.png` - Supplementary figures (PNG only)
-- [x] `Table1_Summary.csv` - Summary statistics table
+- [x] `Figure1_University_Adoption.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure2_Coverage_by_Field.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure3_Elsevier_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure4_Books_vs_Coverage.png/.pdf` (3000×2100 px, 300 DPI / vector)
+- [x] `Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf` (2400×1800 px, 300 DPI / vector)
+- [x] `FigureS1_Ranking_Changes_Distribution.png/.pdf` (3600×1500 px, 300 DPI / vector)
+- [x] `FigureS2_Sample_Characteristics.png/.pdf` (2 panels)
+- [x] `FigureS3_Coverage_Distribution.png/.pdf` (2 panels)
+- [x] `FigureS4_Publisher_Breakdown.png/.pdf` (single panel)
+- [x] `FigureS5_Regression_Diagnostics.png/.pdf` (4 panels)
+- [x] `FigureS6_OA_Analysis.png/.pdf` (2 panels)
+- [x] `FigureS7_Extreme_Cases.png/.pdf` (2 panels)
+
+**Tables:**
+- [x] `tables/Table1_Summary.csv` - Summary statistics table
+- [x] `tables/table_summary_statistics.csv` - Detailed summary
+- [x] `tables/extreme_ranking_improvements.csv` - Top 10 improvements
+- [x] `tables/table_openalex_top10.tex` - LaTeX table for manuscript
 
 **Analysis output:**
 - [x] `ANALYSIS_SUMMARY_n600.txt` - Complete statistical analysis report
@@ -404,6 +418,6 @@ For questions or issues:
 
 ---
 
-**Package validated**: December 10, 2024
+**Package validated**: December 11, 2025
 **Test environment**: macOS 14.x (Darwin 25.2.0), Python 3.12, R 4.4
-**Status**: ✅ All components functional (6 main figures + 6 supplementary + robustness analysis + 13 validation analyses)
+**Status**: ✅ All components functional (5 main figures + 7 supplementary + tables/ + robustness analysis + 13 validation analyses)

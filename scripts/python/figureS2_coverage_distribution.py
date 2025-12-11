@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S2: Coverage Distribution
+Generate Supplementary Figure S3: Coverage Distribution
 
 Shows histogram of coverage ratios with field-specific distributions.
 
@@ -36,7 +36,7 @@ ax1.axvline(df['coverage_ratio'].median(), color='red', linestyle='--', linewidt
 ax1.axvline(1.0, color='gray', linestyle=':', linewidth=2, label='100% coverage')
 ax1.set_xlabel('Coverage Ratio (Scopus/OpenAlex)', fontsize=12, fontweight='bold')
 ax1.set_ylabel('Number of Researchers', fontsize=12, fontweight='bold')
-ax1.set_title('A. Overall Coverage Distribution', fontsize=13, fontweight='bold', pad=15)
+ax1.set_title('(a) Overall Coverage Distribution', fontsize=13, fontweight='bold', loc='left', pad=15)
 ax1.legend(fontsize=11)
 ax1.set_xlim(0, 1.5)
 
@@ -59,16 +59,16 @@ for ft, label, color in zip(field_types, field_labels, colors):
 ax2.axvline(1.0, color='gray', linestyle=':', linewidth=2, label='100% coverage')
 ax2.set_xlabel('Coverage Ratio (Scopus/OpenAlex)', fontsize=12, fontweight='bold')
 ax2.set_ylabel('Number of Researchers', fontsize=12, fontweight='bold')
-ax2.set_title('B. Coverage Distribution by Field Type', fontsize=13, fontweight='bold', pad=15)
+ax2.set_title('(b) Coverage Distribution by Field Type', fontsize=13, fontweight='bold', loc='left', pad=15)
 ax2.legend(fontsize=10, loc='upper right')
 ax2.set_xlim(0, 1.5)
 
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_coverage_distribution.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS3_Coverage_Distribution.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S2 saved: {output_path}")
+print(f"✓ Figure S3 saved: {output_path}")
 
 # Print summary
 print(f"\nCoverage Statistics by Field:")

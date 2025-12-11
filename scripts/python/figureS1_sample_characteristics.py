@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S1: Sample Characteristics
+Generate Supplementary Figure S2: Sample Characteristics
 
 Shows geographic and field distribution of the n=600 sample.
 
-Output: figureS1_sample_characteristics.png
+Output: FigureS2_Sample_Characteristics.png
 """
 
 import pandas as pd
@@ -33,7 +33,7 @@ ax1.bar(range(len(field_counts)), field_counts.values, color=colors, alpha=0.8, 
 ax1.set_xticks(range(len(field_counts)))
 ax1.set_xticklabels(labels, fontsize=11)
 ax1.set_ylabel('Number of Researchers', fontsize=12, fontweight='bold')
-ax1.set_title('A. Sample Distribution by Field Type', fontsize=13, fontweight='bold', pad=15)
+ax1.set_title('(a) Sample Distribution by Field Type', fontsize=13, fontweight='bold', pad=15, loc='left')
 ax1.set_ylim(0, 250)
 
 # Add value labels on bars
@@ -48,7 +48,7 @@ ax2.barh(range(len(country_counts)), country_counts.values, color='#0072B2', alp
 ax2.set_yticks(range(len(country_counts)))
 ax2.set_yticklabels(country_counts.index, fontsize=10)
 ax2.set_xlabel('Number of Researchers', fontsize=12, fontweight='bold')
-ax2.set_title('B. Geographic Distribution (Top 10 Countries)', fontsize=13, fontweight='bold', pad=15)
+ax2.set_title('(b) Geographic Distribution (Top 10 Countries)', fontsize=13, fontweight='bold', pad=15, loc='left')
 ax2.invert_yaxis()
 
 # Add value labels
@@ -58,9 +58,11 @@ for i, v in enumerate(country_counts.values):
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS1_sample_characteristics.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_Sample_Characteristics.png"
+pdf_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_Sample_Characteristics.pdf"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S1 saved: {output_path}")
+plt.savefig(pdf_path, bbox_inches='tight')
+print(f"✓ Figure S2 saved: {output_path}")
 
 # Print summary statistics
 print(f"\nSample Summary:")

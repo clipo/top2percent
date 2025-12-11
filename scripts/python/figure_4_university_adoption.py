@@ -128,7 +128,7 @@ def create_main_figure(data: dict, output_path: Path):
     ax1.set_ylim(0, 25)
     ax1.set_xlabel("Year", fontsize=11)
     ax1.set_ylabel("Number of Universities", fontsize=11)
-    ax1.set_title("Documented Universities Using the Metric", fontweight="bold", fontsize=12)
+    ax1.set_title("(a) Documented Universities Using the Metric", fontweight="bold", fontsize=12, loc="left")
     ax1.text(
         2023,
         23,
@@ -147,7 +147,7 @@ def create_main_figure(data: dict, output_path: Path):
     )
     ax2.set_xlabel("Year", fontsize=11)
     ax2.set_ylabel("Number of Universities", fontsize=11)
-    ax2.set_title("Geographic Distribution of Adoption", fontweight="bold", fontsize=12)
+    ax2.set_title("(b) Geographic Distribution of Adoption", fontweight="bold", fontsize=12, loc="left")
     ax2.legend(title="Region", bbox_to_anchor=(1.05, 1), loc="upper left")
     ax2.set_xticklabels(ax2.get_xticklabels(), rotation=0)
 
@@ -173,7 +173,7 @@ def create_main_figure(data: dict, output_path: Path):
     ax3.set_ylim(0, 65)
     ax3.set_xlabel("Year", fontsize=11)
     ax3.set_ylabel("Cumulative Universities", fontsize=11)
-    ax3.set_title("Cumulative Growth in Documented Adoption", fontweight="bold", fontsize=12)
+    ax3.set_title("(c) Cumulative Growth in Documented Adoption", fontweight="bold", fontsize=12, loc="left")
     ax3.set_xticks([2022, 2023, 2024])
     note_text = (
         "Note: Year represents documented examples from press releases and official announcements. "
@@ -207,7 +207,7 @@ def create_main_figure(data: dict, output_path: Path):
 
     ax4.set_xlabel("Year", fontsize=11)
     ax4.set_ylabel("Number of Universities", fontsize=11)
-    ax4.set_title("Adoption by Institution Type", fontweight="bold", fontsize=12)
+    ax4.set_title("(d) Adoption by Institution Type", fontweight="bold", fontsize=12, loc="left")
     ax4.set_xticks(x)
     ax4.set_xticklabels([2022, 2023, 2024])
     ax4.legend()
@@ -302,8 +302,8 @@ def main():
         print("\nPreparing data for visualization...")
         data = prepare_data(adoption_data)
 
-        print("\nGenerating Figure 4...")
-        output_path = output_dir / "Figure4_university_adoption.png"
+        print("\nGenerating Figure 1...")
+        output_path = output_dir / "Figure1_University_Adoption.png"
         create_main_figure(data, output_path)
 
         print_summary_statistics(data, university_details)

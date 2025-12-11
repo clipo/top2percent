@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S3: Publisher Breakdown by Field
+Generate Supplementary Figure S4: Publisher Breakdown by Field
 
 Shows publisher distribution across field types.
 
@@ -72,7 +72,7 @@ for i, (field, label, color) in enumerate(zip(field_types, field_labels, colors)
 
 ax.set_xlabel('Publisher', fontsize=12, fontweight='bold')
 ax.set_ylabel('Median % of Publications', fontsize=12, fontweight='bold')
-ax.set_title('Publisher Distribution by Field Type', fontsize=14, fontweight='bold', pad=15)
+ax.set_title('Publisher Distribution by Field Type', fontsize=14, fontweight='bold', loc='left', pad=15)
 ax.set_xticks(x)
 ax.set_xticklabels(pivot_df.index, fontsize=11)
 ax.legend(title='Field Type', fontsize=10, title_fontsize=11)
@@ -81,9 +81,9 @@ ax.set_ylim(0, max(pivot_df.max()) * 1.2)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS3_publisher_breakdown.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS4_Publisher_Breakdown.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S3 saved: {output_path}")
+print(f"✓ Figure S4 saved: {output_path}")
 
 # Print summary table
 print(f"\nPublisher Distribution by Field (Median %):")

@@ -45,13 +45,13 @@ reproducibility_package/
 │       └── university_details.csv
 ├── scripts/                           # Analysis and figure generation
 │   ├── R/                            # R scripts
-│   │   ├── figures_1_2_3_coverage_analysis.R  # Main figures 1-3
+│   │   ├── figures_1_2_3_coverage_analysis.R  # Main figures 2-4
 │   │   └── install_r_dependencies.R           # R package installation
 │   ├── python/                       # Python scripts
-│   │   ├── figure_4_university_adoption.py    # Main figure 4
+│   │   ├── figure_4_university_adoption.py    # Main figure 1
 │   │   ├── extract_orcid_validation.py        # ORCID verification analysis
 │   │   ├── test_ranking_coverage_correlation.py # Ranking-coverage gradient
-│   │   ├── create_manuscript_visualizations.py # Figures 5-6 (OpenAlex)
+│   │   ├── create_manuscript_visualizations.py # Figure 5 + Figure S1
 │   │   ├── fetch_all_550_researchers.py       # Fetch OpenAlex data
 │   │   ├── create_openalex_top2percent.py     # Calculate OpenAlex rankings
 │   │   ├── award_winners_case_studies.py      # Nobel/Pulitzer case studies (NEW)
@@ -60,27 +60,32 @@ reproducibility_package/
 │   │   ├── create_replicate_samples.py        # Generate 5 independent samples (NEW)
 │   │   ├── match_replicates_to_openalex.py    # Match replicates to OpenAlex (NEW)
 │   │   ├── analyze_all_replicates.py          # Calculate replicate effect sizes (NEW)
-│   │   ├── figureS1_sample_characteristics.py # Supplementary figures
-│   │   ├── figureS2_coverage_distribution.py
-│   │   ├── figureS3_publisher_breakdown.py
-│   │   ├── figureS4_regression_diagnostics.py
-│   │   ├── figureS5_oa_analysis.py
-│   │   └── figureS6_extreme_cases.py
+│   │   ├── figureS1_sample_characteristics.py # → FigureS2
+│   │   ├── figureS2_coverage_distribution.py  # → FigureS3
+│   │   ├── figureS3_publisher_breakdown.py    # → FigureS4
+│   │   ├── figureS4_regression_diagnostics.py # → FigureS5
+│   │   ├── figureS5_oa_analysis.py            # → FigureS6
+│   │   └── figureS6_extreme_cases.py          # → FigureS7
 │   └── data_collection/              # Optional: reproduce data collection
 │       └── (data collection scripts)
-└── figures/                           # Generated figures (PNG + PDF)
-    ├── Figure1_Coverage_by_Field.png/.pdf
-    ├── Figure2_Elsevier_vs_Coverage.png/.pdf
-    ├── Figure3_Books_vs_Coverage.png/.pdf
-    ├── Figure4_university_adoption.png/.pdf
-    ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
-    ├── Figure6_Ranking_Changes_Distribution.png/.pdf
-    ├── FigureS1_sample_characteristics.png
-    ├── FigureS2_coverage_distribution.png
-    ├── FigureS3_publisher_breakdown.png
-    ├── FigureS4_regression_diagnostics.png
-    ├── FigureS5_oa_analysis.png
-    └── FigureS6_extreme_cases.png
+├── figures/                           # Generated figures (PNG + PDF)
+│   ├── Figure1_University_Adoption.png/.pdf
+│   ├── Figure2_Coverage_by_Field.png/.pdf
+│   ├── Figure3_Elsevier_vs_Coverage.png/.pdf
+│   ├── Figure4_Books_vs_Coverage.png/.pdf
+│   ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
+│   ├── FigureS1_Ranking_Changes_Distribution.png/.pdf
+│   ├── FigureS2_Sample_Characteristics.png/.pdf
+│   ├── FigureS3_Coverage_Distribution.png/.pdf
+│   ├── FigureS4_Publisher_Breakdown.png/.pdf
+│   ├── FigureS5_Regression_Diagnostics.png/.pdf
+│   ├── FigureS6_OA_Analysis.png/.pdf
+│   └── FigureS7_Extreme_Cases.png/.pdf
+└── tables/                            # Generated tables (CSV + TEX)
+    ├── Table1_Summary.csv
+    ├── table_summary_statistics.csv
+    ├── extreme_ranking_improvements.csv
+    └── table_openalex_top10.tex
 ```
 
 ---
