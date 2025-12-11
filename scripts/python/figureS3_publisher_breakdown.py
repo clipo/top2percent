@@ -81,7 +81,7 @@ ax.set_ylim(0, max(pivot_df.max()) * 1.2)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS4_Publisher_Breakdown.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS3_Publisher_Breakdown.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S4 saved: {output_path}")
 

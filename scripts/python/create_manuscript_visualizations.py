@@ -160,10 +160,10 @@ for i, (idx, row) in enumerate(field_stats.iterrows()):
             va='center', fontsize=9)
 
 plt.tight_layout()
-plt.savefig(output_dir / 'FigureS1_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
-plt.savefig(output_dir / 'FigureS1_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
-print("\n✓ Saved: FigureS1_Ranking_Changes_Distribution.png")
-print("✓ Saved: FigureS1_Ranking_Changes_Distribution.pdf")
+plt.savefig(output_dir / 'FigureS7_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig(output_dir / 'FigureS7_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
+print("\n✓ Saved: FigureS7_Ranking_Changes_Distribution.png")
+print("✓ Saved: FigureS7_Ranking_Changes_Distribution.pdf")
 
 # =============================================================================
 # TABLE 1: Top 10 OpenAlex Researchers (LaTeX)

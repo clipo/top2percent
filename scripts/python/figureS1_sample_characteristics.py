@@ -4,7 +4,7 @@ Generate Supplementary Figure S2: Sample Characteristics
 
 Shows geographic and field distribution of the n=600 sample.
 
-Output: FigureS2_Sample_Characteristics.png
+Output: FigureS1_Sample_Characteristics.png
 """
 
 import pandas as pd
@@ -58,8 +58,8 @@ for i, v in enumerate(country_counts.values):
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_Sample_Characteristics.png"
-pdf_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_Sample_Characteristics.pdf"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS1_Sample_Characteristics.png"
+pdf_path = Path(__file__).parent.parent.parent / "figures" / "FigureS1_Sample_Characteristics.pdf"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.savefig(pdf_path, bbox_inches='tight')
 print(f"✓ Figure S2 saved: {output_path}")
