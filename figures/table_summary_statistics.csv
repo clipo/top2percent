@@ -1,0 +1,18 @@
+Metric,Value
+Total Researchers,538
+Mean Scopus Rank,"202,874"
+Mean OpenAlex Rank,270
+Median Rank Change,"142,276"
+Mean Rank Change,"202,604"
+Max Rank Improvement,"1,210,020 (Gombrich, Ernst H.)"
+Ranking Correlation (ρ),0.567
+,
+Top 2% OpenAlex (n=10):,
+  Mean Elsevier %,4.2%
+  Mean Citations,"67,234"
+  Mean h-index,91
+,
+Overall Sample:,
+  Mean Elsevier %,10.4%
+  Mean Citations,"11,128"
+  Mean h-index,41
