@@ -1,11 +1,11 @@
-# Reproducibility Package: Publisher Bias in Widely-Used Scientist Rankings
+# RPublisher Bias in Widely-Used Scientist Rankings
 
 Complete reproducibility package for our study documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
 
 ## Contents
 
 ```
-reproducibility_package/
+/
 ├── README.md                          # This file
 ├── SUPPLEMENTARY_MATERIALS.md         # Detailed supplementary information
 ├── data/                              # Data files
@@ -191,7 +191,6 @@ reproducibility_package/
 **Complete reproduction from scratch** - installs dependencies, verifies integrity, generates all figures:
 
 ```bash
-cd reproducibility_package/
 bash REPRODUCE_ALL.sh
 ```
 
@@ -217,7 +216,6 @@ python3 generate_all_figures.py
 
 **Option 2: Individual figure scripts**
 ```bash
-cd reproducibility_package/
 
 # Main figures 1-3 (R)
 Rscript scripts/R/figures_1_2_3_coverage_analysis.R
@@ -496,7 +494,7 @@ pip install pandas scipy statsmodels matplotlib seaborn
 ### Path Issues
 All scripts use relative paths from their script location. Run from:
 - R scripts: any directory (they auto-detect paths)
-- Python scripts: `reproducibility_package/` directory
+- Python scripts: `/` directory
 - Master script: project root
 
 ---
@@ -531,9 +529,9 @@ All figures are PNG:
 
 ## Citation
 
-If you use this reproducibility package, please cite:
+If you use this package, please cite:
 
-Lipo, Carl, Robert DiNapoli, and Ben Andrus. (2025). Publisher Bias in Widely-Used Scientist Rankings. [**Journal], [Volume], [Pages]**.
+Lipo, Carl, Robert DiNapoli, and Ben Andrus. (2025). Publisher Bias in Widely-Used Scientist Rankings. [**TBD], [TBD], [TBD]**.
 
 And cite the source data:
 
@@ -545,18 +543,9 @@ Priem J, Piwowar H, Orr R. (2022). OpenAlex: A fully-open index of scholarly wor
 
 ## Supplementary Materials
 
-For extended methods, additional analyses, supplementary tables, and data availability statements, see:
+For additional figures, see:
 
 **[SUPPLEMENTARY_MATERIALS.md](SUPPLEMENTARY_MATERIALS.md)**
-
-Includes:
-- Detailed sampling methodology
-- Publisher classification procedures
-- Complete statistical analysis protocols
-- Quality control procedures
-- Supplementary results
-- Supplementary tables
-- Data and code availability
 
 ---
 
