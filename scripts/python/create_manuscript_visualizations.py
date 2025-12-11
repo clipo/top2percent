@@ -11,6 +11,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from pathlib import Path
 
 # Set publication-quality style
 sns.set_style("whitegrid")
@@ -23,10 +24,15 @@ print("="*80)
 print("CREATING MANUSCRIPT VISUALIZATIONS")
 print("="*80)
 
+# Set up paths relative to script location
+script_dir = Path(__file__).parent
+data_dir = script_dir / ".." / ".." / "data"
+output_dir = script_dir / ".." / ".." / "figures"
+
 # Load data
 print("\nLoading comparison data...")
-df = pd.read_csv('scopus_vs_openalex_rankings.csv')
-top_2_df = pd.read_csv('openalex_top_2_percent.csv')
+df = pd.read_csv(data_dir / 'scopus_vs_openalex_rankings.csv')
+top_2_df = pd.read_csv(data_dir / 'openalex_top_2_percent.csv')
 
 print(f"Total researchers: {len(df)}")
 print(f"Top 2%: {len(top_2_df)}")
@@ -90,10 +96,10 @@ ax.text(0.95, 0.05, f'Spearman ρ = {corr:.3f}',
         fontsize=11, bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
 
 plt.tight_layout()
-plt.savefig('figure_scopus_vs_openalex_rankings.png', dpi=300, bbox_inches='tight')
-plt.savefig('figure_scopus_vs_openalex_rankings.pdf', bbox_inches='tight')
-print("\n✓ Saved: figure_scopus_vs_openalex_rankings.png")
-print("✓ Saved: figure_scopus_vs_openalex_rankings.pdf")
+plt.savefig(output_dir / 'Figure5_Scopus_vs_OpenAlex_Rankings.png', dpi=300, bbox_inches='tight')
+plt.savefig(output_dir / 'Figure5_Scopus_vs_OpenAlex_Rankings.pdf', bbox_inches='tight')
+print("\n✓ Saved: Figure5_Scopus_vs_OpenAlex_Rankings.png")
+print("✓ Saved: Figure5_Scopus_vs_OpenAlex_Rankings.pdf")
 
 # =============================================================================
 # FIGURE 2: Ranking Changes Distribution
@@ -129,10 +135,10 @@ for i, (idx, row) in enumerate(field_stats.iterrows()):
             va='center', fontsize=9)
 
 plt.tight_layout()
-plt.savefig('figure_ranking_changes.png', dpi=300, bbox_inches='tight')
-plt.savefig('figure_ranking_changes.pdf', bbox_inches='tight')
-print("\n✓ Saved: figure_ranking_changes.png")
-print("✓ Saved: figure_ranking_changes.pdf")
+plt.savefig(output_dir / 'Figure6_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig(output_dir / 'Figure6_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
+print("\n✓ Saved: Figure6_Ranking_Changes_Distribution.png")
+print("✓ Saved: Figure6_Ranking_Changes_Distribution.pdf")
 
 # =============================================================================
 # TABLE 1: Top 10 OpenAlex Researchers (LaTeX)
@@ -186,7 +192,7 @@ latex_table += r"""\bottomrule
 \end{table}
 """
 
-with open('table_openalex_top10.tex', 'w') as f:
+with open(output_dir / 'table_openalex_top10.tex', 'w') as f:
     f.write(latex_table)
 
 print("\n✓ Saved: table_openalex_top10.tex")
@@ -241,7 +247,7 @@ summary_stats = pd.DataFrame({
     ]
 })
 
-summary_stats.to_csv('table_summary_statistics.csv', index=False)
+summary_stats.to_csv(output_dir / 'table_summary_statistics.csv', index=False)
 print("\n✓ Saved: table_summary_statistics.csv")
 print("\nSummary Statistics:")
 print(summary_stats.to_string(index=False))
@@ -258,7 +264,7 @@ extreme_df = df_both.nlargest(10, 'rank_change')[['authfull', 'field', 'rank_ope
                                                     'c_score_openalex', 'elsevier_pct',
                                                     'nc', 'h']]
 
-extreme_df.to_csv('extreme_ranking_improvements.csv', index=False)
+extreme_df.to_csv(output_dir / 'extreme_ranking_improvements.csv', index=False)
 print("\n✓ Saved: extreme_ranking_improvements.csv")
 print("\nTop 10 Ranking Improvements:")
 for idx, (_, row) in enumerate(extreme_df.iterrows(), 1):

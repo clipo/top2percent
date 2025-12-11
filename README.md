@@ -181,7 +181,28 @@ reproducibility_package/
 
 ## Quick Start
 
-### Generate All Figures (Main + Supplementary)
+### ONE-STEP REPRODUCTION (Recommended)
+
+**Complete reproduction from scratch** - installs dependencies, verifies integrity, generates all figures:
+
+```bash
+cd reproducibility_package/
+bash REPRODUCE_ALL.sh
+```
+
+This script will:
+1. Check for Python 3.12+ and R 4.3+
+2. Install all Python dependencies (pandas, scipy, matplotlib, etc.)
+3. Install all R dependencies (ggplot2, dplyr, etc.)
+4. Verify package integrity (all files present, data loads correctly)
+5. Generate all main figures (1-6) and supplementary figures (S1-S6)
+6. Display results summary
+
+**Time**: ~2-5 minutes (depending on whether dependencies need installation)
+
+---
+
+### Alternative: Generate Figures Only (If Dependencies Already Installed)
 
 **Option 1: From project root**
 ```bash

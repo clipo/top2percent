@@ -23,16 +23,13 @@ print()
 # Check 1: File structure
 print("✓ Checking file structure...")
 required_files = {
-    "data/comprehensive_sample_v2.csv": "Sample data (600 researchers)",
-    "data/openalex_comprehensive_data_v2.csv": "Results data (600 researchers, 570 matched)",
+    "data/comprehensive_sample.csv": "Sample data (600 researchers)",
+    "data/openalex_comprehensive_data.csv": "Results data (600 researchers, 570 matched)",
     "data/university_adoption/university_adoption_data.csv": "University adoption data",
-    "scripts/python/analyze_coverage_bias.py": "Statistical analysis code",
-    "scripts/R/figures_1_2_3_coverage_analysis.R": "Figures 1-3 generation code (R)",
     "scripts/python/figure_4_university_adoption.py": "Figure 4 generation code (Python)",
-    "scripts/data_collection/create_stratified_sample.py": "Sample selection code",
-    "scripts/data_collection/fetch_openalex_comprehensive.py": "Data collection code",
+    "scripts/R/figures_1_2_3_coverage_analysis.R": "Figures 1-3 generation code (R)",
     "generate_all_figures.py": "Master figure generation script",
-    "README_REPRODUCIBILITY.md": "Documentation",
+    "README.md": "Documentation",
     "requirements.txt": "Python dependencies",
 }
 
@@ -91,8 +88,8 @@ if not missing_files and not missing_modules:
         import pandas as pd
 
         # Load sample data
-        sample = pd.read_csv("data/comprehensive_sample_v2.csv")
-        print(f"  ✓ Loaded comprehensive_sample_v2.csv: {len(sample)} rows")
+        sample = pd.read_csv("data/comprehensive_sample.csv")
+        print(f"  ✓ Loaded comprehensive_sample.csv: {len(sample)} rows")
 
         if len(sample) != 600:
             print(f"  ⚠️  Expected 600 researchers, got {len(sample)}")
@@ -116,8 +113,8 @@ if not missing_files and not missing_modules:
             print(f"      {status} {ft}: {count} (expected: {expected})")
 
         # Load results data
-        results = pd.read_csv("data/openalex_comprehensive_data_v2.csv")
-        print(f"  ✓ Loaded openalex_comprehensive_data_v2.csv: {len(results)} rows")
+        results = pd.read_csv("data/openalex_comprehensive_data.csv")
+        print(f"  ✓ Loaded openalex_comprehensive_data.csv: {len(results)} rows")
 
         if len(results) != 600:
             print(f"  ⚠️  Expected 600 researchers, got {len(results)}")
@@ -154,7 +151,7 @@ if not missing_files and not missing_modules:
     print("Next steps:")
     print("  1. Generate all figures: python3 generate_all_figures.py")
     print("  2. Run complete pipeline: python3 run_all_analyses.py")
-    print("  3. See README_REPRODUCIBILITY.md for full instructions")
+    print("  3. See README.md for full instructions")
     print()
 else:
     print()
