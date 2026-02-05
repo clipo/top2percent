@@ -1,0 +1,21 @@
+SCOPUS COVERAGE BIAS ANALYSIS - RESULTS SUMMARY
+================================================================================
+
+Sample size                    564
+Median coverage ratio          45.3%
+Median Elsevier %              6.0%
+Median book %                  15.4%
+Median OA %                    0.0%
+
+H1 (Publisher bias)            DETECTED
+H1 correlation                 r = 0.477, p = 0.0000
+H1 effect size                 d = 1.025
+
+H2 (Book bias)                 DETECTED
+H2 correlation                 r = -0.467, p = 0.0000
+
+H3 (OA penalty)                Not detected
+H3 correlation                 r = 0.226, p = 0.0000
+
+H4 (Field bias)                DETECTED
+H4 test                        H = 182.884, p = 0.0000

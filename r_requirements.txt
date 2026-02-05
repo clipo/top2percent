@@ -1,0 +1,27 @@
+# R Package Requirements for Bayesian Analysis
+# Install with: Rscript -e "install.packages(readLines('r_requirements.txt'), repos='https://cloud.r-project.org')"
+
+# Core Bayesian packages
+brms>=2.20.0
+rstan>=2.26.0
+loo>=2.6.0
+bayestestR>=0.13.0
+
+# Posterior analysis and visualization
+tidybayes
+posterior
+bayesplot
+
+# Data manipulation and visualization
+tidyverse
+ggdist
+ggrepel
+scales
+
+# Base analysis (from original frequentist package)
+ggplot2
+dplyr
+tidyr
+readr
+broom
+ggpubr

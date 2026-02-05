@@ -1,0 +1,24 @@
+# Python dependencies for reproducibility package
+# Install with: pip install -r requirements.txt
+
+# Data manipulation
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Statistical analysis
+scipy>=1.11.0
+statsmodels>=0.14.0
+
+# API requests (for OpenAlex data collection)
+requests>=2.31.0
+
+# Visualization (for Python-based figures)
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Document generation
+python-docx>=0.8.11
+
+# Optional: Jupyter for interactive analysis
+jupyter>=1.0.0
+ipython>=8.0.0

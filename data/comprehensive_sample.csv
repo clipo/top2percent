@@ -1,0 +1,601 @@
+sample_id,authfull,sm-subfield-1,field_type,sample_stratum,rank_global,rank_in_field,scopus_pubs,scopus_citations,scopus_h_index,country,institution,region
+1,"Meltzer, David J.",Archaeology,book_heavy,top_quartile,43545,31,116,6559,42,usa,Southern Methodist University,USA
+2,"Freestone, Ian C.",Archaeology,book_heavy,top_quartile,85987,66,89,4182,33,gbr,University College London,UK
+3,"Dillehay, Tom Dalton",Archaeology,book_heavy,top_quartile,85853,65,107,3677,29,usa,Vanderbilt University,USA
+4,"Vigne, Jean Denis",Archaeology,book_heavy,top_quartile,72389,54,131,7200,46,fra,Museum National d'Histoire Naturelle,Other_Europe
+5,"Schiffer, Michael Brian",Archaeology,book_heavy,top_quartile,65579,46,66,3411,26,usa,The University of Arizona,USA
+6,"O'Connor, Sue",Archaeology,book_heavy,top_quartile,110097,94,160,3987,37,aus,The Australian National University,Asia_Pacific
+7,"Buckland, Paul Christopher",Archaeology,book_heavy,bottom_quartile,268906,343,79,1837,26,gbr,Independent Research Worker,UK
+8,"Brumm, Adam",Archaeology,book_heavy,bottom_quartile,284376,378,62,2723,24,aus,Griffith University,Asia_Pacific
+9,"Nelson, D. Erle",Archaeology,book_heavy,bottom_quartile,284219,377,68,3475,29,can,Simon Fraser University,Other
+10,"Clark, Geoffrey A.",Archaeology,book_heavy,bottom_quartile,279422,366,67,1228,21,usa,Arizona State University,USA
+11,"Redfern, R. C.",Archaeology,book_heavy,bottom_quartile,276402,358,59,1361,22,gbr,Museum of London,UK
+12,"Kohl, Philip L.",Archaeology,book_heavy,bottom_quartile,302832,413,37,980,13,usa,Wellesley College,USA
+13,"Crown, Patricia L.",Archaeology,book_heavy,anomaly,325472,449,30,937,15,usa,The University of New Mexico,USA
+14,"Gremillion, Kristen J.",Archaeology,book_heavy,anomaly,310923,428,29,1636,19,usa,The Ohio State University,USA
+15,"Mirti, Piero",Archaeology,book_heavy,anomaly,316972,439,52,1408,24,ita,Università degli Studi di Torino,Other_Europe
+16,"Odell, George Hamley",Archaeology,book_heavy,anomaly,307949,421,33,1372,14,usa,The University of Tulsa,USA
+17,"Allen, Jim",Archaeology,book_heavy,anomaly,331628,457,33,1599,20,aus,La Trobe University,Asia_Pacific
+18,"Cameron, Catherine M.",Archaeology,book_heavy,anomaly,311099,430,32,896,15,usa,University of Colorado Boulder,USA
+19,"Adas, Michael",History,book_heavy,top_quartile,254305,63,29,1216,11,usa,Rutgers University–New Brunswick,USA
+20,"Sugrue, Thomas J.",History,book_heavy,top_quartile,210208,41,26,2301,8,usa,New York University,USA
+21,"Ghodsee, Kristen R.",History,book_heavy,top_quartile,309977,95,46,763,15,usa,University of Pennsylvania,USA
+22,"Benton, Lauren",History,book_heavy,top_quartile,162401,19,51,1351,19,usa,Yale University,USA
+23,"Rosenwein, Barbara H.",History,book_heavy,top_quartile,297604,82,28,1275,10,usa,Loyola University Chicago,USA
+24,"Bingham, Adrian",History,book_heavy,top_quartile,300099,84,38,870,13,gbr,The University of Sheffield,UK
+25,"Garrioch, David",History,book_heavy,bottom_quartile,516998,359,31,588,9,aus,Monash University,Asia_Pacific
+26,"Althoff, Gerd",History,book_heavy,bottom_quartile,507906,337,38,442,12,deu,University of Münster,Other_Europe
+27,"Brundage, James A.",History,book_heavy,bottom_quartile,547706,404,34,378,12,usa,University of Kansas,USA
+28,"Gabaccia, Donna R.",History,book_heavy,bottom_quartile,485144,315,60,1053,11,can,University of Toronto,Other
+29,"Frend, William H.C.",History,book_heavy,bottom_quartile,556063,415,46,379,12,gbr,University of Glasgow,UK
+30,"Browning, Christopher R.",History,book_heavy,bottom_quartile,536584,385,38,640,8,usa,The University of North Carolina at Chapel Hill,USA
+31,"Frend, William H.C.",History,book_heavy,anomaly,556063,415,46,379,12,gbr,University of Glasgow,UK
+32,"Goitein, Shelomo Dov F.",History,book_heavy,anomaly,544066,399,16,333,13,usa,Yale University,USA
+33,"Brundage, James A.",History,book_heavy,anomaly,547706,404,34,378,12,usa,University of Kansas,USA
+34,"Trachtenberg, Marc",History,book_heavy,anomaly,543296,397,29,498,9,usa,"University of California, Los Angeles",USA
+35,"Baldwin, Peter C.",History,book_heavy,anomaly,556278,416,23,430,10,usa,University of Connecticut,USA
+36,"Stockwell, A. J.",History,book_heavy,anomaly,544287,400,40,364,12,gbr,"Royal Holloway, University of London",UK
+37,"Mele, Alfred R.",Philosophy,book_heavy,top_quartile,36329,23,181,4164,30,usa,Florida State University,USA
+38,"Floridi, Luciano",Philosophy,book_heavy,top_quartile,2274,1,341,21033,69,usa,Yale University,USA
+39,"Stanley, Jason",Philosophy,book_heavy,top_quartile,61899,50,45,4244,21,usa,Yale University,USA
+40,"Pettit, Philip N.",Philosophy,book_heavy,top_quartile,12840,5,244,7878,45,aus,The Australian National University,Asia_Pacific
+41,"Hausman, Daniel M.",Philosophy,book_heavy,top_quartile,72089,56,122,2923,24,usa,University of Wisconsin-Madison,USA
+42,"Levy, Neil L.",Philosophy,book_heavy,top_quartile,33195,19,233,4456,35,aus,"Macquarie University, Department of Philosophy",Asia_Pacific
+43,"Lopes, Dominic Mc Iver",Philosophy,book_heavy,bottom_quartile,192959,220,68,1146,18,can,The University of British Columbia,Other
+44,"Brown, Jessica A.",Philosophy,book_heavy,bottom_quartile,230002,280,50,979,16,gbr,University of St Andrews,UK
+45,"Owen, David",Philosophy,book_heavy,bottom_quartile,200467,234,91,1210,18,gbr,University of Southampton,UK
+46,"Varzi, Achille C.",Philosophy,book_heavy,bottom_quartile,190288,216,74,1276,19,usa,Columbia University,USA
+47,"Hatfield, Gary C.",Philosophy,book_heavy,bottom_quartile,207509,244,74,1047,18,usa,University of Pennsylvania,USA
+48,"Ihde, Don",Philosophy,book_heavy,bottom_quartile,224735,266,63,942,17,usa,Stony Brook University,USA
+49,"Rorty, Ámelie Oksenberg",Philosophy,book_heavy,anomaly,235767,288,61,860,17,usa,Rutgers University,USA
+50,"Quong, Jonathan",Philosophy,book_heavy,anomaly,236079,289,30,1162,13,usa,University of Southern California,USA
+51,"Wenar, Leif",Philosophy,book_heavy,anomaly,242357,299,34,896,16,usa,Stanford University,USA
+52,"Crane, Tim",Philosophy,book_heavy,anomaly,237904,291,60,1035,15,aut,Central European University,Other_Europe
+53,"Schiffer, Stephen",Philosophy,book_heavy,anomaly,240474,297,41,1093,13,usa,New York University,USA
+54,"Haack, Susan",Philosophy,book_heavy,anomaly,238633,292,72,876,16,usa,University of Miami,USA
+55,"Felski, Rita",Literary Studies,book_heavy,top_quartile,180898,31,51,1305,16,usa,University of Virginia,USA
+56,"Huggan, Graham",Literary Studies,book_heavy,top_quartile,292918,68,62,1054,14,gbr,University of Leeds,UK
+57,"Clark, Timothy",Literary Studies,book_heavy,top_quartile,284179,63,27,1157,10,gbr,Durham University,UK
+58,"Hirsch, Marianne",Literary Studies,book_heavy,top_quartile,230469,48,28,1806,11,usa,Columbia University,USA
+59,"Smith, Peter J.",Literary Studies,book_heavy,top_quartile,216958,43,105,1345,19,gbr,Nottingham Trent University,UK
+60,"Boyarin, Daniel",Literary Studies,book_heavy,top_quartile,214283,41,65,1426,13,usa,"University of California, Berkeley",USA
+61,"Siegert, Bernhard",Literary Studies,book_heavy,bottom_quartile,718329,338,21,421,7,deu,Bauhaus-Universität Weimar,Other_Europe
+62,"Roe, Nicholas Hugh",Literary Studies,book_heavy,bottom_quartile,769117,375,32,442,6,gbr,University of St Andrews,UK
+63,"Royle, Nicholas",Literary Studies,book_heavy,bottom_quartile,757445,370,75,410,7,gbr,University of Sussex,UK
+64,"Kramnick, Jonathan Brody",Literary Studies,book_heavy,bottom_quartile,740151,355,21,302,10,usa,Yale University,USA
+65,"Sternberg, Meir",Literary Studies,book_heavy,bottom_quartile,735721,350,11,354,8,isr,Tel Aviv University,Other
+66,"Love, Harold",Literary Studies,book_heavy,bottom_quartile,733350,348,30,477,6,aus,Monash University,Asia_Pacific
+67,"Horn, Eva",Literary Studies,book_heavy,anomaly,801371,412,23,332,8,aut,Universität Wien,Other_Europe
+68,"Chandler, James K.",Literary Studies,book_heavy,anomaly,814497,424,28,249,10,usa,The University of Chicago,USA
+69,"Dillon, Elizabeth Maddock",Literary Studies,book_heavy,anomaly,804056,416,25,318,10,usa,American Studies Institute,USA
+70,"Thompson, Marie",Literary Studies,book_heavy,anomaly,798153,411,21,401,7,gbr,The Open University,UK
+71,"Sloterdijk, Peter",Literary Studies,book_heavy,anomaly,811428,420,19,346,7,deu,University of Arts and Design,Other_Europe
+72,"Das, Veena",Anthropology,book_heavy,top_quartile,24970,14,111,6010,35,usa,Johns Hopkins University,USA
+73,"Leonard, William R.",Anthropology,book_heavy,top_quartile,41273,40,231,9784,51,usa,Northwestern University Feinberg School of Medicine,USA
+74,"Andrews, Peter J.",Anthropology,book_heavy,top_quartile,33887,31,166,7280,48,gbr,"The Natural History Museum, London",UK
+75,"Walker, Alan C.",Anthropology,book_heavy,top_quartile,47273,46,115,8649,48,usa,Johns Hopkins University School of Medicine,USA
+76,"Ong, Aihwa",Anthropology,book_heavy,top_quartile,27600,18,55,6892,25,usa,"University of California, Berkeley",USA
+77,"Teaford, Mark F.",Anthropology,book_heavy,top_quartile,50675,49,110,7346,48,usa,Touro University California,USA
+78,"Marzke, Mary Walpole",Anthropology,book_heavy,bottom_quartile,142950,194,44,2459,24,usa,Arizona State University,USA
+79,"Quinlan, Robert Joseph",Anthropology,book_heavy,bottom_quartile,140861,191,60,2736,29,usa,Washington State University Pullman,USA
+80,"Warner, Michael",Anthropology,book_heavy,bottom_quartile,146944,199,11,3507,8,usa,Rutgers University–New Brunswick,USA
+81,"Kimbel, William H.",Anthropology,book_heavy,bottom_quartile,123599,163,81,4744,37,usa,Institute of Human Origins,USA
+82,"Jansen, Stef",Anthropology,book_heavy,bottom_quartile,130219,175,38,1463,23,bih,Univerzitet u Sarajevu,Other
+83,"Willerslev, Rane",Anthropology,book_heavy,bottom_quartile,135128,182,57,2892,22,dnk,National Museum,Other_Europe
+84,"de Castro, Eduardo B.Viveiros",Anthropology,book_heavy,anomaly,155654,207,25,2394,11,bra,Universidade Federal do Rio de Janeiro,Other
+85,"Ginsburg, Faye",Anthropology,book_heavy,anomaly,161216,218,61,1765,17,usa,New York University,USA
+86,"Kipnis, Andrew Byron",Anthropology,book_heavy,anomaly,155005,205,51,1632,16,hkg,Chinese University of Hong Kong,Asia_Pacific
+87,"Povinelli, Elizabeth A.",Anthropology,book_heavy,anomaly,159348,213,56,1620,17,usa,Columbia University,USA
+88,"Ellison, Christopher G.",Religions & Theology,book_heavy,top_quartile,7482,1,214,17349,69,usa,The University of Texas at San Antonio,USA
+89,"Voas, David",Religions & Theology,book_heavy,top_quartile,74109,6,72,3626,27,gbr,University College London,UK
+90,"Taves, Ann",Religions & Theology,book_heavy,top_quartile,205589,35,66,1284,15,usa,"University of California, Santa Barbara",USA
+91,"Bartkowski, John P.",Religions & Theology,book_heavy,top_quartile,141234,14,99,3356,30,usa,The University of Texas at San Antonio,USA
+92,"Burchardt, Marian",Religions & Theology,book_heavy,top_quartile,245592,45,88,1334,20,deu,Universität Leipzig,Other_Europe
+93,"Jackson, Robert",Religions & Theology,book_heavy,top_quartile,268795,53,73,840,17,gbr,University of Warwick,UK
+94,"Brueggemann, Walter",Religions & Theology,book_heavy,bottom_quartile,492898,176,87,442,12,usa,Columbia Theological Seminary,USA
+95,"Stone, Michael Edward",Religions & Theology,book_heavy,bottom_quartile,498268,181,79,499,12,isr,Hebrew University of Jerusalem,Other
+96,"Eidinow, Esther",Religions & Theology,book_heavy,bottom_quartile,543067,210,62,625,10,gbr,University of Bristol,UK
+97,"Hunter, David G.",Religions & Theology,book_heavy,bottom_quartile,512912,189,26,499,11,usa,University of Kentucky,USA
+98,"Schäfer, Peter",Religions & Theology,book_heavy,bottom_quartile,555971,222,18,483,9,usa,Princeton University,USA
+99,"Althaus-Reid, Marcella María",Religions & Theology,book_heavy,bottom_quartile,578536,238,30,462,10,gbr,The University of Edinburgh,UK
+100,"Althaus-Reid, Marcella María",Religions & Theology,book_heavy,anomaly,578536,238,30,462,10,gbr,The University of Edinburgh,UK
+101,"Rubenstein, Jeffrey L.",Religions & Theology,book_heavy,anomaly,578712,239,19,452,9,usa,New York University,USA
+102,"Perlmann, Joel",Religions & Theology,book_heavy,anomaly,590595,249,17,755,8,usa,Bard College,USA
+103,"Matory, J. Lorand",Religions & Theology,book_heavy,anomaly,582791,242,15,583,7,usa,Duke University,USA
+104,"Rousseau, Philip",Religions & Theology,book_heavy,anomaly,589776,248,25,439,9,usa,The Catholic University of America,USA
+105,"Jantzen, Grace M.",Religions & Theology,book_heavy,anomaly,586262,245,42,362,11,gbr,The University of Manchester,UK
+106,"Platt, Verity J.","Art Practice, History & Theory",book_heavy,top_quartile,534107,10,29,398,13,usa,The University of Chicago,USA
+107,"Foster, Hal","Art Practice, History & Theory",book_heavy,top_quartile,565872,12,55,552,8,usa,Princeton University,USA
+108,"Gray, Jonathan","Art Practice, History & Theory",book_heavy,top_quartile,238383,1,150,1691,11,usa,University of Wisconsin-Madison,USA
+109,"Hanna, Judith Lynne","Art Practice, History & Theory",book_heavy,top_quartile,568053,13,46,417,10,usa,"University of Maryland, College Park",USA
+110,"Smith, Pamela H.","Art Practice, History & Theory",book_heavy,top_quartile,384527,6,33,646,12,usa,Columbia University,USA
+111,"Flood, Finbarr Barry","Art Practice, History & Theory",book_heavy,top_quartile,521696,9,35,443,12,usa,New York University,USA
+112,"Fromont, Cécile Alice","Art Practice, History & Theory",book_heavy,bottom_quartile,1169897,52,16,221,6,usa,Yale University,USA
+113,"Bryan-Wilson, Julia","Art Practice, History & Theory",book_heavy,bottom_quartile,1196368,55,42,174,8,usa,"University of California, Berkeley",USA
+114,"Klein, Cecelia F.","Art Practice, History & Theory",book_heavy,bottom_quartile,1092895,43,14,196,8,usa,"University of California, Los Angeles",USA
+115,"Krauss, Rosalind E.","Art Practice, History & Theory",book_heavy,bottom_quartile,1199777,56,31,316,4,usa,Columbia University,USA
+116,"Hemment, Drew","Art Practice, History & Theory",book_heavy,bottom_quartile,1125853,48,35,377,12,gbr,The University of Edinburgh,UK
+117,"Brown, Lee B.","Art Practice, History & Theory",book_heavy,bottom_quartile,1156688,51,15,209,7,usa,The Ohio State University,USA
+118,"Gombrich, Ernst H.","Art Practice, History & Theory",book_heavy,anomaly,1210493,58,21,178,7,gbr,"School of Advanced Study, University of London",UK
+119,"Scheidel, Walter",Classics,book_heavy,top_quartile,33031,1,92,3976,35,usa,Stanford University,USA
+120,"Millar, Fergus G.B.",Classics,book_heavy,top_quartile,93493,2,53,1869,24,gbr,University of Oxford,UK
+121,"Seaford, Richard",Classics,book_heavy,top_quartile,166083,9,55,1322,17,gbr,University of Exeter,UK
+122,"Konstan, David",Classics,book_heavy,top_quartile,158170,6,154,1626,17,usa,Brown University,USA
+123,"Brunt, Peter A.",Classics,book_heavy,top_quartile,116579,4,32,1444,23,gbr,"University of Oxford, Brasenose College",UK
+124,"Harris, William Vernon",Classics,book_heavy,top_quartile,173760,14,56,1246,17,usa,Columbia University,USA
+125,"Eck, Werner",Classics,book_heavy,bottom_quartile,333699,57,232,870,13,deu,Universität zu Köln,Other_Europe
+126,"Mansfeld, Jaap",Classics,book_heavy,bottom_quartile,355020,62,79,560,15,nld,Faculteit der Wijsbegeerte Rijksuniversiteit Utrecht,Other_Europe
+127,"Isaac, Benjamin H.",Classics,book_heavy,bottom_quartile,378140,68,26,983,9,isr,Tel Aviv University,Other
+128,"van Nuffelen, Peter",Classics,book_heavy,bottom_quartile,336219,58,58,742,15,bel,Universiteit Gent,Other_Europe
+129,"Cameron, Alan N.D.E.",Classics,book_heavy,bottom_quartile,369409,65,33,562,15,usa,Pennsylvania State University,USA
+130,"Rutherford, Ian C.",Classics,book_heavy,bottom_quartile,392289,73,45,685,13,gbr,University of Reading,UK
+131,"Gagarin, Michael",Classics,book_heavy,anomaly,398237,76,30,620,12,usa,The University of Texas at Austin,USA
+132,"Burawoy, Michael",Sociology,mixed,top_quartile,11685,23,118,8232,36,zaf,"University of the Witwatersrand, Johannesburg",Other
+133,"Massey, Douglas S.",Sociology,mixed,top_quartile,641,1,314,33347,94,usa,Princeton University,USA
+134,"Warde, Alan",Sociology,mixed,top_quartile,23430,50,111,7437,37,gbr,Faculty of Humanities,UK
+135,"Burt, Ronald S.",Sociology,mixed,top_quartile,3170,5,107,24037,42,ita,Università Bocconi,Other_Europe
+136,"Castells, Manuel",Sociology,mixed,top_quartile,25049,55,78,6129,29,usa,University of Southern California,USA
+137,"Kalleberg, Arne L.",Sociology,mixed,top_quartile,10883,19,116,11271,45,usa,The University of North Carolina at Chapel Hill,USA
+138,"McPherson, Miller",Sociology,mixed,bottom_quartile,88298,233,12,15125,10,usa,Duke University,USA
+139,"Firebaugh, Glenn",Sociology,mixed,bottom_quartile,81811,211,59,3966,28,usa,Pennsylvania State University,USA
+140,"Williams, Christine L.R.",Sociology,mixed,bottom_quartile,103477,261,55,2918,24,usa,The University of Texas at Austin,USA
+141,"Baxter, Janeen J.",Sociology,mixed,bottom_quartile,82654,215,123,3891,33,aus,The University of Queensland,Asia_Pacific
+142,"Budig, Michelle J.",Sociology,mixed,bottom_quartile,106394,268,32,4581,23,usa,University of Massachusetts Amherst,USA
+143,"Jasso, Guillermina",Sociology,mixed,bottom_quartile,87127,229,94,2451,27,usa,New York University,USA
+144,"Hedström, Peter",Sociology,mixed,anomaly,112030,283,36,3495,18,swe,Linköpings Universitet,Other_Europe
+145,"Treiman, Donald J.",Sociology,mixed,anomaly,117197,298,41,6265,22,usa,"University of California, Los Angeles",USA
+146,"Hughes, Michael D.",Sociology,mixed,anomaly,111801,282,54,23858,29,usa,Virginia Polytechnic Institute and State University,USA
+147,"Jenkins, Richard",Sociology,mixed,anomaly,114355,290,56,2188,18,gbr,The University of Sheffield,UK
+148,"Hooghe, Liesbet",Political Science & Public Administration,mixed,top_quartile,22570,56,73,13749,40,usa,The University of North Carolina at Chapel Hill,USA
+149,"Rose, Richard",Political Science & Public Administration,mixed,top_quartile,17072,41,201,9010,48,gbr,University of Strathclyde,UK
+150,"Schmidt, Vivien A.",Political Science & Public Administration,mixed,top_quartile,10661,20,109,9120,37,usa,Boston University,USA
+151,"Schimmelfennig, Frank",Political Science & Public Administration,mixed,top_quartile,13573,32,142,8504,42,che,ETH Zürich,Other_Europe
+152,"Bratton, Michaël",Political Science & Public Administration,mixed,top_quartile,38692,116,50,5831,28,usa,Michigan State University,USA
+153,"Lubell, Mark N.",Political Science & Public Administration,mixed,top_quartile,23326,57,132,9356,56,usa,"University of California, Davis",USA
+154,"Hendriks, Carolyn M.",Political Science & Public Administration,mixed,bottom_quartile,112409,451,42,2386,24,aus,The Australian National University,Asia_Pacific
+155,"Tripp, Aili Mari",Political Science & Public Administration,mixed,bottom_quartile,118923,478,60,1927,21,usa,University of Wisconsin-Madison,USA
+156,"Brady, Henry E.",Political Science & Public Administration,mixed,bottom_quartile,105123,414,51,4853,26,usa,The Goldman School of Public Policy,USA
+157,"Fiorina, Morris P.",Political Science & Public Administration,mixed,bottom_quartile,106851,426,50,2979,21,usa,Harvard University,USA
+158,"Wagenaar, Hendrik C.",Political Science & Public Administration,mixed,bottom_quartile,116869,471,68,3411,24,aut,"Institut für Höhere Studien, Vienna",Other_Europe
+159,"Sanders, David",Political Science & Public Administration,mixed,bottom_quartile,125977,512,91,3414,31,gbr,University of Essex,UK
+160,"Phillips, Anne L.",Political Science & Public Administration,mixed,anomaly,130558,535,40,1884,18,gbr,London School of Economics and Political Science,UK
+161,"Remmer, Karen L.",Political Science & Public Administration,mixed,anomaly,133836,549,28,1684,19,usa,Duke University,USA
+162,"Barberá, Pablo",Political Science & Public Administration,mixed,anomaly,131440,541,38,4664,26,usa,University of Southern California,USA
+163,"Lieberman, Evan S.",Political Science & Public Administration,mixed,anomaly,130224,532,35,1981,18,usa,Massachusetts Institute of Technology,USA
+164,"Howard, Marc Morjé",Political Science & Public Administration,mixed,anomaly,133365,547,21,2506,15,usa,Georgetown University,USA
+165,"Blundell, Richard W.",Economics,mixed,top_quartile,8575,69,173,32732,56,gbr,University College London,UK
+166,"Page, Scott E.",Economics,mixed,top_quartile,24256,195,88,9460,34,usa,Santa Fe Institute,USA
+167,"Grossman, Gene M.",Economics,mixed,top_quartile,11004,83,101,17044,43,usa,Princeton University,USA
+168,"Quigley, John M.",Economics,mixed,top_quartile,31114,248,117,8715,47,usa,"University of California, Berkeley",USA
+169,"Frankel, Jeffrey A.",Economics,mixed,top_quartile,13212,110,118,12940,42,usa,Harvard University,USA
+170,"Knack, Stephen F.",Economics,mixed,top_quartile,14872,119,60,15186,36,usa,"The World Bank, USA",USA
+171,"Caliendo, Marco",Economics,mixed,bottom_quartile,108660,861,76,7051,30,deu,Universität Potsdam,Other_Europe
+172,"Stahl, Dale O.",Economics,mixed,bottom_quartile,124389,987,69,2469,23,usa,The University of Texas at Austin,USA
+173,"Levine, David I.",Economics,mixed,bottom_quartile,110756,875,94,6383,35,usa,Haas School of Business,USA
+174,"Sturm, Jan-Egbert Egbert",Economics,mixed,bottom_quartile,132379,1048,131,5759,35,che,ETH Zürich,Other_Europe
+175,"Bertola, Giuseppe",Economics,mixed,bottom_quartile,114376,902,75,2402,26,ita,Università degli Studi di Torino,Other_Europe
+176,"Nyborg, Karine",Economics,mixed,bottom_quartile,115739,911,47,3720,28,nor,Author affiliations are listed In the supplementary materials,Other_Europe
+177,"Holtz-Eakin, Douglas",Economics,mixed,anomaly,137945,1105,47,3429,23,usa,American Action Forum,USA
+178,"Maddala, G. S.",Economics,mixed,anomaly,136616,1092,48,5766,17,usa,The Ohio State University,USA
+179,"White, Lawrence J.",Economics,mixed,anomaly,133463,1058,134,2922,24,usa,Leonard N. Stern School of Business,USA
+180,"Kirzner, Israel M.",Economics,mixed,anomaly,135067,1080,39,3063,10,usa,New York University,USA
+181,"Wolfram, Catherine D.",Economics,mixed,anomaly,134461,1074,48,3394,28,usa,Massachusetts Institute of Technology,USA
+182,"Tadelis, Steven",Economics,mixed,anomaly,134025,1064,35,3182,21,usa,"University of California, Berkeley",USA
+183,"MacCormick, Neil",Law,mixed,top_quartile,132467,79,47,1749,17,gbr,The University of Edinburgh,UK
+184,"Sunstein, Cass R.",Law,mixed,top_quartile,633,1,410,41369,75,usa,Harvard University,USA
+185,"van Asselt, Harro V.",Law,mixed,top_quartile,125965,69,133,4527,36,gbr,University of Cambridge,UK
+186,"Post, Robert C.",Law,mixed,top_quartile,77985,23,75,2740,26,usa,Yale University,USA
+187,"Alter, Karen J.",Law,mixed,top_quartile,49851,13,49,4263,28,usa,Northwestern University,USA
+188,"Ruhl, J. B.",Law,mixed,top_quartile,133328,83,89,3033,28,usa,Vanderbilt University,USA
+189,"Persily, Nathaniel A.",Law,mixed,bottom_quartile,285152,333,41,1131,16,usa,Stanford University,USA
+190,"Cotterrell, Roger B.M.",Law,mixed,bottom_quartile,243525,258,72,939,15,gbr,Queen Mary University of London,UK
+191,"Peel, Jacqueline",Law,mixed,bottom_quartile,283384,328,62,1293,16,aus,University of Melbourne,Asia_Pacific
+192,"Zumbansen, Peer C.",Law,mixed,bottom_quartile,250175,280,93,1034,16,can,Université McGill,Other
+193,"Schmitt, Michael N.",Law,mixed,bottom_quartile,247082,270,73,922,16,gbr,University of Reading,UK
+194,"Ewing, Keith D.",Law,mixed,bottom_quartile,274421,314,128,944,17,gbr,King's College London,UK
+195,"Freeman, Jody",Law,mixed,anomaly,293246,345,19,1400,12,,Law School - Faculty,Other
+196,"Fletcher, George P.",Law,mixed,anomaly,295947,346,53,767,15,usa,Columbia Law School,USA
+197,"Goodman, Ryan E.",Law,mixed,anomaly,304703,363,30,1195,13,usa,Harvard Law School,USA
+198,"Talmon, Stefan",Law,mixed,anomaly,296057,347,24,848,13,deu,Eberhard Karls Universität Tübingen,Other_Europe
+199,"Heller, Kevin Jon",Law,mixed,anomaly,300832,357,26,757,14,dnk,Københavns Universitet,Other_Europe
+200,"Nelson, Caleb",Law,mixed,anomaly,298577,351,16,870,13,usa,University of Virginia,USA
+201,"Reeves, Thomas Charles",Education,mixed,top_quartile,97035,548,101,4262,31,usa,University of Georgia,USA
+202,"Hew, Khe Foon Timothy",Education,mixed,top_quartile,18965,82,179,10979,50,hkg,The University of Hong Kong,Asia_Pacific
+203,"Hidi, Suzanne E.",Education,mixed,top_quartile,34694,141,55,8958,30,can,University of Toronto,Other
+204,"Berninger, Virginia Wise",Education,mixed,top_quartile,18301,80,232,13304,64,usa,University of Washington,USA
+205,"Kristjánsson, Kristján",Education,mixed,top_quartile,57797,273,139,3174,29,gbr,University of Birmingham,UK
+206,"Francis, David J.",Education,mixed,top_quartile,69690,361,198,14027,65,usa,University of Houston,USA
+207,"Crookall, David",Education,mixed,bottom_quartile,297481,2366,128,1275,13,fra,Université Côte d'Azur,Other_Europe
+208,"Jitendra, Asha K.",Education,mixed,bottom_quartile,234451,1738,87,3594,37,usa,University of Minnesota Twin Cities,USA
+209,"Bru, Edvin",Education,mixed,bottom_quartile,239090,1797,109,3498,36,nor,Universitetet i Stavanger,Other_Europe
+210,"Yeh, Yu chu",Education,mixed,bottom_quartile,234388,1736,54,1334,23,twn,National Chengchi University,Asia_Pacific
+211,"Aǧirdaǧ, Orhan",Education,mixed,bottom_quartile,255305,1929,66,1643,20,bel,KU Leuven,Other_Europe
+212,"Gambrell, Linda B.",Education,mixed,bottom_quartile,265522,2017,66,1387,20,usa,Clemson University,USA
+213,"Dawson, Vaille Maree",Education,mixed,anomaly,290432,2281,48,1455,20,aus,The University of Western Australia,Asia_Pacific
+214,"Harris, Lois Ruth",Education,mixed,anomaly,286348,2242,35,1532,18,aus,CQUniversity Australia,Asia_Pacific
+215,"Heerwegh, Dirk",Education,mixed,anomaly,285722,2231,22,1137,16,bel,KU Leuven,Other_Europe
+216,"Cohen, Peter A.",Education,mixed,anomaly,290672,2282,22,1337,14,usa,Texas A&M College of Dentistry,USA
+217,"Shattock, Michael L.",Education,mixed,anomaly,284858,2219,58,755,15,gbr,University of Oxford,UK
+218,"Fenstermacher, Gary D.",Education,mixed,anomaly,305403,2444,27,1211,10,usa,"University of Michigan, Ann Arbor",USA
+219,"Edensor, Tim",Geography,mixed,top_quartile,12550,31,158,7756,40,gbr,Manchester Metropolitan University Business School,UK
+220,"Massey, Doreen B.",Geography,mixed,top_quartile,24212,66,90,5827,32,gbr,The Open University,UK
+221,"Hewitt, Kenneth",Geography,mixed,top_quartile,24153,65,95,6527,38,can,University of Waterloo,Other
+222,"Watts, Michael J.",Geography,mixed,top_quartile,20883,54,146,6761,36,usa,"University of California, Berkeley",USA
+223,"Guthman, Julie",Geography,mixed,top_quartile,16492,46,82,7561,36,usa,"University of California, Santa Cruz",USA
+224,"Adey, Peter",Geography,mixed,top_quartile,32286,94,97,4945,36,aus,Monash University,Asia_Pacific
+225,"Xu, Jiongxin",Geography,mixed,bottom_quartile,90246,344,106,2376,27,chn,"Institute of Geographic Sciences and Natural Resources Research, Chinese Academy of Sciences",Asia_Pacific
+226,"Iammarino, Simona",Geography,mixed,bottom_quartile,96975,379,73,5541,29,ita,Università degli Studi di Cagliari,Other_Europe
+227,"Surian, Nicola",Geography,mixed,bottom_quartile,96906,378,97,5086,35,ita,Università degli Studi di Padova,Other_Europe
+228,"van Houtum, Henk",Geography,mixed,bottom_quartile,95100,367,66,2893,25,nld,Radboud Universiteit,Other_Europe
+229,"Livingstone, David N.",Geography,mixed,bottom_quartile,94002,359,91,2052,23,gbr,Queen's University Belfast,UK
+230,"Wilbanks, Thomas J.",Geography,mixed,bottom_quartile,105825,410,65,8656,24,usa,Oak Ridge National Laboratory,USA
+231,"Tickell, Adam",Geography,mixed,anomaly,109892,421,58,6930,24,gbr,University of Birmingham,UK
+232,"Dwyer, Claire",Geography,mixed,anomaly,114818,440,57,2634,24,gbr,University College London,UK
+233,"Mather, Alexander S.",Geography,mixed,anomaly,110813,425,65,3032,19,gbr,University of Aberdeen,UK
+234,"Davidson, Mark A.",Geography,mixed,anomaly,109478,419,56,2506,21,usa,Clark University,USA
+235,"Herbert, Steve",Geography,mixed,anomaly,112486,432,46,2413,20,usa,University of Washington,USA
+236,"Lee, Icy",Languages & Linguistics,mixed,top_quartile,31399,45,113,4323,39,sgp,National Institute of Education,Asia_Pacific
+237,"Robinson, Peter J.",Languages & Linguistics,mixed,top_quartile,32094,48,48,4928,30,jpn,Aoyama Gakuin University,Asia_Pacific
+238,"Dörnyei, Zoltán",Languages & Linguistics,mixed,top_quartile,5305,5,89,16236,57,gbr,University of Nottingham,UK
+239,"Webb, Stuart Alexander",Languages & Linguistics,mixed,top_quartile,34288,56,101,5511,41,can,Western University,Other
+240,"Langacker, Ronald W.",Languages & Linguistics,mixed,top_quartile,22992,27,71,5694,29,usa,"University of California, San Diego",USA
+241,"DeKeyser, Robert M.",Languages & Linguistics,mixed,top_quartile,40016,65,67,4778,32,usa,"University of Maryland, College Park",USA
+242,"Crystal, David",Languages & Linguistics,mixed,bottom_quartile,167882,383,117,1280,18,gbr,Bangor University,UK
+243,"Bickel, Balthasar",Languages & Linguistics,mixed,bottom_quartile,176084,410,86,2024,24,che,Universität Zürich,Other_Europe
+244,"Lee, Ju Seong",Languages & Linguistics,mixed,bottom_quartile,176369,412,44,1555,23,chn,The Education University of Hong Kong,Asia_Pacific
+245,"Levis, John Michael",Languages & Linguistics,mixed,bottom_quartile,189456,454,62,1679,18,usa,Iowa State University,USA
+246,"Walsh, Steve",Languages & Linguistics,mixed,bottom_quartile,163517,369,45,2045,20,gbr,Faculty of Humanities and Social Sciences,UK
+247,"Leung, Constant",Languages & Linguistics,mixed,bottom_quartile,174699,405,87,1792,21,gbr,King's College London,UK
+248,"Sheen, Younghee",Languages & Linguistics,mixed,anomaly,209445,509,21,2325,11,usa,American University,USA
+249,"Weigle, Sara Cushing",Languages & Linguistics,mixed,anomaly,201415,489,24,1489,17,usa,Georgia State University,USA
+250,"DeLancey, Scott",Languages & Linguistics,mixed,anomaly,204513,498,30,1287,14,usa,University of Oregon,USA
+251,"Hall, Joan Kelly",Languages & Linguistics,mixed,anomaly,200741,487,39,2212,17,usa,Pennsylvania State University,USA
+252,"Gile, Daniel",Languages & Linguistics,mixed,anomaly,206762,502,46,1157,15,fra,Université Paris Sorbonne Nouvelle,Other_Europe
+253,"Fox, Danny",Languages & Linguistics,mixed,anomaly,202149,492,25,2017,18,usa,Massachusetts Institute of Technology,USA
+254,"Nisbet, Matthew C.",Communication & Media Studies,mixed,top_quartile,30874,31,65,8384,38,usa,Northeastern University,USA
+255,"Hayes, Andrew F.",Communication & Media Studies,mixed,top_quartile,1248,1,78,74287,45,can,University of Calgary,Other
+256,"Matthes, Jörg",Communication & Media Studies,mixed,top_quartile,23670,23,246,10883,48,aut,Universität Wien,Other_Europe
+257,"Marwick, Alice E.",Communication & Media Studies,mixed,top_quartile,31242,32,41,8383,27,usa,Data & Society,USA
+258,"McCroskey, James C.",Communication & Media Studies,mixed,top_quartile,20192,19,147,8791,52,usa,The University of Alabama at Birmingham,USA
+259,"Lang, Annie",Communication & Media Studies,mixed,top_quartile,28379,29,90,6999,40,usa,Indiana University Bloomington,USA
+260,"Chen, Wenhong",Communication & Media Studies,mixed,bottom_quartile,147425,270,72,3423,25,usa,The University of Texas at Austin,USA
+261,"Afifi, Walid Adel",Communication & Media Studies,mixed,bottom_quartile,137379,240,71,3738,34,usa,"University of California, Santa Barbara",USA
+262,"McNair, Brian",Communication & Media Studies,mixed,bottom_quartile,146339,262,65,1412,19,gbr,University of Strathclyde,UK
+263,"Cammaerts, Bart",Communication & Media Studies,mixed,bottom_quartile,147632,271,47,1548,23,gbr,London School of Economics and Political Science,UK
+264,"Bucher, Taina",Communication & Media Studies,mixed,bottom_quartile,145069,258,14,2736,11,nor,Universitetet i Oslo,Other_Europe
+265,"McLeod, Jack M.",Communication & Media Studies,mixed,bottom_quartile,147212,268,57,3943,29,usa,University of Wisconsin-Madison,USA
+266,"Theocharis, Yannis",Communication & Media Studies,mixed,anomaly,171164,323,46,2391,25,deu,Technische Universität München,Other_Europe
+267,"Chalaby, Jean K.",Communication & Media Studies,mixed,anomaly,171318,324,39,1171,19,gbr,"City St George's, University of London",UK
+268,"Shome, Raka",Communication & Media Studies,mixed,anomaly,174782,336,28,1422,17,usa,Villanova University,USA
+269,"van Doorn, Niels",Communication & Media Studies,mixed,anomaly,171391,325,28,1585,17,nld,Universiteit van Amsterdam,Other_Europe
+270,"Fiske, John",Communication & Media Studies,mixed,anomaly,172112,329,34,1779,13,usa,University of Wisconsin-Madison,USA
+271,"Ross, Karen",Communication & Media Studies,mixed,anomaly,171885,328,65,1531,21,gbr,Newcastle University,UK
+272,"Hayden, Michael R.",Genetics & Heredity,journal_heavy,top_quartile,10691,31,899,72542,132,can,BC Children's Hospital Research Institute,Other
+273,"van Bokhoven, Hans",Genetics & Heredity,journal_heavy,top_quartile,31733,174,328,24650,90,nld,Radboud University Medical Center,Other_Europe
+274,"Zintzaras, Elias Α.",Genetics & Heredity,journal_heavy,top_quartile,26802,141,254,10382,55,grc,University of Thessaly,Other
+275,"Schäffer, Alejandro A.",Genetics & Heredity,journal_heavy,top_quartile,17519,76,259,89501,77,usa,National Cancer Institute (NCI),USA
+276,"Weber, James L.",Genetics & Heredity,journal_heavy,top_quartile,15593,61,200,24075,68,usa,Prevention Genetics,USA
+277,"Mervis, Carolyn B.",Genetics & Heredity,journal_heavy,top_quartile,39587,209,157,16189,55,usa,University of Louisville,USA
+278,"Turner, Claire Louise Susan",Genetics & Heredity,journal_heavy,bottom_quartile,133132,664,93,6225,39,gbr,University of Exeter,UK
+279,"Boles, Richard G.",Genetics & Heredity,journal_heavy,bottom_quartile,161129,807,103,6289,41,usa,CT 06371,USA
+280,"Boileau, Catherine R.",Genetics & Heredity,journal_heavy,bottom_quartile,153332,774,324,27941,78,fra,Université Paris Cité,Other_Europe
+281,"Cox, Timothy C.",Genetics & Heredity,journal_heavy,bottom_quartile,143229,709,153,6680,44,usa,University of Washington School of Medicine,USA
+282,"Viljoen, Dennis Lucy",Genetics & Heredity,journal_heavy,bottom_quartile,140261,694,118,5914,35,zaf,School of Pathology,Other
+283,"Carey, Gregory",Genetics & Heredity,journal_heavy,bottom_quartile,182115,905,51,3161,25,usa,University of Colorado Boulder,USA
+284,"Dean, John C.S.",Genetics & Heredity,journal_heavy,anomaly,183089,909,92,5177,33,gbr,University of Aberdeen,UK
+285,"Carey, Gregory",Genetics & Heredity,journal_heavy,anomaly,182115,905,51,3161,25,usa,University of Colorado Boulder,USA
+286,"Berg, Jonathan S.",Genetics & Heredity,journal_heavy,anomaly,172038,848,79,21047,44,usa,UNC School of Medicine,USA
+287,"Wertz, Dorothy C.",Genetics & Heredity,journal_heavy,anomaly,181264,898,101,1641,23,usa,University of Massachusetts Chan Medical School,USA
+288,"Lynch, Sally Ann",Genetics & Heredity,journal_heavy,anomaly,175783,869,237,12304,51,irl,Children's Health Ireland at Crumlin,Other_Europe
+289,"Marth, Gábor T.",Genetics & Heredity,journal_heavy,anomaly,174320,855,165,88860,47,usa,The University of Utah,USA
+290,"Wang, Xiao Jing",Neurology & Neurosurgery,journal_heavy,top_quartile,2466,234,184,28347,87,usa,New York University,USA
+291,"LaFerla, Frank M.",Neurology & Neurosurgery,journal_heavy,top_quartile,5416,451,274,45111,106,usa,UCI School of Medicine,USA
+292,"Crino, Peter B.",Neurology & Neurosurgery,journal_heavy,top_quartile,17011,1324,182,15554,66,usa,University of Maryland School of Medicine,USA
+293,"Ingram, Donald K.",Neurology & Neurosurgery,journal_heavy,top_quartile,15913,1246,384,32210,80,usa,Pennington Biomedical Research Center,USA
+294,"Bousser, Marchie Germaine",Neurology & Neurosurgery,journal_heavy,top_quartile,4828,412,615,60411,114,fra,Hôpital Lariboisiere AP-HP,Other_Europe
+295,"van Praag, Henriette",Neurology & Neurosurgery,journal_heavy,top_quartile,17233,1341,89,23481,47,usa,Charles E. Schmidt College of Medicine,USA
+296,"Quan, Ning",Neurology & Neurosurgery,journal_heavy,bottom_quartile,92955,5814,99,6946,42,usa,Florida Atlantic University,USA
+297,"Bloomfield, Stewart A.",Neurology & Neurosurgery,journal_heavy,bottom_quartile,97047,6031,64,4164,38,usa,SUNY College of Optometry,USA
+298,"Ikeda, Akio",Neurology & Neurosurgery,journal_heavy,bottom_quartile,108561,6675,451,11795,62,jpn,Graduate School of Medicine,Asia_Pacific
+299,"Turski, Lechosław L.Z.Shtslsaw",Neurology & Neurosurgery,journal_heavy,bottom_quartile,117510,7156,188,10890,47,deu,Deutsches Zentrum für Neurodegenerative Erkrankungen,Other_Europe
+300,"Hulette, Christine Marie",Neurology & Neurosurgery,journal_heavy,bottom_quartile,96216,5992,157,21141,65,usa,Duke University,USA
+301,"Koskiniemi, Marjaleena",Neurology & Neurosurgery,journal_heavy,bottom_quartile,109550,6725,144,5086,40,fin,Haartman Institute,Other_Europe
+302,"Sekhon, Lali H.S.",Neurology & Neurosurgery,journal_heavy,anomaly,127929,7687,69,3413,27,usa,Reno Orthopedic Clinic,USA
+303,"Horner, Ronnie D.",Neurology & Neurosurgery,journal_heavy,anomaly,123189,7454,182,6634,44,usa,University of Nebraska Medical Center,USA
+304,"Middleton, Frank A.",Neurology & Neurosurgery,journal_heavy,anomaly,124765,7537,178,21239,61,usa,SUNY Upstate Medical University,USA
+305,"Bannon, Michael John",Neurology & Neurosurgery,journal_heavy,anomaly,126854,7634,116,4627,40,usa,Wayne State University School of Medicine,USA
+306,"Otten, Uwe H.",Neurology & Neurosurgery,journal_heavy,anomaly,123467,7465,181,8206,52,che,Universität Basel,Other_Europe
+307,"Hilton, David A.",Neurology & Neurosurgery,journal_heavy,anomaly,125164,7555,121,7634,38,gbr,University Hospitals Plymouth NHS Trust,UK
+308,"Langanke, Karlheinz",Nuclear & Particle Physics,journal_heavy,top_quartile,30418,513,373,16810,69,deu,GSI Helmholtz Centre for Heavy Ion Research GmbH,Other_Europe
+309,"Kiritsis, E. B.",Nuclear & Particle Physics,journal_heavy,top_quartile,23407,358,187,10094,58,fra,APC - AstroParticule et Cosmologie,Other_Europe
+310,"Heinz, Ulrich W.",Nuclear & Particle Physics,journal_heavy,top_quartile,8612,111,342,22525,75,usa,The Ohio State University,USA
+311,"Mrówczyński, Stanisław",Nuclear & Particle Physics,journal_heavy,top_quartile,40280,685,222,8712,51,pol,National Centre for Nuclear Research (NCBJ),Other_Europe
+312,"Brodsky, Stanley J.",Nuclear & Particle Physics,journal_heavy,top_quartile,3202,40,530,34921,93,usa,SLAC National Accelerator Laboratory,USA
+313,"Antoniadis, Ignatios",Nuclear & Particle Physics,journal_heavy,top_quartile,5149,67,398,20207,66,tha,Chulalongkorn University,Asia_Pacific
+314,"Bazilevskaya, Galina A.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,172193,3061,333,9480,39,rus,P.N. Lebedev Physical Institute of the Russian Academy of Sciences,Other
+315,"Meier, Karlheinz H.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,163766,2906,1087,87134,133,deu,Universität Heidelberg,Other_Europe
+316,"Husain, V.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,149085,2659,117,2003,27,can,University of New Brunswick,Other
+317,"Kobakhidze, Archil B.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,184665,3307,121,2482,28,aus,The University of Sydney,Asia_Pacific
+318,"Maillet, Jean Michel",Nuclear & Particle Physics,journal_heavy,bottom_quartile,144950,2588,74,3539,34,fra,École Normale Supérieure de Lyon,Other_Europe
+319,"Pedram, Pouria",Nuclear & Particle Physics,journal_heavy,bottom_quartile,146459,2615,67,1652,24,irn,"Islamic Azad University, Science and Research Branch",Other
+320,"Yee, Ho Ung",Nuclear & Particle Physics,journal_heavy,anomaly,192989,3463,99,4383,35,usa,University of Illinois at Chicago,USA
+321,"Blankenbeclér, Richard",Nuclear & Particle Physics,journal_heavy,anomaly,195414,3522,119,2703,24,usa,SLAC National Accelerator Laboratory,USA
+322,"Sehgal, Lalit M.",Nuclear & Particle Physics,journal_heavy,anomaly,194855,3511,120,2745,25,deu,Rheinisch-Westfälische Technische Hochschule Aachen,Other_Europe
+323,"Oz, Yaron",Nuclear & Particle Physics,journal_heavy,anomaly,202617,3641,164,8259,35,isr,Tel Aviv University,Other
+324,"HájícĚk, Peter",Nuclear & Particle Physics,journal_heavy,anomaly,197391,3550,90,1185,19,che,University of Bern,Other_Europe
+325,"Graesser, Michael L.",Nuclear & Particle Physics,journal_heavy,anomaly,207337,3708,56,3948,31,usa,Los Alamos National Laboratory Theoretical Division,USA
+326,"Grushin, Vladimir V.",Organic Chemistry,journal_heavy,top_quartile,14723,335,124,11104,53,esp,Barcelona Institute of Science and Technology (BIST),Other_Europe
+327,"Jaouen, Gèrard E.",Organic Chemistry,journal_heavy,top_quartile,27683,584,450,14517,59,fra,École Nationale Supérieure de Chimie de Paris,Other_Europe
+328,"Yoon, Tehshik P.",Organic Chemistry,journal_heavy,top_quartile,19068,409,119,19196,56,usa,University of Wisconsin-Madison,USA
+329,"Brünner, Henri",Organic Chemistry,journal_heavy,top_quartile,16864,371,527,9577,46,deu,Universität Regensburg,Other_Europe
+330,"Stephan, Douglas W.",Organic Chemistry,journal_heavy,top_quartile,1038,31,605,39083,95,can,University of Toronto,Other
+331,"Carpentier, Jean François",Organic Chemistry,journal_heavy,top_quartile,25013,522,422,18242,71,fra,Institut des Sciences Chimiques de Rennes,Other_Europe
+332,"Chen, Yi",Organic Chemistry,journal_heavy,bottom_quartile,182243,3158,128,2343,26,chn,University of Chinese Academy of Sciences,Asia_Pacific
+333,"Vanderwal, Christopher D.",Organic Chemistry,journal_heavy,bottom_quartile,196522,3407,100,3478,36,usa,"University of California, Irvine",USA
+334,"Klumpp, Douglas A.",Organic Chemistry,journal_heavy,bottom_quartile,185413,3232,106,2798,28,usa,Northern Illinois University,USA
+335,"Sheppard, Tom D.",Organic Chemistry,journal_heavy,bottom_quartile,183974,3194,94,3909,33,gbr,University College London,UK
+336,"Guo, Zhongwu",Organic Chemistry,journal_heavy,bottom_quartile,162769,2854,232,4899,37,usa,College of Liberal Arts and Sciences,USA
+337,"Lukasik, Rafal M.",Organic Chemistry,journal_heavy,bottom_quartile,192751,3345,115,7972,44,pol,Sieć Badawcza Łukasiewicz,Other_Europe
+338,"Kirby, Gordon W.",Organic Chemistry,journal_heavy,anomaly,228610,3975,171,2053,23,gbr,University of Glasgow,UK
+339,"Mioskowski, Charles",Organic Chemistry,journal_heavy,anomaly,220196,3813,392,13622,52,fra,UMR 7199,Other_Europe
+340,"Shapiro, Pamela J.",Organic Chemistry,journal_heavy,anomaly,230301,4005,48,2615,24,usa,University of Idaho,USA
+341,"Huang, Yuanbiao",Organic Chemistry,journal_heavy,anomaly,230493,4008,117,10077,52,chn,University of Chinese Academy of Sciences,Asia_Pacific
+342,"Griffey, Richard H.",Organic Chemistry,journal_heavy,anomaly,216847,3765,153,8339,45,usa,Leidos Inc.,USA
+343,"Senn, Hans Martin",Organic Chemistry,journal_heavy,anomaly,220799,3824,53,4632,26,gbr,University of Glasgow,UK
+344,"Das, D. K.",Biochemistry & Molecular Biology,journal_heavy,top_quartile,7118,310,711,27935,90,ind,"GLA University, Mathura",Asia_Pacific
+345,"Schmid, Franz Xaver",Biochemistry & Molecular Biology,journal_heavy,top_quartile,24713,1042,294,13094,63,deu,Universität Bayreuth,Other_Europe
+346,"Nicholson, Donald W.",Biochemistry & Molecular Biology,journal_heavy,top_quartile,8511,382,152,33793,72,can,Merck Frosst,Other
+347,"Taniguchi, Naoyuki",Biochemistry & Molecular Biology,journal_heavy,top_quartile,11279,498,1011,40284,99,jpn,Osaka International Cancer Institute,Asia_Pacific
+348,"Deisenhofer, Johann",Biochemistry & Molecular Biology,journal_heavy,top_quartile,12418,552,131,23090,66,usa,UT Southwestern Medical Center,USA
+349,"Yeates, Todd O.",Biochemistry & Molecular Biology,journal_heavy,top_quartile,18696,833,209,23100,69,usa,"University of California, Los Angeles",USA
+350,"Eaton, Philip J.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,96996,3619,118,6291,42,gbr,Barts and The London School of Medicine and Dentistry,UK
+351,"Jansonius, Johan N.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,123810,4486,105,6955,45,che,"Biozentrum, Universität Basel",Other_Europe
+352,"Whitfield, James F.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,99212,3691,268,4850,35,can,National Research Council Canada,Other
+353,"Cowan-Jacob, Sandra W.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,102942,3807,67,23285,44,che,Novartis International AG,Other_Europe
+354,"Saba, Julie D.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,104549,3861,102,6037,48,usa,UCSF School of Medicine,USA
+355,"Lanďer, Harry M.",Biochemistry & Molecular Biology,journal_heavy,bottom_quartile,113073,4142,40,4864,24,usa,Weill Cornell Medicine,USA
+356,"Momoi, Takashi",Biochemistry & Molecular Biology,journal_heavy,anomaly,125028,4528,149,6893,45,jpn,Tokyo Medical University,Asia_Pacific
+357,"Laine, Roger A.",Biochemistry & Molecular Biology,journal_heavy,anomaly,121825,4415,149,4152,32,usa,Louisiana State University,USA
+358,"Holz, Ronald W.",Biochemistry & Molecular Biology,journal_heavy,anomaly,123920,4489,141,5038,38,usa,University of Michigan Medical School,USA
+359,"Milstien, Sheldon",Biochemistry & Molecular Biology,journal_heavy,anomaly,125217,4529,233,26984,87,usa,VCU School of Medicine,USA
+360,"Salomon, Yoram",Biochemistry & Molecular Biology,journal_heavy,anomaly,123724,4482,119,4696,31,isr,Weizmann Institute of Science Israel,Other
+361,"Smith, Clyde A.",Biochemistry & Molecular Biology,journal_heavy,anomaly,124514,4505,107,5549,39,usa,Stanford University,USA
+362,"Tricot, Guido J.K.",Immunology,journal_heavy,top_quartile,21003,712,389,31171,88,usa,Winthrop P. Rockefeller Cancer Institute,USA
+363,"Alter, Blanche P.",Immunology,journal_heavy,top_quartile,17427,604,262,13817,63,usa,Harvard Medical School,USA
+364,"Brown, Gordon D.A.",Immunology,journal_heavy,top_quartile,3278,121,351,45280,108,gbr,University of Exeter,UK
+365,"Dick, John E.",Immunology,journal_heavy,top_quartile,5418,209,260,52671,99,can,University Health Network,Other
+366,"Erlich, Henry A.",Immunology,journal_heavy,top_quartile,10416,381,467,51721,95,usa,UCSF Benioff Children's Hospital Oakland,USA
+367,"Samelson, Lawrence E.",Immunology,journal_heavy,top_quartile,23513,784,213,19602,72,usa,National Cancer Institute (NCI),USA
+368,"Haferlach, Claudia",Immunology,journal_heavy,bottom_quartile,128593,3280,411,24552,80,deu,MLL Münchner Leukämielabor GmbH,Other_Europe
+369,"Zent, Clive S.",Immunology,journal_heavy,bottom_quartile,124072,3172,177,7854,53,usa,University of Rochester Medical Center,USA
+370,"t Hart, Bert A. Adriaan T.",Immunology,journal_heavy,bottom_quartile,102650,2689,195,8364,53,nld,Amsterdam UMC - University of Amsterdam,Other_Europe
+371,"von den Borne, Albert E.G.Kr",Immunology,journal_heavy,bottom_quartile,106519,2777,389,13953,63,nld,Universiteit van Amsterdam,Other_Europe
+372,"Ansel, Karl Mark",Immunology,journal_heavy,bottom_quartile,113505,2949,94,13604,49,usa,"University of California, San Francisco",USA
+373,"Reiffers, Josy J.",Immunology,journal_heavy,bottom_quartile,132168,3368,467,25112,68,fra,Institut Bergonie,Other_Europe
+374,"Kayagaki, Nobuhiko",Immunology,journal_heavy,anomaly,142464,3577,104,21190,60,usa,"Genentech, Inc",USA
+375,"Abraham, Soman N.",Immunology,journal_heavy,anomaly,137873,3490,191,13893,66,usa,Duke University School of Medicine,USA
+376,"Desiderio, Stephen V.",Immunology,journal_heavy,anomaly,138444,3498,94,5442,40,usa,Johns Hopkins University School of Medicine,USA
+377,"Mitchell, Beverly S.",Immunology,journal_heavy,anomaly,146276,3642,147,6975,48,usa,Stanford Cancer Institute,USA
+378,"Medvedev, Andrei E.",Immunology,journal_heavy,anomaly,140716,3540,59,5327,36,usa,UConn Health,USA
+379,"Kastelein, Robert A.",Immunology,journal_heavy,anomaly,144102,3607,134,47369,78,usa,Synthekine,USA
+380,"Nosanchuk, Joshua Daniel",Microbiology,journal_heavy,top_quartile,38124,972,353,17803,71,usa,Albert Einstein College of Medicine,USA
+381,"Tebo, Bradley M.",Microbiology,journal_heavy,top_quartile,32451,825,170,13330,67,usa,Oregon Health & Science University,USA
+382,"Stackebrandt, Erko",Microbiology,journal_heavy,top_quartile,4249,97,669,46776,96,deu,INHOFFENSTRASSE 7,Other_Europe
+383,"Daniel, Rolf",Microbiology,journal_heavy,top_quartile,26745,666,455,18419,69,deu,Georg-August-Universität Göttingen,Other_Europe
+384,"Ergönül, Önder Onder",Microbiology,journal_heavy,top_quartile,42336,1065,246,8626,47,tur,VKV Amerikan Hastanesi,Other
+385,"Tolker-Nielsen, Tim",Microbiology,journal_heavy,top_quartile,32465,826,195,20633,75,dnk,Københavns Universitet,Other_Europe
+386,"Kuusela, Pentti I.",Microbiology,journal_heavy,bottom_quartile,195638,4619,131,4229,36,fin,Helsinki University Hospital,Other_Europe
+387,"Patick, Amy K.",Microbiology,journal_heavy,bottom_quartile,178275,4266,78,8128,42,usa,Amplyx Pharmaceuticals,USA
+388,"Owen, Andrew",Microbiology,journal_heavy,bottom_quartile,172387,4109,317,8877,48,gbr,University of Liverpool,UK
+389,"Gemmell, Curtis G.",Microbiology,journal_heavy,bottom_quartile,145691,3510,139,4082,35,gbr,"School of Medicine, Dentistry & Nursing",UK
+390,"Manter, Daniel K.",Microbiology,journal_heavy,bottom_quartile,188716,4468,110,7908,42,usa,USDA ARS Sugarbeet Research Unit,USA
+391,"Obrig, Tom G.",Microbiology,journal_heavy,bottom_quartile,164331,3897,70,3621,34,usa,University of Maryland School of Medicine,USA
+392,"Dang, Hongyue",Microbiology,journal_heavy,anomaly,190117,4506,80,4660,36,chn,State Key Laboratory of Marine Environmental Science,Asia_Pacific
+393,"Yabuuchi, Eiko",Microbiology,journal_heavy,anomaly,202780,4764,98,7332,28,jpn,Gifu University School of Medicine,Asia_Pacific
+394,"Vogels, Godfried D.",Microbiology,journal_heavy,anomaly,192033,4552,246,5042,38,nld,Radboud Universiteit,Other_Europe
+395,"Andrews, John H.",Microbiology,journal_heavy,anomaly,189795,4497,48,2000,22,usa,University of Wisconsin-Madison,USA
+396,"Albertsen, Mads",Microbiology,journal_heavy,anomaly,194195,4591,89,11546,47,dnk,Aalborg University,Other_Europe
+397,"Hetherington, Seth V.",Microbiology,journal_heavy,anomaly,206652,4833,68,3682,27,usa,"Genocea Biosciences, Inc.",USA
+398,"Butler, Virginia L.",Archaeology,book_heavy,anomaly,299723,411,41,1502,18,usa,Portland State University,USA
+399,"Shagan, Ethan Howard",History,book_heavy,anomaly,538649,388,21,473,10,usa,"University of California, Berkeley",USA
+400,"Harris, Jonathan Gil",Literary Studies,book_heavy,anomaly,788349,398,12,425,6,usa,The George Washington University,USA
+401,"Herring, Scott",Literary Studies,book_heavy,anomaly,791365,405,20,344,8,usa,Indiana University,USA
+402,"Merricks, Trenton",Philosophy,book_heavy,anomaly,229623,279,31,992,15,usa,University of Virginia,USA
+403,"Fishkin, Shelley Fisher",Literary Studies,book_heavy,anomaly,787459,396,33,482,6,usa,Stanford University,USA
+404,"Davin, Anna",History,book_heavy,anomaly,545088,401,18,728,7,usa,Binghamton University State University of New York,USA
+405,"Conkey, Margaret W.",Archaeology,book_heavy,anomaly,297477,406,38,1065,16,usa,"University of California, Berkeley",USA
+406,"Scholz, Trebor","Art Practice, History & Theory",book_heavy,anomaly,1134242,49,12,414,4,usa,The New School,USA
+407,"Camp, Elisabeth H.",Philosophy,book_heavy,anomaly,227907,275,24,1073,15,usa,Rutgers University,USA
+408,"Hale, Charles R.",Anthropology,book_heavy,anomaly,139826,188,22,2519,13,usa,"University of California, Santa Barbara",USA
+409,"von Cramon-Taubadel, Noreen",Anthropology,book_heavy,anomaly,140458,189,62,2672,30,usa,"University at Buffalo, The State University of New York",USA
+410,"van Dyke, Ruth M.",Archaeology,book_heavy,anomaly,322187,447,29,725,15,usa,Binghamton University State University of New York,USA
+411,"Thomas, David Hurst",Archaeology,book_heavy,anomaly,297061,405,75,916,17,usa,American Museum of Natural History,USA
+412,"Strait, David S.",Anthropology,book_heavy,anomaly,139453,187,94,4410,36,usa,Washington University in St. Louis,USA
+413,"Keeley, Lawrence H.",Archaeology,book_heavy,anomaly,300013,412,25,1212,14,usa,University of Illinois at Chicago,USA
+414,"Kornblith, Hilary",Philosophy,book_heavy,anomaly,232447,285,51,960,16,usa,University of Massachusetts Amherst,USA
+415,"Ticktin, Miriam I.",Anthropology,book_heavy,anomaly,141429,192,30,2292,13,usa,City University of New York’s,USA
+416,"Graburn, Nelson H.H.",Anthropology,book_heavy,anomaly,142954,195,80,1821,20,usa,"University of California, Berkeley",USA
+417,"Mathur, Saloni","Art Practice, History & Theory",book_heavy,anomaly,1102535,45,21,224,7,usa,University of California,USA
+418,"Kappelman, John W.",Anthropology,book_heavy,anomaly,144925,197,65,2638,31,usa,The University of Texas at Austin,USA
+419,"Bauer, Ralph",Literary Studies,book_heavy,anomaly,795283,407,32,298,10,usa,"University of Maryland, College Park",USA
+420,"Hollywood, Amy M.",Religions & Theology,book_heavy,anomaly,567008,229,37,395,11,usa,Harvard Divinity School,USA
+421,"Roxburgh, David J.","Art Practice, History & Theory",book_heavy,anomaly,1112087,47,23,195,8,usa,Harvard University,USA
+422,"Miller, Donald E.",Religions & Theology,book_heavy,anomaly,563382,227,27,804,8,usa,University of Southern California,USA
+423,"Possamai, Adam M.",Religions & Theology,book_heavy,bottom_quartile,488943,173,86,678,14,aus,Western Sydney University,Asia_Pacific
+424,"Hopkins, Keith",Classics,book_heavy,bottom_quartile,346705,60,12,973,9,hkg,The University of Hong Kong,Asia_Pacific
+425,"Edele, Mark",History,book_heavy,bottom_quartile,514943,356,37,481,12,aus,University of Melbourne,Asia_Pacific
+426,"Boulton, Jeremy P.",History,book_heavy,bottom_quartile,479760,303,28,554,11,aus,"The University of Newcastle, Australia",Asia_Pacific
+427,"Mackay, Alex",Archaeology,book_heavy,bottom_quartile,256010,320,59,1936,22,aus,University of Wollongong,Asia_Pacific
+428,"Wadiwel, Dinesh Joseph",Literary Studies,book_heavy,bottom_quartile,703169,328,28,399,9,aus,The University of Sydney,Asia_Pacific
+429,"Clendinnen, Inga",History,book_heavy,bottom_quartile,523698,374,14,527,9,aus,La Trobe University,Asia_Pacific
+430,"Holdaway, Simon J.",Archaeology,book_heavy,bottom_quartile,253735,317,82,2039,27,nzl,The University of Auckland,Asia_Pacific
+431,"Turner-Walker, Gordon",Archaeology,book_heavy,bottom_quartile,244617,301,37,2465,22,twn,National Yunlin University of Science and Technology,Asia_Pacific
+432,"Petchey, Fiona J.",Archaeology,book_heavy,bottom_quartile,278526,363,99,3220,29,nzl,The University of Waikato,Asia_Pacific
+433,"Bueno, Ot´avio A.",Philosophy,book_heavy,bottom_quartile,206767,243,117,1404,18,jpn,Tohoku University,Asia_Pacific
+434,"Diprose, Rosalyn",Literary Studies,book_heavy,bottom_quartile,755664,369,32,352,11,aus,UNSW Sydney,Asia_Pacific
+435,"Bocquet-Appel, Jean Pierre",Anthropology,book_heavy,bottom_quartile,122671,161,45,2690,25,chn,Jinan University,Asia_Pacific
+436,"Copeland, B. Jack",Philosophy,book_heavy,bottom_quartile,187127,211,61,1277,18,nzl,University of Canterbury,Asia_Pacific
+437,"Buckley, Hallie R.",Archaeology,book_heavy,bottom_quartile,267344,341,132,3051,32,nzl,School of Biomedical Sciences,Asia_Pacific
+438,"Armstrong, Philip",Literary Studies,book_heavy,bottom_quartile,698233,325,21,404,8,nzl,University of Canterbury,Asia_Pacific
+439,"Kukathas, Chandran",Philosophy,book_heavy,bottom_quartile,202966,239,49,1376,13,sgp,Singapore Management University,Asia_Pacific
+440,"Aubert, Maxime",Archaeology,book_heavy,bottom_quartile,290267,392,63,3497,30,aus,Griffith University,Asia_Pacific
+441,"Hanihara, Tsunehiko",Anthropology,book_heavy,bottom_quartile,115110,149,84,3881,32,jpn,Kitasato University,Asia_Pacific
+442,"Mackenzie, Catriona",Philosophy,book_heavy,bottom_quartile,184517,206,51,1796,19,aus,Macquarie University,Asia_Pacific
+443,"Dawson, P. A.",Literary Studies,book_heavy,bottom_quartile,769464,377,21,347,8,aus,UNSW Sydney,Asia_Pacific
+444,"Grusin, Richard",Literary Studies,book_heavy,top_quartile,334080,82,20,1163,8,usa,Wayne State University,USA
+445,"Shea, John J.",Archaeology,book_heavy,top_quartile,45574,34,65,3490,35,usa,Stony Brook University,USA
+446,"Mignolo, Walter D.",Literary Studies,book_heavy,top_quartile,16555,2,79,9251,25,usa,Duke University,USA
+447,"Mazower, Mark",History,book_heavy,top_quartile,221331,46,31,1467,11,usa,Columbia University,USA
+448,"Fine, Kit",Philosophy,book_heavy,top_quartile,22583,15,102,4554,36,usa,New York University,USA
+449,"Buck-Morss, Susan",Literary Studies,book_heavy,top_quartile,293802,69,26,1234,9,usa,Cornell University,USA
+450,"Hodder, Ian",Archaeology,book_heavy,top_quartile,27032,20,114,5938,33,usa,The Ohio State University,USA
+451,"Hansen, Miriam Bratu",Literary Studies,book_heavy,top_quartile,280389,62,18,1061,11,usa,The University of Chicago,USA
+452,"Faraone, Christopher Athanasious",Classics,book_heavy,top_quartile,170833,12,70,1231,19,usa,The University of Chicago,USA
+453,"Glascock, Michael D.",Archaeology,book_heavy,top_quartile,93158,70,342,7235,43,usa,University of Missouri,USA
+454,"Tomlins, Christopher L.",History,book_heavy,top_quartile,292008,80,68,849,13,usa,Berkeley Law School,USA
+455,"Piperno, Dolores R.",Archaeology,book_heavy,top_quartile,20844,10,112,9642,54,usa,Smithsonian National Museum of Natural History,USA
+456,"Smith, Christian S.",Religions & Theology,book_heavy,top_quartile,79878,7,55,4280,29,usa,University of Notre Dame,USA
+457,"Wolfson, Elliot R.",Religions & Theology,book_heavy,top_quartile,176575,26,91,1107,19,usa,"University of California, Santa Barbara",USA
+458,"Oushakine, Serguei Alex",Literary Studies,book_heavy,top_quartile,217980,44,49,1073,15,usa,Princeton University,USA
+459,"Puar, Jasbir Kaur",Literary Studies,book_heavy,top_quartile,162406,25,29,1813,14,usa,Rutgers University–New Brunswick,USA
+460,"Westad, Odd Arne",History,book_heavy,top_quartile,169412,22,48,2023,14,usa,Yale University,USA
+461,"White, Tim D.",Anthropology,book_heavy,top_quartile,27643,19,139,11611,56,usa,"University of California, Berkeley",USA
+462,"Saitō, Yuriko","Art Practice, History & Theory",book_heavy,top_quartile,341401,3,30,888,10,usa,Rhode Island School of Design,USA
+463,"Maier, Charles S.",History,book_heavy,top_quartile,254710,64,47,1345,10,usa,Harvard University,USA
+464,"Soames, Scott",Philosophy,book_heavy,top_quartile,79169,67,87,2033,26,usa,University of Southern,USA
+465,"Hofman, Diego M.",Nuclear & Particle Physics,journal_heavy,anomaly,189552,3403,32,2900,26,nld,Institute for Theoretical Physics Amsterdam,Other_Europe
+466,"Bengtsson, Ragnar",Nuclear & Particle Physics,journal_heavy,anomaly,200493,3607,85,4198,29,swe,Lunds Tekniska Högskola,Other_Europe
+467,"Cheeseman, Kevin H.",Biochemistry & Molecular Biology,journal_heavy,anomaly,128223,4626,70,8463,26,swe,Medical Department,Other_Europe
+468,"Linet, Bernard",Nuclear & Particle Physics,journal_heavy,anomaly,193651,3486,58,1352,18,fra,Université de Tours,Other_Europe
+469,"Penders, John",Microbiology,journal_heavy,anomaly,195432,4614,166,12622,54,nld,"Faculty of Health, Medicine and Life Sciences",Other_Europe
+470,"Bloch, Claude",Nuclear & Particle Physics,journal_heavy,anomaly,227918,4074,11,2164,15,fra,CEA Saclay,Other_Europe
+471,"de Lange, Floris P.",Neurology & Neurosurgery,journal_heavy,anomaly,124827,7541,180,12343,61,nld,"Donders Institute for Brain, Cognition and Behaviour",Other_Europe
+472,"Porro, Carlo Adolfo",Neurology & Neurosurgery,journal_heavy,anomaly,123606,7472,136,6300,38,ita,Università degli Studi di Modena e Reggio Emilia,Other_Europe
+473,"Prűtz, Walter A.",Biochemistry & Molecular Biology,journal_heavy,anomaly,129121,4659,50,2072,25,deu,Universität Freiburg,Other_Europe
+474,"Dotsenko, Vladimir S.",Nuclear & Particle Physics,journal_heavy,anomaly,190029,3409,46,2350,17,fra,Sorbonne Université,Other_Europe
+475,"Rousseau, Gérard",Organic Chemistry,journal_heavy,anomaly,223430,3878,85,1973,24,fra,Université Paris-Saclay,Other_Europe
+476,"Kayser, Fritz H.",Microbiology,journal_heavy,anomaly,201909,4747,174,2928,29,che,Universität Zürich,Other_Europe
+477,"Dyson, Paul J.",Organic Chemistry,journal_heavy,anomaly,215954,3752,57,7454,36,che,Institut des Sciences et Ingénierie Chimiques,Other_Europe
+478,"Hoppe, Walther",Organic Chemistry,journal_heavy,anomaly,239532,4166,104,1413,18,deu,Max-Planck-Institut für Biochemie,Other_Europe
+479,"Rossi, Filippo",Biochemistry & Molecular Biology,journal_heavy,anomaly,121587,4405,151,5830,34,ita,Università degli Studi di Verona,Other_Europe
+480,"Goffin, Jan",Neurology & Neurosurgery,journal_heavy,anomaly,128411,7709,193,6571,45,bel,KU Leuven– University Hospital Leuven,Other_Europe
+481,"Silvanto, Juha",Neurology & Neurosurgery,journal_heavy,bottom_quartile,99147,6159,101,5003,40,mac,University of Macau,Other
+482,"Bendikov, Michael",Organic Chemistry,journal_heavy,bottom_quartile,204617,3545,92,9286,49,isr,Weizmann Institute of Science Israel,Other
+483,"Stockler-Ipsirogu, Sylvia G.",Genetics & Heredity,journal_heavy,bottom_quartile,157126,791,248,7665,47,can,BC Children's Hospital Research Institute,Other
+484,"Cheyne, Douglas Owen",Neurology & Neurosurgery,journal_heavy,bottom_quartile,105251,6484,129,5720,41,can,University of Toronto,Other
+485,"Szechtman, Henry",Neurology & Neurosurgery,journal_heavy,bottom_quartile,114599,6988,170,6730,49,can,McMaster University,Other
+486,"Rodríguez, Luís Felipe",Astronomy & Astrophysics,journal_heavy,bottom_quartile,85067,1390,335,11709,56,mex,Instituto de Radioastronomía y Astrofísica,Other
+487,"Michaud, Jacques L.",Genetics & Heredity,journal_heavy,bottom_quartile,128555,645,131,11842,56,can,CHU Sainte-Justine - Le Centre Hospitalier Universitaire Mère-Enfant,Other
+488,"Ginsburg, Isaac",Immunology,journal_heavy,bottom_quartile,99987,2630,199,3205,30,isr,Hebrew University of Jerusalem,Other
+489,"Paredes, Raúl G.",Neurology & Neurosurgery,journal_heavy,bottom_quartile,108461,6673,133,3655,32,mex,"Instituto de Neurobiología, UNAM",Other
+490,"Krćméry, Vladimír C.",Microbiology,journal_heavy,bottom_quartile,170799,4076,360,4235,31,svk,"Vysoká škola zdravotníctva a sociálnej práce sv. Alžbety, Bratislava",Other
+491,"Mohamadpour, Farzaneh",Organic Chemistry,journal_heavy,bottom_quartile,183276,3175,107,1150,20,irn,School of Advanced Medical Sciences and Technologies,Other
+492,"Constantinou-Deltas, Constantinos D.",Genetics & Heredity,journal_heavy,bottom_quartile,132131,660,174,7252,42,cyp,University of Cyprus,Other
+493,"Miller, Ariel",Neurology & Neurosurgery,journal_heavy,bottom_quartile,117872,7182,148,9052,47,isr,Technion - Israel Institute of Technology,Other
+494,"Dolenc, Vinko V.",Neurology & Neurosurgery,journal_heavy,bottom_quartile,112804,6901,135,2799,24,svn,Univerzitetni Klinični Center Ljubljana,Other
+495,"Ikot, Akpan Ndem",Nuclear & Particle Physics,journal_heavy,bottom_quartile,157894,2815,246,3735,30,nga,University of Port Harcourt,Other
+496,"Wylie, Douglas R.Wong",Neurology & Neurosurgery,journal_heavy,bottom_quartile,116773,7121,147,4504,41,can,University of Alberta,Other
+497,"Friesen, Richard W.",Organic Chemistry,journal_heavy,bottom_quartile,194012,3371,76,3735,34,can,Merck Frosst,Other
+498,"Dunsby, Peter K.S.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,161575,2876,132,4030,37,zaf,North-West University,Other
+499,"Ebrahimi, Bashir Mahdi",Electrical & Electronic Engineering,journal_heavy,bottom_quartile,514525,2057,57,2548,26,irn,University of Tehran,Other
+500,"Benard, Gil",Microbiology,journal_heavy,bottom_quartile,180790,4312,170,4368,35,bra,Universidade de São Paulo,Other
+501,"Podnar, Simon",Neurology & Neurosurgery,journal_heavy,bottom_quartile,114460,6983,130,2522,28,svn,Univerzitetni Klinični Center Ljubljana,Other
+502,"Michalopoulos, Argyris S.",Microbiology,journal_heavy,bottom_quartile,159181,3779,116,6854,44,grc,Henry Dunant Hospital,Other
+503,"Pivovarov, Alexei A.",Nuclear & Particle Physics,journal_heavy,bottom_quartile,170201,3020,125,3054,30,rus,Budker Institute of Nuclear Physics of the Siberian Branch of the RAS,Other
+504,"Kzhyshkowska, Julia G.",Immunology,journal_heavy,bottom_quartile,112523,2921,195,8169,49,rus,Tomsk State University,Other
+505,"Mitchell, Grant A.",Genetics & Heredity,journal_heavy,bottom_quartile,138452,692,246,14677,63,can,CHU Sainte-Justine - Le Centre Hospitalier Universitaire Mère-Enfant,Other
+506,"Maxwell, Anthony",Biochemistry & Molecular Biology,journal_heavy,top_quartile,25840,1095,200,12104,63,gbr,Norwich Research Park,UK
+507,"Andrews, N. J.",Microbiology,journal_heavy,top_quartile,28289,705,530,38686,92,gbr,UK Health Security Agency,UK
+508,"Serpell, Louise C.",Biochemistry & Molecular Biology,journal_heavy,top_quartile,23121,990,178,18615,67,gbr,University of Sussex,UK
+509,"Nelson, Jenny M.",Nuclear & Particle Physics,journal_heavy,top_quartile,2516,28,729,79056,147,gbr,Imperial College London,UK
+510,"Teasdale, Graham Michael T.",Neurology & Neurosurgery,journal_heavy,top_quartile,9596,772,349,35893,78,gbr,"College of Medical, Veterinary & Life Sciences",UK
+511,"Davies, Alun M.",Neurology & Neurosurgery,journal_heavy,top_quartile,15847,1241,194,13999,64,gbr,College of Biomedical and Life Sciences,UK
+512,"Procter, David J.",Organic Chemistry,journal_heavy,top_quartile,42078,835,188,10747,62,gbr,Faculty of Science and Engineering,UK
+513,"Bochmann, M.",Organic Chemistry,journal_heavy,top_quartile,9847,221,289,14365,64,gbr,University of East Anglia,UK
+514,"McBRIDE, John W.",Electrical & Electronic Engineering,journal_heavy,top_quartile,177744,569,192,2408,25,gbr,University of Southampton,UK
+515,"Jones, D. R.Timothy",Nuclear & Particle Physics,journal_heavy,top_quartile,47320,822,161,7252,42,gbr,University of Liverpool,UK
+516,"Baker, Gus A.",Neurology & Neurosurgery,journal_heavy,top_quartile,19788,1520,271,21117,80,gbr,University of Liverpool,UK
+517,"Herholz, Karl",Neurology & Neurosurgery,journal_heavy,top_quartile,13162,1041,331,23511,85,gbr,"Faculty of Biology, Medicine and Health",UK
+518,"van Leeuwen, Floor",Astronomy & Astrophysics,journal_heavy,top_quartile,23552,308,130,23366,46,gbr,Institute of Astronomy,UK
+519,"Mazzali, Paolo A.",Astronomy & Astrophysics,journal_heavy,top_quartile,24629,321,389,32944,99,gbr,Liverpool John Moores University,UK
+520,"Jacobs, Patricia Ann",Genetics & Heredity,journal_heavy,top_quartile,25156,130,282,14505,69,gbr,"University of Southampton, Faculty of Medicine",UK
+521,"Hughes, Richard A.C.",Neurology & Neurosurgery,journal_heavy,top_quartile,3611,318,436,33783,91,gbr,UCL Queen Square Institute of Neurology,UK
+522,"Murshudov, Garib N.",Biochemistry & Molecular Biology,journal_heavy,top_quartile,24932,1054,114,51216,53,gbr,The Medical Research Council Laboratory of Molecular Biology,UK
+523,"Poliakoff, Martyn",Organic Chemistry,journal_heavy,top_quartile,30761,629,395,17034,62,gbr,University of Nottingham,UK
+524,"Hunter, Christopher A.",Organic Chemistry,journal_heavy,top_quartile,3413,94,319,26130,73,gbr,University of Cambridge,UK
+525,"Bhatia, Kailash P.",Neurology & Neurosurgery,journal_heavy,top_quartile,7064,596,892,54844,108,gbr,UCL Queen Square Institute of Neurology,UK
+526,"Buchan, Alastair M.",Neurology & Neurosurgery,journal_heavy,top_quartile,21771,1652,321,37844,85,gbr,University of Oxford Medical Sciences Division,UK
+527,"Openshaw, Peter J.M.",Immunology,journal_heavy,top_quartile,17176,596,413,28824,86,gbr,National Heart and Lung Institute,UK
+528,"Jenkinson, Howard F.",Microbiology,journal_heavy,top_quartile,31233,794,177,11068,60,gbr,"University of Bristol, Faculty of Health Sciences",UK
+529,"Palace, Jacqueline A.",Neurology & Neurosurgery,journal_heavy,top_quartile,20687,1583,407,35663,96,gbr,Oxford University Hospitals NHS Foundation Trust,UK
+530,"MacLennan, Ian C.M.",Immunology,journal_heavy,top_quartile,17579,613,263,15199,59,gbr,University of Birmingham,UK
+531,"Nairn, Karen M.",Education,mixed,anomaly,281823,2192,50,1272,20,nzl,University of Otago,Asia_Pacific
+532,"Herrington, Jan",Education,mixed,anomaly,285636,2229,78,3145,22,aus,Murdoch University,Asia_Pacific
+533,"McNeill, Donald",Geography,mixed,anomaly,103631,403,59,1840,25,aus,The University of Sydney,Asia_Pacific
+534,"Lam, Shuifong",Education,mixed,anomaly,292798,2312,55,2296,24,hkg,The University of Hong Kong,Asia_Pacific
+535,"Thussu, Daya Kishan",Communication & Media Studies,mixed,anomaly,165690,306,75,1499,17,hkg,Hong Kong Baptist University,Asia_Pacific
+536,"Mason, Mark",Education,mixed,anomaly,282195,2200,43,879,15,chn,The Education University of Hong Kong,Asia_Pacific
+537,"Hooke, Robert A.",Sociology,mixed,anomaly,108718,275,107,2500,21,hkg,The University of Hong Kong,Asia_Pacific
+538,"Jacobs, Jane M.",Geography,mixed,anomaly,107740,413,49,2571,20,sgp,Yale-NUS College,Asia_Pacific
+539,"Chang, Chaio Chen",Information & Library Sciences,mixed,anomaly,456934,333,23,895,12,twn,Taipei Medical University,Asia_Pacific
+540,"Haque, M. Shamsul",Political Science & Public Administration,mixed,anomaly,125740,510,69,1502,22,sgp,National University of Singapore,Asia_Pacific
+541,"Wilkins, David P.",Languages & Linguistics,mixed,anomaly,195924,475,33,4255,23,aus,The University of Adelaide,Asia_Pacific
+542,"Sutherland-Smith, Wendy",Education,mixed,anomaly,287427,2252,45,1008,18,aus,Deakin University,Asia_Pacific
+543,"Ladyshewsky, Richard K.",Education,mixed,anomaly,286267,2239,41,1180,19,aus,Curtin University,Asia_Pacific
+544,"Michael J. Crozier, Michael J.",Geography,mixed,anomaly,104039,407,61,3135,22,nzl,Victoria University of Wellington,Asia_Pacific
+545,"Wright, Scott",Communication & Media Studies,mixed,anomaly,166472,308,38,1688,22,aus,Monash University,Asia_Pacific
+546,"Svallfors, Stefan",Sociology,mixed,anomaly,107749,271,41,2019,21,swe,Sociology,Other_Europe
+547,"Mood, Carina",Sociology,mixed,anomaly,106665,270,27,2990,17,swe,Institutet för social forskning,Other_Europe
+548,"Barros, Pedro Pita",Economics,mixed,anomaly,131984,1044,129,3150,28,prt,"Nova School of Business and Economics, Universidade Nova de Lisboa",Other_Europe
+549,"Grimmer, Justin",Political Science & Public Administration,mixed,bottom_quartile,109921,440,38,3959,22,usa,Stanford University,USA
+550,"McCarty, Nolan M.",Political Science & Public Administration,mixed,bottom_quartile,114715,462,58,3362,25,usa,Princeton University,USA
+551,"Noell, George H.",Education,mixed,bottom_quartile,271135,2079,64,2303,26,usa,Old Dominion University,USA
+552,"Tybout, James R.",Economics,mixed,bottom_quartile,116112,916,37,4365,20,usa,Pennsylvania State University,USA
+553,"Hansen, David T.",Education,mixed,bottom_quartile,237590,1768,52,898,17,usa,Columbia University,USA
+554,"Radford, Marie Louise",Information & Library Sciences,mixed,bottom_quartile,380073,270,47,1065,18,usa,Rutgers University–New Brunswick,USA
+555,"Lewis, David E.",Political Science & Public Administration,mixed,bottom_quartile,109095,437,47,2869,29,usa,Vanderbilt University,USA
+556,"Tripsas, Mary",Business & Management,mixed,bottom_quartile,126304,1245,17,4430,14,usa,"University of California, Santa Barbara",USA
+557,"Niederle, Muriel",Economics,mixed,bottom_quartile,111562,880,42,5714,28,usa,Stanford University,USA
+558,"Warren, Mark R.",Education,mixed,bottom_quartile,233677,1730,27,1376,13,usa,University of Massachusetts Boston,USA
+559,"Fiedler, Fred E.",Business & Management,mixed,bottom_quartile,100052,979,74,2357,21,usa,University of Washington,USA
+560,"Kang, Jerry",Law,mixed,bottom_quartile,281043,323,24,1591,12,usa,"University of California, Los Angeles",USA
+561,"Beichner, Robert J.",Education,mixed,bottom_quartile,276481,2136,44,2690,20,usa,NC State University,USA
+562,"Lopatovska, Irene V.",Information & Library Sciences,mixed,bottom_quartile,412913,294,52,1001,15,usa,Pratt Institute,USA
+563,"Zahariadis, Nikolaos",Political Science & Public Administration,mixed,bottom_quartile,102389,397,90,2470,25,usa,Rhodes College,USA
+564,"Rounds, James B.",Business & Management,mixed,bottom_quartile,126346,1246,103,6364,41,usa,University of Illinois Urbana-Champaign,USA
+565,"Fernández-Villaverde, Jesús",Economics,mixed,bottom_quartile,120385,945,57,3613,28,usa,University of Pennsylvania,USA
+566,"Foster, Andrew D.",Economics,mixed,bottom_quartile,102759,815,65,4499,31,usa,Brown University,USA
+567,"Combes, Pierre Philippe",Economics,mixed,bottom_quartile,108540,858,43,4399,23,fra,Département d'Economie Sciences Po,Other_Europe
+568,"Strielkowski, Wadim",Economics,mixed,bottom_quartile,108517,857,256,4217,38,cze,Czech University of Life Sciences Prague,Other_Europe
+569,"Gijbels, David",Education,mixed,bottom_quartile,236084,1754,99,4629,29,bel,Universiteit Antwerpen,Other_Europe
+570,"Baccaro, Lucio",Political Science & Public Administration,mixed,bottom_quartile,123924,499,61,2884,25,deu,Max Planck Institute for the Study of Societies,Other_Europe
+571,"Jongbloed, Ben W.A.",Education,mixed,bottom_quartile,258316,1949,48,1693,16,nld,Universiteit Twente,Other_Europe
+572,"Roland, Erling",Education,mixed,bottom_quartile,273056,2095,29,1351,17,nor,Universitetet i Stavanger,Other_Europe
+573,"Glock, Sabine",Education,mixed,bottom_quartile,233893,1731,77,1678,26,deu,Bergische Universität Wuppertal,Other_Europe
+574,"Martens, Kerstin",Education,mixed,bottom_quartile,262952,1993,50,1273,19,deu,Universität Bremen,Other_Europe
+575,"Kirschner, Paul A.",Education,mixed,top_quartile,7300,28,335,22896,71,nld,Open Universiteit,Other_Europe
+576,"Frey, Bruno S.",Economics,mixed,top_quartile,2575,20,364,23888,69,che,Universität Basel,Other_Europe
+577,"Voogt, Joke M.",Education,mixed,top_quartile,91311,503,142,7232,39,nld,Universiteit van Amsterdam,Other_Europe
+578,"Teubner, Günther",Law,mixed,top_quartile,82023,28,81,2443,24,deu,Goethe-Universität Frankfurt am Main,Other_Europe
+579,"Bogner, Franz Xaver",Education,mixed,top_quartile,81245,424,200,5354,39,deu,Universität Bayreuth,Other_Europe
+580,"Knobloch-Westerwick, Silvia S.",Communication & Media Studies,mixed,top_quartile,39655,43,112,5815,44,deu,Technische Universität Berlin,Other_Europe
+581,"Gil-Alaña, Luís Albériko",Economics,mixed,top_quartile,27726,221,579,7895,40,esp,Universidad de Navarra,Other_Europe
+582,"Schiefele, Ulrich",Education,mixed,top_quartile,91574,506,64,3574,25,deu,Universität Potsdam,Other_Europe
+583,"Hofstede, Geert H.",Business & Management,mixed,top_quartile,3466,27,85,19717,47,bel,European Institute for Advanced Studies in Management,Other_Europe
+584,"Korup, Oliver",Geography,mixed,top_quartile,25686,70,132,8174,49,deu,Universität Potsdam,Other_Europe
+585,"Wang, Yi Shun",Education,mixed,top_quartile,28302,114,107,10420,40,twn,National Changhua University of Education,Asia_Pacific
+586,"Morley, Louise",Education,mixed,top_quartile,69053,352,77,2591,27,aus,University of New England Australia,Asia_Pacific
+587,"Prosser, Michael T.",Education,mixed,top_quartile,88339,472,86,6797,41,aus,University of Melbourne,Asia_Pacific
+588,"Smyth, Russell",Economics,mixed,top_quartile,20415,165,384,15396,62,aus,Monash University,Asia_Pacific
+589,"Volet, Simone E.",Education,mixed,top_quartile,87655,464,104,4648,36,aus,Murdoch University,Asia_Pacific
+590,"Ayres, Paul L.",Education,mixed,top_quartile,89602,484,74,4920,34,aus,UNSW Sydney,Asia_Pacific
+591,"Quentin Grafton, R. Quentin",Economics,mixed,top_quartile,24872,198,224,8572,51,aus,The Australian National University,Asia_Pacific
+592,"Dawson, Shane P.",Education,mixed,top_quartile,73114,375,120,7234,42,aus,University of South Australia,Asia_Pacific
+593,"Bong, Mimi",Education,mixed,top_quartile,46184,209,73,5945,31,kor,Korea University,Asia_Pacific
+594,"Meho, Lokman I.",Information & Library Sciences,mixed,top_quartile,111209,63,43,3528,24,lbn,American University of Beirut,Other
+595,"Garrison, D. Randy",Education,mixed,top_quartile,11106,47,73,16842,39,can,University of Calgary,Other
+596,"McCann, Eugene J.",Geography,mixed,top_quartile,33821,96,58,5514,30,can,Simon Fraser University,Other
+597,"Clandinin, D. J.",Education,mixed,top_quartile,51600,235,106,7464,33,can,University of Alberta,Other
+598,"Shamir, Boas",Business & Management,mixed,top_quartile,27395,255,76,8790,37,isr,Hebrew University of Jerusalem,Other
+599,"Wellman, Barry",Sociology,mixed,top_quartile,8474,13,145,14521,56,can,NetLab Network,Other
+600,"van Manen, Max J.",Education,mixed,top_quartile,60826,291,43,3401,22,can,University of Alberta,Other

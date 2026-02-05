@@ -1,0 +1,11 @@
+openalex_id,authfull,field,field_type,scopus_pubs,scopus_citations,scopus_h_index,elsevier_pct,nc,h,hm,ncs,ncsf,ncsfl,n_works,rank_global,rank_in_field,sm-subfield-1,sample_stratum,c_score_openalex,rank_openalex
+https://openalex.org/A5056276177,"Hofstede, Geert H.",Business & Management,mixed,,,,10.975609756097562,123124,73,65,43224,59627,122015,164,3466.0,27.0,Business & Management,top_quartile,5.6513127110074555,1.0
+https://openalex.org/A5052372722,"Sunstein, Cass R.",Law,mixed,410.0,41369.0,75.0,0.984251968503937,70108,116,98,25220,31726,52015,200,633.0,1.0,Law,top_quartile,5.6070622746939405,2.0
+https://openalex.org/A5075890029,"Hayes, Andrew F.",Communication & Media Studies,mixed,78.0,74287.0,45.0,3.8461538461538463,154148,53,41,61953,91330,152542,156,1248.0,1.0,Communication & Media Studies,top_quartile,5.598415873642758,3.0
+https://openalex.org/A5076063035,"Massey, Douglas S.",Sociology,mixed,314.0,33347.0,94.0,6.0606060606060606,63332,117,84,9851,37880,49232,200,641.0,1.0,Sociology,top_quartile,5.492770957682474,4.0
+https://openalex.org/A5054618195,"Dörnyei, Zoltán",Languages & Linguistics,mixed,89.0,16236.0,57.0,2.0338983050847457,54379,85,73,26804,42860,46972,200,5305.0,5.0,Languages & Linguistics,top_quartile,5.485185753772809,5.0
+https://openalex.org/A5108111179,"Castells, Manuel",Sociology,mixed,78.0,6129.0,29.0,1.4492753623188406,45146,83,71,31123,35584,41650,200,25049.0,55.0,Sociology,top_quartile,5.446192419231724,6.0
+https://openalex.org/A5048188229,"Frey, Bruno S.",Economics,mixed,,,,3.947368421052632,46119,110,84,7126,30674,43002,200,2575.0,20.0,Economics,top_quartile,5.39503340331805,7.0
+https://openalex.org/A5046574356,"Floridi, Luciano",Philosophy,book_heavy,341.0,21033.0,69.0,1.044932079414838,41169,105,76,13498,22357,38162,200,2274.0,1.0,Philosophy,top_quartile,5.37514089739206,8.0
+https://openalex.org/A5075777371,"Wellman, Barry",Sociology,mixed,,,,4.45859872611465,41417,85,66,9496,21896,36621,200,8474.0,13.0,Sociology,top_quartile,5.267075423950708,9.0
+https://openalex.org/A5112084481,"Frankel, Jeffrey A.",Economics,mixed,118.0,12940.0,42.0,7.2485207100591715,33400,86,66,8428,28766,32287,200,13212.0,110.0,Economics,top_quartile,5.253866895824359,10.0

@@ -1,0 +1,2 @@
+n_replicates,total_obs,elsevier_mean,elsevier_sd,elsevier_min,elsevier_max,elsevier_all_positive,books_mean,books_sd,books_min,books_max,books_all_negative,all_converged
+5,1657,0.16875658946076832,0.037527342584063456,0.12899814488858558,0.21721521677041755,TRUE,-0.06813889191268305,0.04614153615566685,-0.1366081511572832,-0.009394436088774247,FALSE,TRUE

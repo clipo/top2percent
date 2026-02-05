@@ -1,0 +1,7 @@
+Hypothesis,Estimate [95% CrI],P(Direction),% in ROPE,Evidence
+H1: Elsevier Effect,"0.156 [0.081, 0.231]",100.0%,7.3%,Strong
+H2: Book Effect,"-0.081 [-0.164, -0.000]",97.5%,67.5%,Weak
+H3: OA Effect,"0.011 [-0.053, 0.074]",63.6%,99.7%,Inconclusive
+H4a: Book-heavy vs Journal-heavy,"-0.967 [-1.173, -0.763]",100.0%,0.0%,Strong
+H4b: Mixed vs Journal-heavy,"-0.754 [-0.934, -0.573]",100.0%,0.0%,Strong
+H4c: Book-heavy vs Mixed,"-0.214 [-0.370, -0.060]",99.6%,7.6%,Strong

@@ -1,0 +1,5 @@
+group,n,rho,p_value,significant,sig_marker,effect_size,interpretation,rho_formatted,p_formatted
+Overall,564,-0.27553891447577183,2.766599822794939e-11,True,***,small,Higher-ranked researchers (better position) have LOWER coverage,-0.2755,0.000000
+book_heavy,186,-0.29032077608551343,5.8277865945969313e-05,True,***,small,Higher-ranked researchers (better position) have LOWER coverage,-0.2903,0.000058
+mixed,204,-0.0845250299631359,0.22936631326918386,False,ns,negligible,Higher-ranked researchers (better position) have LOWER coverage,-0.0845,0.229366
+journal_heavy,174,-0.005090515927633393,0.9468484328233197,False,ns,negligible,Higher-ranked researchers (better position) have LOWER coverage,-0.0051,0.946848
