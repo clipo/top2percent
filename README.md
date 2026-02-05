@@ -86,12 +86,14 @@ complete_reproducibility_package/
 │   └── robustness_analysis/                  # 5-replicate robustness data
 │
 ├── scripts/                       # Analysis scripts
-│   ├── python/                    # Python scripts (18 files)
-│   │   ├── figure_4_university_adoption.py
+│   ├── python/                    # Python scripts
+│   │   ├── create_stratified_sample.py        # Step 1: Create sample from Ioannidis data
+│   │   ├── fetch_openalex_comprehensive.py    # Step 2: Fetch OpenAlex data
+│   │   ├── create_replicate_samples.py        # Step 3: Create robustness replicates
+│   │   ├── match_replicates_to_openalex.py    # Step 4: Match replicates to OpenAlex
+│   │   ├── figure_4_university_adoption.py    # Figure generation
 │   │   ├── create_manuscript_visualizations.py
-│   │   ├── figureS1-S6*.py        # Supplementary figure scripts
-│   │   ├── citation_quality_analysis.py
-│   │   ├── comprehensive_statistical_analysis.py
+│   │   ├── figureS1-S6*.py                    # Supplementary figure scripts
 │   │   └── ...
 │   └── R/                         # R scripts
 │       ├── figures_1_2_3_coverage_analysis.R
@@ -205,13 +207,64 @@ install.packages(c("brms", "rstan", "loo", "bayestestR",
 
 ## Running the Analysis
 
-### Option 1: Full Automated Reproduction
+### Option 1: Reproduce from Pre-generated Data (Quick)
+
+Use `REPRODUCE_ALL.sh` to regenerate all figures and analyses from the included data files:
 
 ```bash
 ./REPRODUCE_ALL.sh
 ```
 
-### Option 2: Step-by-Step
+### Option 2: Full Reproduction from Scratch
+
+To regenerate everything from the original Ioannidis dataset (including new samples and fresh OpenAlex data):
+
+#### Step 1: Source Data (Included)
+
+The Ioannidis "top 2% scientists" dataset is included in the repository:
+- **Location**: `August 2025 data-update for Updated science-wide a/`
+- **Main file**: `Table_1_Authors_career_2024_pubs_since_1788_wopp_extracted_202508.xlsx` (~85MB)
+- **Source**: [Elsevier Data Repository](https://doi.org/10.17632/btchxktzyw)
+
+#### Step 2: Create Stratified Sample
+
+```bash
+cd scripts/python
+python create_stratified_sample.py
+```
+
+This creates `comprehensive_sample.csv` (600 researchers stratified by field type and ranking position).
+
+#### Step 3: Fetch OpenAlex Data
+
+```bash
+python fetch_openalex_comprehensive.py
+```
+
+This queries the OpenAlex API for each researcher (~3-4 hours) and creates `openalex_comprehensive_data.csv` with:
+- Publication counts by publisher (Elsevier, Wiley, Springer, etc.)
+- Publication types (books, articles, chapters)
+- Coverage ratios (Scopus vs OpenAlex)
+
+#### Step 4: Create Replicate Samples (Optional)
+
+```bash
+python create_replicate_samples.py
+python match_replicates_to_openalex.py
+```
+
+Creates 5 independent samples (n=400 each) for robustness analysis.
+
+#### Step 5: Run Analysis
+
+```bash
+cd ../..
+./REPRODUCE_ALL.sh
+```
+
+---
+
+### Option 3: Step-by-Step Analysis (from pre-generated data)
 
 #### Step 1: Verify Setup
 
