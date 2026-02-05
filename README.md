@@ -6,7 +6,7 @@
 **Affiliation**: Binghamton University
 **Contact**: clipo@binghamton.edu
 
-This package contains everything needed to reproduce the analysis that documents systematic bias in publisher, book, and field rankings among the "top 2% of scientists" (Ioannidis et al., 2024).
+This package contains everything needed to reproduce the analysis documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
 
 ---
 
@@ -63,12 +63,17 @@ This will:
 ## Directory Structure
 
 ```
-complete_reproducibility_package/
+top2percent/
 ├── README.md                      # This file
 ├── REPRODUCE_ALL.sh               # Master reproduction script
 ├── requirements.txt               # Python dependencies
 ├── r_requirements.txt             # R dependencies (including Bayesian)
 ├── install_r_dependencies.R       # R package installer
+│
+├── August 2025 data-update.../    # Source Ioannidis dataset (~170MB)
+│   ├── Table_1_Authors_career_2024_*.xlsx    # Career-long rankings
+│   ├── Table_1_Authors_singleyr_2024_*.xlsx  # Single-year rankings
+│   └── Table_2_*, Table_3_*                  # Thresholds and max values
 │
 ├── manuscript/                    # Manuscript files
 │   ├── MANUSCRIPT_NATURE_COMMUNICATIONS.md    # Source (Markdown)
@@ -276,8 +281,7 @@ Rscript -e "library(ggplot2); library(dplyr); print('R OK')"
 #### Step 2: Generate Main Figures (R)
 
 ```bash
-cd scripts/R
-Rscript figures_1_2_3_coverage_analysis.R
+Rscript scripts/R/figures_1_2_3_coverage_analysis.R
 ```
 
 Generates: Figures 2, 3, 4 (coverage by field, Elsevier effect, book effect)
@@ -288,6 +292,7 @@ Generates: Figures 2, 3, 4 (coverage by field, Elsevier effect, book effect)
 cd scripts/python
 python figure_4_university_adoption.py          # Figure 1
 python create_manuscript_visualizations.py      # Figure 5
+cd ../..
 ```
 
 #### Step 4: Generate Supplementary Figures
@@ -300,6 +305,7 @@ python figureS3_publisher_breakdown.py
 python figureS4_regression_diagnostics.py
 python figureS5_oa_analysis.py
 python figureS6_extreme_cases.py
+cd ../..
 ```
 
 #### Step 5: Bayesian Analysis (Optional, ~1-2 hours)
