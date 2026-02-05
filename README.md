@@ -6,7 +6,7 @@
 **Affiliation**: Binghamton University
 **Contact**: clipo@binghamton.edu
 
-This package contains everything needed to reproduce the analysis documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
+This package contains everything needed to reproduce the analysis that documents systematic bias in publisher, book, and field rankings among the "top 2% of scientists" (Ioannidis et al., 2024).
 
 ---
 
@@ -523,4 +523,5 @@ Questions about reproducibility? Contact Carl Lipo (clipo@binghamton.edu)
 ---
 
 **Package created**: February 2026
+
 **Last updated**: February 4, 2026 (Version 4.1 - Clean Reproducibility Package)
