@@ -3,7 +3,9 @@
 ## Publisher Bias in Widely-Used Scientist Rankings
 
 **Authors**: Carl P. Lipo, Robert J. DiNapoli, Benjamin Andrus
+
 **Affiliation**: Binghamton University
+
 **Contact**: clipo@binghamton.edu
 
 This package contains everything needed to reproduce the analysis documenting systematic publisher, book, and field bias in the "top 2% of scientists" rankings (Ioannidis et al., 2024).
@@ -74,10 +76,6 @@ top2percent/
 │   ├── Table_1_Authors_career_2024_*.xlsx    # Career-long rankings
 │   ├── Table_1_Authors_singleyr_2024_*.xlsx  # Single-year rankings
 │   └── Table_2_*, Table_3_*                  # Thresholds and max values
-│
-├── manuscript/                    # Manuscript files
-│   ├── MANUSCRIPT_NATURE_COMMUNICATIONS.md    # Source (Markdown)
-│   └── MANUSCRIPT_NATURE_COMMUNICATIONS.docx  # Output (Word)
 │
 ├── data/                          # All data files
 │   ├── comprehensive_sample.csv              # 600 researchers sample
@@ -485,7 +483,7 @@ If you use this package, please cite:
 @article{lipo2026publisher,
   title={Publisher Bias in Widely-Used Scientist Rankings},
   author={Lipo, Carl P. and DiNapoli, Robert J. and Andrus, Benjamin},
-  journal={Nature Communications},
+  journal={Nature Scientific Reports},
   year={2026},
   note={[DOI pending]}
 }
