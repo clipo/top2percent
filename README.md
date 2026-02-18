@@ -483,9 +483,9 @@ If you use this package, please cite:
 @article{lipo2026publisher,
   title={Publisher Bias in Widely-Used Scientist Rankings},
   author={Lipo, Carl P. and DiNapoli, Robert J. and Andrus, Benjamin},
-  journal={Nature Scientific Reports},
+  journal={PNAS},
   year={2026},
-  note={[DOI pending]}
+  note={Submitted -- [DOI pending]}
 }
 ```
 
