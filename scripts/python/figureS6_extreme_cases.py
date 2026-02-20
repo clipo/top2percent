@@ -23,12 +23,11 @@ data_dir = Path(__file__).parent.parent.parent / "data"
 df = pd.read_csv(data_dir / "openalex_comprehensive_data.csv")
 
 # Filter to matched researchers
-df = df[df['openalex_found'] == True].copy()
+df = df[df['openalex_found'].eq(True)].copy()
 
 # Identify extreme cases: 300+ publications, ≤10% coverage
 extreme_cases = df[
-    (df['total_works'] >= 300) &
-    (df['coverage_ratio'] <= 0.10)
+    (df['total_works'] >= 300) & (df['coverage_ratio'] <= 0.10)
 ].copy()
 
 # Sort by number of publications (descending)
@@ -54,18 +53,21 @@ if len(extreme_cases) > 0:
     width = 0.35
 
     # OpenAlex publications
-    bars1 = ax1.bar(x - width/2, extreme_cases['total_works'], width,
+    bars1 = ax1.bar(x - width / 2, extreme_cases['total_works'], width,
                     label='OpenAlex Publications', color='#0072B2', alpha=0.8,
                     edgecolor='black', linewidth=1.5)
 
     # Scopus publications
-    bars2 = ax1.bar(x + width/2, extreme_cases['scopus_pubs'], width,
+    bars2 = ax1.bar(x + width / 2, extreme_cases['scopus_pubs'], width,
                     label='Scopus Publications', color='#D55E00', alpha=0.8,
                     edgecolor='black', linewidth=1.5)
 
     ax1.set_xlabel('Researcher', fontsize=12, fontweight='bold')
     ax1.set_ylabel('Number of Publications', fontsize=12, fontweight='bold')
-    ax1.set_title('(a) Publication Counts for Extreme Undercounting Cases', fontsize=13, fontweight='bold', loc='left', pad=15)
+    ax1.set_title(
+        '(a) Publication Counts for Extreme Undercounting Cases',
+        fontsize=13, fontweight='bold', loc='left', pad=15
+    )
     ax1.set_xticks(x)
     ax1.set_xticklabels(labels, fontsize=9, rotation=0, ha='center')
     ax1.legend(fontsize=11, loc='upper right')
@@ -74,20 +76,20 @@ if len(extreme_cases) > 0:
     # Add coverage percentage labels on Scopus bars
     for i, (idx, row) in enumerate(extreme_cases.iterrows()):
         coverage = row['coverage_ratio'] * 100
-        ax1.text(i + width/2, row['scopus_pubs'] + 20, f"{coverage:.1f}%",
-                ha='center', va='bottom', fontsize=9, fontweight='bold',
-                bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.7))
+        ax1.text(i + width / 2, row['scopus_pubs'] + 20, f"{coverage:.1f}%",
+                 ha='center', va='bottom', fontsize=9, fontweight='bold',
+                 bbox=dict(boxstyle='round,pad=0.3', facecolor='yellow', alpha=0.7))
 
     # Add value labels on bars
     for i, (idx, row) in enumerate(extreme_cases.iterrows()):
         # OpenAlex
-        ax1.text(i - width/2, row['total_works'] + 10,
-                str(int(row['total_works'])),
-                ha='center', va='bottom', fontsize=8)
+        ax1.text(i - width / 2, row['total_works'] + 10,
+                 str(int(row['total_works'])),
+                 ha='center', va='bottom', fontsize=8)
         # Scopus
-        ax1.text(i + width/2, row['scopus_pubs'] + 10,
-                str(int(row['scopus_pubs'])),
-                ha='center', va='bottom', fontsize=8, color='#D55E00')
+        ax1.text(i + width / 2, row['scopus_pubs'] + 10,
+                 str(int(row['scopus_pubs'])),
+                 ha='center', va='bottom', fontsize=8, color='#D55E00')
 
 # Panel B: Stacked bar showing publisher breakdown
 ax2 = plt.subplot(2, 1, 2)
@@ -106,13 +108,13 @@ if len(extreme_cases) > 0:
         if pct_col in extreme_cases.columns:
             values = extreme_cases[pct_col].fillna(0).values * 100  # Convert to percentage
             ax2.bar(x, values, width=0.7, bottom=bottom, label=label,
-                   color=color, alpha=0.8, edgecolor='black', linewidth=1)
+                    color=color, alpha=0.8, edgecolor='black', linewidth=1)
             bottom += values
 
     # Add "Other" category
     other = 100 - bottom
     ax2.bar(x, other, width=0.7, bottom=bottom, label='Other',
-           color='#999999', alpha=0.6, edgecolor='black', linewidth=1)
+            color='#999999', alpha=0.6, edgecolor='black', linewidth=1)
 
     ax2.set_xlabel('Researcher', fontsize=12, fontweight='bold')
     ax2.set_ylabel('Publisher Distribution (%)', fontsize=12, fontweight='bold')
@@ -130,7 +132,7 @@ plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S6 saved: {output_path}")
 
 # Print detailed table
-print(f"\nExtreme Undercounting Cases (300+ publications, ≤10% coverage):")
+print("\nExtreme Undercounting Cases (300+ publications, <=10% coverage):")
 print("=" * 100)
 
 if len(extreme_cases) > 0:
@@ -147,11 +149,11 @@ if len(extreme_cases) > 0:
         print(f"  Coverage: {coverage:.1f}%")
 
         # Publisher breakdown
-        print(f"  Publisher breakdown:")
+        print("  Publisher breakdown:")
         for pub, label in zip(publishers, publisher_labels):
             pct_col = f'{pub}_pct'
             if pct_col in row and pd.notna(row[pct_col]) and row[pct_col] > 0:
-                print(f"    {label}: {row[pct_col]*100:.1f}%")
+                print(f"    {label}: {row[pct_col] * 100:.1f}%")
 else:
     print("No extreme cases found matching criteria.")
 

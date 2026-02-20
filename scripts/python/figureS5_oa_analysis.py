@@ -24,7 +24,7 @@ data_dir = Path(__file__).parent.parent.parent / "data"
 df = pd.read_csv(data_dir / "openalex_comprehensive_data.csv")
 
 # Filter to matched researchers
-df = df[df['openalex_found'] == True].copy()
+df = df[df['openalex_found'].eq(True)].copy()
 
 # Clean data
 df = df[df['coverage_ratio'].notna() & (df['coverage_ratio'] <= 1.5)]
@@ -91,10 +91,10 @@ if 'oa_publisher_pct' in df.columns:
 x = np.arange(len(comp_df))
 width = 0.35
 
-bars1 = ax1.bar(x - width/2, comp_df['With Publisher'], width,
+bars1 = ax1.bar(x - width / 2, comp_df['With Publisher'], width,
                 label='With Publisher', color='#009E73', alpha=0.8,
                 edgecolor='black', linewidth=1)
-bars2 = ax1.bar(x + width/2, comp_df['Without Publisher'], width,
+bars2 = ax1.bar(x + width / 2, comp_df['Without Publisher'], width,
                 label='Without Publisher', color='#D55E00', alpha=0.8,
                 edgecolor='black', linewidth=1)
 
@@ -158,7 +158,10 @@ if 'plos_count' in df.columns and 'frontiers_count' in df.columns:
     ax2.set_xticks([1.5, 4.5])
     ax2.set_xticklabels(['PLOS', 'Frontiers'], fontsize=11, fontweight='bold')
     ax2.set_ylabel('Coverage Ratio', fontsize=12, fontweight='bold')
-    ax2.set_title('(b) Distribution Comparison for Major OA Publishers', fontsize=13, fontweight='bold', loc='left', pad=15)
+    ax2.set_title(
+        '(b) Distribution Comparison for Major OA Publishers',
+        fontsize=13, fontweight='bold', loc='left', pad=15
+    )
     ax2.axhline(1.0, color='gray', linestyle=':', linewidth=1.5, alpha=0.5, label='100% coverage')
 
     # Add custom legend
@@ -179,8 +182,9 @@ plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S4 saved: {output_path}")
 
 # Print summary table
-print(f"\nOpen Access Publisher Analysis:")
-print(comp_df[['Publisher', 'With Publisher', 'Without Publisher', 'Difference', 'p_value', 'n_with']].to_string(index=False))
-print(f"\n*** p < 0.001, ** p < 0.01, * p < 0.05, n.s. = not significant")
+print("\nOpen Access Publisher Analysis:")
+cols = ['Publisher', 'With Publisher', 'Without Publisher', 'Difference', 'p_value', 'n_with']
+print(comp_df[cols].to_string(index=False))
+print("\n*** p < 0.001, ** p < 0.01, * p < 0.05, n.s. = not significant")
 
 plt.close()

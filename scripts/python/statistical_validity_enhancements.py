@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Statistical Validity Enhancements for Coverage Bias Analysis
-=============================================================
+Statistical Validity Enhancements for Coverage Bias Analysis.
 
 PURPOSE:
     Implements additional statistical rigor recommended in peer review:
@@ -26,13 +25,13 @@ USAGE:
 AUTHOR: Statistical validity audit December 2024
 """
 
-import pandas as pd
-import numpy as np
-from scipy import stats
-from scipy.stats import bootstrap
-import statsmodels.api as sm
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 import warnings
+
+import numpy as np
+import pandas as pd
+from scipy import stats
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
 warnings.filterwarnings('ignore')
 
 print("=" * 80)
@@ -41,7 +40,7 @@ print("=" * 80)
 
 # Load data
 df = pd.read_csv('../../data/openalex_comprehensive_data.csv')
-df = df[df['openalex_found'] == True].copy()
+df = df[df['openalex_found'] is True].copy()
 df = df.dropna(subset=['coverage_ratio', 'elsevier_pct', 'books_pct', 'oa_publisher_pct'])
 df = df[df['coverage_ratio'] <= 1.5]
 
@@ -57,15 +56,15 @@ print("=" * 80)
 
 # Test normality of coverage ratio
 stat_shapiro, p_shapiro = stats.shapiro(df['coverage_ratio'].sample(min(5000, len(df))))
-print(f"\nShapiro-Wilk test for coverage_ratio:")
+print("\nShapiro-Wilk test for coverage_ratio:")
 print(f"  Statistic: {stat_shapiro:.4f}")
 print(f"  p-value: {p_shapiro:.4e}")
 print(f"  Conclusion: {'NORMAL' if p_shapiro > 0.05 else 'NON-NORMAL (p<0.05)'}")
-print(f"  → Justifies use of NON-PARAMETRIC tests")
+print("  -> Justifies use of NON-PARAMETRIC tests")
 
 # Test normality of Elsevier %
 stat_elsevier, p_elsevier = stats.shapiro(df['elsevier_pct'].sample(min(5000, len(df))))
-print(f"\nShapiro-Wilk test for elsevier_pct:")
+print("\nShapiro-Wilk test for elsevier_pct:")
 print(f"  Statistic: {stat_elsevier:.4f}")
 print(f"  p-value: {p_elsevier:.4e}")
 print(f"  Conclusion: {'NORMAL' if p_elsevier > 0.05 else 'NON-NORMAL (p<0.05)'}")
@@ -77,11 +76,11 @@ high_elsevier = df[df['elsevier_pct'] > median_elsevier]['coverage_ratio']
 low_elsevier = df[df['elsevier_pct'] <= median_elsevier]['coverage_ratio']
 
 stat_levene, p_levene = stats.levene(high_elsevier, low_elsevier)
-print(f"\nLevene's test for homogeneity of variance (High vs Low Elsevier):")
+print("\nLevene's test for homogeneity of variance (High vs Low Elsevier):")
 print(f"  Statistic: {stat_levene:.4f}")
 print(f"  p-value: {p_levene:.4e}")
 print(f"  Conclusion: {'Equal variances' if p_levene > 0.05 else 'Unequal variances (p<0.05)'}")
-print(f"  → Justifies use of NON-PARAMETRIC Mann-Whitney U (no variance assumption)")
+print("  -> Justifies use of NON-PARAMETRIC Mann-Whitney U (no variance assumption)")
 
 # Test homogeneity across field types
 book_heavy = df[df['field_type'] == 'book_heavy']['coverage_ratio']
@@ -89,11 +88,11 @@ mixed = df[df['field_type'] == 'mixed']['coverage_ratio']
 journal_heavy = df[df['field_type'] == 'journal_heavy']['coverage_ratio']
 
 stat_levene_field, p_levene_field = stats.levene(book_heavy, mixed, journal_heavy)
-print(f"\nLevene's test for homogeneity of variance (Field types):")
+print("\nLevene's test for homogeneity of variance (Field types):")
 print(f"  Statistic: {stat_levene_field:.4f}")
 print(f"  p-value: {p_levene_field:.4e}")
 print(f"  Conclusion: {'Equal variances' if p_levene_field > 0.05 else 'Unequal variances (p<0.05)'}")
-print(f"  → Justifies use of Kruskal-Wallis (no variance assumption)")
+print("  -> Justifies use of Kruskal-Wallis (no variance assumption)")
 
 # ============================================================================
 # 2. BONFERRONI CORRECTION FOR POST-HOC PAIRWISE COMPARISONS
@@ -107,13 +106,13 @@ print("=" * 80)
 # Bonferroni-adjusted alpha = 0.05 / 3 = 0.0167
 bonferroni_alpha = 0.05 / 3
 
-print(f"\nField-type pairwise comparisons (Mann-Whitney U):")
+print("\nField-type pairwise comparisons (Mann-Whitney U):")
 print(f"Bonferroni-adjusted alpha = 0.05 / 3 = {bonferroni_alpha:.4f}")
 
 # Book-heavy vs Journal-heavy
 U1, p1 = stats.mannwhitneyu(book_heavy, journal_heavy, alternative='less')
 median_diff_1 = book_heavy.median() - journal_heavy.median()
-print(f"\nBook-heavy vs Journal-heavy:")
+print("\nBook-heavy vs Journal-heavy:")
 print(f"  U = {U1:.1f}, p = {p1:.4e}")
 print(f"  Median difference: {median_diff_1:.1%}")
 print(f"  Bonferroni significant: {'YES' if p1 < bonferroni_alpha else 'NO'} (p < {bonferroni_alpha:.4f})")
@@ -121,7 +120,7 @@ print(f"  Bonferroni significant: {'YES' if p1 < bonferroni_alpha else 'NO'} (p 
 # Book-heavy vs Mixed
 U2, p2 = stats.mannwhitneyu(book_heavy, mixed, alternative='less')
 median_diff_2 = book_heavy.median() - mixed.median()
-print(f"\nBook-heavy vs Mixed:")
+print("\nBook-heavy vs Mixed:")
 print(f"  U = {U2:.1f}, p = {p2:.4e}")
 print(f"  Median difference: {median_diff_2:.1%}")
 print(f"  Bonferroni significant: {'YES' if p2 < bonferroni_alpha else 'NO'} (p < {bonferroni_alpha:.4f})")
@@ -129,7 +128,7 @@ print(f"  Bonferroni significant: {'YES' if p2 < bonferroni_alpha else 'NO'} (p 
 # Mixed vs Journal-heavy
 U3, p3 = stats.mannwhitneyu(mixed, journal_heavy, alternative='less')
 median_diff_3 = mixed.median() - journal_heavy.median()
-print(f"\nMixed vs Journal-heavy:")
+print("\nMixed vs Journal-heavy:")
 print(f"  U = {U3:.1f}, p = {p3:.4e}")
 print(f"  Median difference: {median_diff_3:.1%}")
 print(f"  Bonferroni significant: {'YES' if p3 < bonferroni_alpha else 'NO'} (p < {bonferroni_alpha:.4f})")
@@ -142,9 +141,11 @@ print("\n" + "=" * 80)
 print("3. BOOTSTRAP 95% CONFIDENCE INTERVALS FOR MAIN EFFECTS")
 print("=" * 80)
 
+
 def median_diff(x, y):
-    """Function to compute median difference for bootstrapping."""
+    """Compute median difference for bootstrapping."""
     return np.median(x) - np.median(y)
+
 
 # H1: Elsevier effect
 print("\nH1: Elsevier effect (High vs Low Elsevier publishing)")
@@ -202,9 +203,9 @@ X = pd.DataFrame({
 # Drop any remaining NaN
 X = X.dropna()
 
-print(f"\nVIF for regression predictors:")
-print(f"(Rule of thumb: VIF > 5 indicates multicollinearity concern)")
-print(f"(VIF > 10 indicates serious multicollinearity)")
+print("\nVIF for regression predictors:")
+print("(Rule of thumb: VIF > 5 indicates multicollinearity concern)")
+print("(VIF > 10 indicates serious multicollinearity)")
 
 for i in range(X.shape[1]):
     vif = variance_inflation_factor(X.values, i)
@@ -231,7 +232,7 @@ sensitivity_results = []
 for cap, label in zip(caps, cap_labels):
     # Load fresh data
     df_test = pd.read_csv('../../data/openalex_comprehensive_data.csv')
-    df_test = df_test[df_test['openalex_found'] == True].copy()
+    df_test = df_test[df_test['openalex_found'] is True].copy()
     df_test = df_test.dropna(subset=['coverage_ratio', 'elsevier_pct'])
 
     if cap < 999:
@@ -257,7 +258,10 @@ for cap, label in zip(caps, cap_labels):
         'median_difference': median_diff_test
     })
 
-print(f"\nConclusion: Effect {'ROBUST' if max([r['correlation'] for r in sensitivity_results]) - min([r['correlation'] for r in sensitivity_results]) < 0.05 else 'SENSITIVE'} to outlier capping")
+corr_max = max([r['correlation'] for r in sensitivity_results])
+corr_min = min([r['correlation'] for r in sensitivity_results])
+corr_range = corr_max - corr_min
+print(f"\nConclusion: Effect {'ROBUST' if corr_range < 0.05 else 'SENSITIVE'} to outlier capping")
 
 # ============================================================================
 # SAVE RESULTS
@@ -272,12 +276,12 @@ ci_df = pd.DataFrame({
     'ci_width': [ci_high_h1 - ci_low_h1, ci_high_h2 - ci_low_h2]
 })
 ci_df.to_csv('../../data/confidence_intervals.csv', index=False)
-print(f"\n✓ Confidence intervals saved to: data/confidence_intervals.csv")
+print("\nConfidence intervals saved to: data/confidence_intervals.csv")
 
 # Save sensitivity analysis
 sensitivity_df = pd.DataFrame(sensitivity_results)
 sensitivity_df.to_csv('../../data/sensitivity_analysis_results.csv', index=False)
-print(f"✓ Sensitivity analysis saved to: data/sensitivity_analysis_results.csv")
+print("Sensitivity analysis saved to: data/sensitivity_analysis_results.csv")
 
 # ============================================================================
 # SUMMARY
@@ -289,23 +293,23 @@ print("=" * 80)
 
 print("""
 1. ASSUMPTION TESTING:
-   ✓ Shapiro-Wilk normality tests confirm non-normal distributions
-   ✓ Levene's tests confirm unequal variances
-   → Justifies use of non-parametric methods
+   Shapiro-Wilk normality tests confirm non-normal distributions
+   Levene's tests confirm unequal variances
+   -> Justifies use of non-parametric methods
 
 2. MULTIPLE COMPARISONS:
-   ✓ Bonferroni correction applied to 3 post-hoc pairwise comparisons
-   ✓ All comparisons remain significant at α=0.0167
+   Bonferroni correction applied to 3 post-hoc pairwise comparisons
+   All comparisons remain significant at alpha=0.0167
 
 3. CONFIDENCE INTERVALS:
-   ✓ Bootstrap 95% CIs calculated for main effects
-   ✓ CIs confirm statistically and practically significant effects
+   Bootstrap 95% CIs calculated for main effects
+   CIs confirm statistically and practically significant effects
 
 4. MULTICOLLINEARITY:
-   ✓ VIF < 5 for all predictors (no multicollinearity concerns)
+   VIF < 5 for all predictors (no multicollinearity concerns)
 
 5. SENSITIVITY ANALYSIS:
-   ✓ Results robust to different outlier capping thresholds
+   Results robust to different outlier capping thresholds
 
 All statistical tests are valid and conclusions are well-supported.
 """)

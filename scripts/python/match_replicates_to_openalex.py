@@ -15,13 +15,14 @@ For each replicate:
 This enables calculating effect sizes for each independent replicate.
 """
 
+import time
+import warnings
+from datetime import datetime
+from pathlib import Path
+
 import pandas as pd
 import requests
-import time
-import json
-from pathlib import Path
-from datetime import datetime
-import warnings
+
 warnings.filterwarnings('ignore')
 
 # Configuration
@@ -46,8 +47,9 @@ PUBLISHER_GROUPS = {
     'ACS': ['american chemical society', 'acs publications'],
 }
 
+
 def classify_publisher(publisher_name):
-    """Classify a publisher into major groups."""
+    """Classify a publisher name into a major publisher group."""
     if not publisher_name or publisher_name == 'Unknown':
         return 'Unknown'
 
@@ -59,8 +61,9 @@ def classify_publisher(publisher_name):
 
     return 'Other'
 
+
 def search_openalex_author(name, institution=None):
-    """Search for an author in OpenAlex by name."""
+    """Search for an author in OpenAlex by name and optional institution."""
     search_name = name.replace(',', '').strip()
 
     url = f"{OPENALEX_API_BASE}/authors"
@@ -84,6 +87,7 @@ def search_openalex_author(name, institution=None):
     except Exception as e:
         print(f"    Error searching: {e}")
         return None
+
 
 def fetch_all_works(author_id):
     """Fetch ALL publications for an author from OpenAlex."""
@@ -153,8 +157,9 @@ def fetch_all_works(author_id):
 
     return all_works
 
+
 def calculate_metrics(works):
-    """Calculate comprehensive metrics from publication list."""
+    """Calculate comprehensive publication metrics from a list of works."""
     if not works:
         return {
             'total_works': 0,
@@ -183,10 +188,10 @@ def calculate_metrics(works):
     total_works = len(df)
     total_citations = df['cited_by_count'].sum()
 
-    books = df[df['is_book'] == True]
-    articles = df[df['is_book'] == False]
+    books = df[df['is_book'] is True]
+    articles = df[df['is_book'] is not True]
 
-    oa_works = df[df['is_oa'] == True]
+    oa_works = df[df['is_oa'] is True]
 
     elsevier_works = df[df['publisher_group'] == 'Elsevier']
     elsevier_count = len(elsevier_works)
@@ -209,7 +214,9 @@ def calculate_metrics(works):
         'elsevier_count': elsevier_count,
         'elsevier_pct': elsevier_count / total_works * 100 if total_works > 0 else 0,
         'elsevier_citations': elsevier_citations,
-        'elsevier_citations_pct': elsevier_citations / total_citations * 100 if total_citations > 0 else 0,
+        'elsevier_citations_pct': (
+            elsevier_citations / total_citations * 100 if total_citations > 0 else 0
+        ),
         'wiley_count': wiley_count,
         'wiley_pct': wiley_count / total_works * 100 if total_works > 0 else 0,
         'springer_count': springer_count,
@@ -220,12 +227,12 @@ def calculate_metrics(works):
         'oa_publisher_pct': oa_publisher_count / total_works * 100 if total_works > 0 else 0,
     }
 
-def process_replicate(replicate_num, replicate_df, output_dir):
-    """Process a single replicate sample."""
 
-    print(f"\n{'='*80}")
+def process_replicate(replicate_num, replicate_df, output_dir):
+    """Process a single replicate sample by matching researchers to OpenAlex."""
+    print(f"\n{'=' * 80}")
     print(f"PROCESSING REPLICATE {replicate_num}")
-    print(f"{'='*80}")
+    print(f"{'=' * 80}")
     print(f"Sample size: {len(replicate_df)} researchers\n")
 
     results = []
@@ -261,7 +268,7 @@ def process_replicate(replicate_num, replicate_df, output_dir):
         author_data = search_openalex_author(name, institution)
 
         if not author_data:
-            print(f"  ❌ Not found in OpenAlex")
+            print("  Not found in OpenAlex")
             results.append({
                 'sample_id': sample_id,
                 'replicate': replicate_num,
@@ -292,13 +299,13 @@ def process_replicate(replicate_num, replicate_df, output_dir):
         openalex_id = author_data.get('id', '')
         openalex_name = author_data.get('display_name', '')
 
-        print(f"  ✓ Found: {openalex_name}")
+        print(f"  Found: {openalex_name}")
 
         # Fetch all works
         works = fetch_all_works(openalex_id)
 
         if not works:
-            print(f"  ⚠️  No publications found")
+            print("  No publications found")
             results.append({
                 'sample_id': sample_id,
                 'replicate': replicate_num,
@@ -336,9 +343,12 @@ def process_replicate(replicate_num, replicate_df, output_dir):
         coverage_ratio = scopus_pubs / openalex_pubs if openalex_pubs > 0 else 0
         citation_coverage = scopus_citations / openalex_citations if openalex_citations > 0 else 0
 
-        print(f"  ✓ {openalex_pubs} pubs ({metrics['books_count']} books)")
+        print(f"  {openalex_pubs} pubs ({metrics['books_count']} books)")
         print(f"  Coverage: {coverage_ratio:.1%} (pubs), {citation_coverage:.1%} (cites)")
-        print(f"  Elsevier: {metrics['elsevier_pct']:.1f}%, Books: {metrics['books_pct']:.1f}%, OA: {metrics['oa_pct']:.1f}%")
+        print(
+            f"  Elsevier: {metrics['elsevier_pct']:.1f}%, "
+            f"Books: {metrics['books_pct']:.1f}%, OA: {metrics['oa_pct']:.1f}%"
+        )
 
         # Compile result
         result = {
@@ -368,7 +378,7 @@ def process_replicate(replicate_num, replicate_df, output_dir):
         if (idx + 1) % CHECKPOINT_INTERVAL == 0:
             checkpoint_df = pd.DataFrame(results)
             checkpoint_df.to_csv(checkpoint_file, index=False)
-            print(f"\n  💾 Checkpoint saved ({len(results)} processed)")
+            print(f"\n  Checkpoint saved ({len(results)} processed)")
 
         time.sleep(DELAY_BETWEEN_REQUESTS)
 
@@ -382,11 +392,11 @@ def process_replicate(replicate_num, replicate_df, output_dir):
         checkpoint_file.unlink()
 
     # Summary
-    found = results_df[results_df['openalex_found'] == True]
-    print(f"\n{'='*80}")
+    found = results_df[results_df['openalex_found'] is True]
+    print(f"\n{'=' * 80}")
     print(f"REPLICATE {replicate_num} COMPLETE")
-    print(f"{'='*80}")
-    print(f"Matched: {len(found)}/{len(results_df)} ({len(found)/len(results_df)*100:.1f}%)")
+    print(f"{'=' * 80}")
+    print(f"Matched: {len(found)}/{len(results_df)} ({len(found) / len(results_df) * 100:.1f}%)")
     print(f"Median coverage: {found['coverage_ratio'].median():.1%}")
     print(f"Median Elsevier %: {found['elsevier_pct'].median():.1f}%")
     print(f"Median Books %: {found['books_pct'].median():.1f}%")
@@ -395,12 +405,12 @@ def process_replicate(replicate_num, replicate_df, output_dir):
 
     return results_df
 
-def match_all_replicates(n_replicates=5):
-    """Match all replicate samples to OpenAlex."""
 
-    print("="*80)
+def match_all_replicates(n_replicates=5):
+    """Match all replicate samples to OpenAlex and save combined results."""
+    print("=" * 80)
     print("MATCH REPLICATE SAMPLES TO OPENALEX")
-    print("="*80)
+    print("=" * 80)
 
     # Input/output directories
     replicate_dir = Path("robustness_analysis/replicates")
@@ -409,7 +419,7 @@ def match_all_replicates(n_replicates=5):
 
     # Estimate time
     est_minutes = n_replicates * 400 * DELAY_BETWEEN_REQUESTS / 60
-    print(f"\nEstimated time: {est_minutes:.1f} minutes ({est_minutes/60:.1f} hours)")
+    print(f"\nEstimated time: {est_minutes:.1f} minutes ({est_minutes / 60:.1f} hours)")
     print(f"With checkpointing every {CHECKPOINT_INTERVAL} researchers\n")
 
     start_time = datetime.now()
@@ -421,7 +431,7 @@ def match_all_replicates(n_replicates=5):
         replicate_file = replicate_dir / f"replicate_{i}_n400.csv"
 
         if not replicate_file.exists():
-            print(f"\n⚠️  Replicate {i} not found: {replicate_file}")
+            print(f"\nWARNING: Replicate {i} not found: {replicate_file}")
             continue
 
         replicate_df = pd.read_csv(replicate_file)
@@ -438,18 +448,20 @@ def match_all_replicates(n_replicates=5):
     end_time = datetime.now()
     duration = (end_time - start_time).total_seconds() / 60
 
-    print(f"\n{'='*80}")
-    print(f"✓ ALL REPLICATES MATCHED")
-    print(f"{'='*80}")
-    print(f"Total time: {duration:.1f} minutes ({duration/60:.1f} hours)")
+    print(f"\n{'=' * 80}")
+    print("ALL REPLICATES MATCHED")
+    print(f"{'=' * 80}")
+    print(f"Total time: {duration:.1f} minutes ({duration / 60:.1f} hours)")
     print(f"Combined results: {combined_file}")
-    print(f"\nNext steps:")
-    print(f"  1. Run analyze_all_replicates.py to calculate effect sizes")
-    print(f"  2. Run generate_robustness_report.py to create summary")
+    print("Next steps:")
+    print("  1. Run analyze_all_replicates.py to calculate effect sizes")
+    print("  2. Run generate_robustness_report.py to create summary")
+
 
 def main():
-    """Main execution."""
+    """Main entry point for matching replicates to OpenAlex."""
     match_all_replicates(n_replicates=5)
+
 
 if __name__ == "__main__":
     main()

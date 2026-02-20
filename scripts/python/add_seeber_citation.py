@@ -9,12 +9,13 @@ structural database bias from publisher manipulation.
 
 from docx import Document
 
+
 def add_seeber_discussion():
     """Add Seeber citation and discussion to manuscript."""
 
-    print("="*80)
+    print("=" * 80)
     print("ADDING SEEBER ET AL. (2024) CITATION TO MANUSCRIPT")
-    print("="*80)
+    print("=" * 80)
 
     # Load manuscript
     doc = Document('manuscripts/Nature_Communications_Article-v7.docx')
@@ -24,7 +25,8 @@ def add_seeber_discussion():
     discussion_idx = None
     for i, para in enumerate(doc.paragraphs):
         # Look for discussion section or mechanisms discussion
-        if any(keyword in para.text.lower() for keyword in ['mechanism', 'structural bias', 'database bias', 'conclusion']):
+        if any(keyword in para.text.lower() for keyword in
+               ['mechanism', 'structural bias', 'database bias', 'conclusion']):
             if len(para.text) > 100:  # Substantive paragraph
                 discussion_idx = i
                 print(f"\n✓ Found discussion section at paragraph {i}")
@@ -34,7 +36,23 @@ def add_seeber_discussion():
     # If we found a good spot, add after it
     if discussion_idx:
         # Add the new paragraph
-        seeber_text = """Importantly, the Elsevier bias we identified operates through a fundamentally different mechanism than the self-citation gaming observed in some publishers. Recent analysis of citation patterns across major publishers found that while some Article Processing Charge (APC) publishers engage in extreme strategic self-citation to inflate Journal Impact Factors—with MDPI and Frontiers showing self-citation premiums of +2,595% and +1,167% respectively to articles affecting JIF calculations—Elsevier exhibits moderate self-citation behavior (+554%) comparable to other traditional subscription publishers like Wiley, Springer, and Taylor & Francis (Seeber et al., 2024). This demonstrates that the systematic coverage advantage we document stems from structural over-representation in Scopus itself—a database-level bias affecting all citation-based metrics—rather than publisher manipulation of citation patterns. Such structural bias is arguably more concerning than self-citation gaming because it operates invisibly at the infrastructure level, systematically advantaging one publisher's content across all bibliometric applications that rely on Scopus data."""
+        seeber_text = (
+            "Importantly, the Elsevier bias we identified operates through a fundamentally "
+            "different mechanism than the self-citation gaming observed in some publishers. "
+            "Recent analysis of citation patterns across major publishers found that while some "
+            "Article Processing Charge (APC) publishers engage in extreme strategic self-citation "
+            "to inflate Journal Impact Factors\u2014with MDPI and Frontiers showing self-citation "
+            "premiums of +2,595% and +1,167% respectively to articles affecting JIF "
+            "calculations\u2014Elsevier exhibits moderate self-citation behavior (+554%) comparable "
+            "to other traditional subscription publishers like Wiley, Springer, and Taylor & "
+            "Francis (Seeber et al., 2024). This demonstrates that the systematic coverage "
+            "advantage we document stems from structural over-representation in Scopus "
+            "itself\u2014a database-level bias affecting all citation-based metrics\u2014rather "
+            "than publisher manipulation of citation patterns. Such structural bias is arguably "
+            "more concerning than self-citation gaming because it operates invisibly at the "
+            "infrastructure level, systematically advantaging one publisher\u2019s content across "
+            "all bibliometric applications that rely on Scopus data."
+        )
 
         # Insert after discussion paragraph
         new_para = doc.add_paragraph()
@@ -67,7 +85,11 @@ def add_seeber_discussion():
                 break
 
         # Add Seeber reference after Philip
-        seeber_ref = """Seeber, M., Cattaneo, M., & Birolini, S. (2024). Academic publishing business models: self-citations and the selectivity-reputation trade-off. Quantitative Science Studies, 5(1), 1-29. https://doi.org/10.1162/qss_a_00322"""
+        seeber_ref = (
+            "Seeber, M., Cattaneo, M., & Birolini, S. (2024). Academic publishing business models: "
+            "self-citations and the selectivity-reputation trade-off. Quantitative Science Studies, "
+            "5(1), 1-29. https://doi.org/10.1162/qss_a_00322"
+        )
 
         ref_para = doc.add_paragraph()
         ref_para.text = seeber_ref
@@ -85,20 +107,21 @@ def add_seeber_discussion():
     output_file = 'manuscripts/Nature_Communications_Article-v8.docx'
     doc.save(output_file)
 
-    print(f"\n{'='*80}")
-    print(f"✓ MANUSCRIPT UPDATED")
-    print(f"{'='*80}")
+    print("\n" + "=" * 80)
+    print("✓ MANUSCRIPT UPDATED")
+    print("=" * 80)
     print(f"\nSaved as: {output_file}")
-    print(f"  • Added Seeber et al. (2024) discussion paragraph")
-    print(f"  • Added reference to References section")
-    print(f"  • New version: v8")
-    print(f"\nKey point added:")
-    print(f"  - Elsevier shows MODERATE self-citation (+554%), similar to Wiley/Springer")
-    print(f"  - MDPI/Frontiers show EXTREME self-citation (+2,595%/+1,167%)")
-    print(f"  - This proves your bias is STRUCTURAL (database), not behavioral (gaming)")
-    print(f"  - Structural bias is MORE concerning because it's invisible and systematic")
+    print("  Added Seeber et al. (2024) discussion paragraph")
+    print("  Added reference to References section")
+    print("  New version: v8")
+    print("\nKey point added:")
+    print("  - Elsevier shows MODERATE self-citation (+554%), similar to Wiley/Springer")
+    print("  - MDPI/Frontiers show EXTREME self-citation (+2,595%/+1,167%)")
+    print("  - This proves your bias is STRUCTURAL (database), not behavioral (gaming)")
+    print("  - Structural bias is MORE concerning because it's invisible and systematic")
 
     return output_file
+
 
 if __name__ == "__main__":
     add_seeber_discussion()

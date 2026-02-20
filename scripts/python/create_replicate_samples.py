@@ -17,11 +17,15 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
+
 def load_full_rankings():
     """Load the full 2024 career rankings from Excel."""
 
     print("Loading full rankings...")
-    rankings_path = Path("August 2025 data-update for Updated science-wide a/Table_1_Authors_career_2024_pubs_since_1788_wopp_extracted_202508.xlsx")
+    rankings_path = Path(
+        "August 2025 data-update for Updated science-wide a"
+        "/Table_1_Authors_career_2024_pubs_since_1788_wopp_extracted_202508.xlsx"
+    )
 
     if not rankings_path.exists():
         print(f"✗ Could not find rankings at: {rankings_path}")
@@ -35,6 +39,7 @@ def load_full_rankings():
     print(f"  Columns: {list(df.columns)[:10]}...")
 
     return df
+
 
 def classify_field_type(df):
     """Classify fields as book-heavy or journal-heavy based on discipline."""
@@ -67,6 +72,7 @@ def classify_field_type(df):
 
     return df
 
+
 def create_stratified_sample(df, n=400, random_state=42):
     """Create a stratified random sample."""
 
@@ -92,12 +98,13 @@ def create_stratified_sample(df, n=400, random_state=42):
 
     return sample.reset_index(drop=True)
 
+
 def create_all_replicates(n_replicates=5, sample_size=400):
     """Create all replicate samples."""
 
-    print("="*80)
+    print("=" * 80)
     print("CREATING INDEPENDENT REPLICATE SAMPLES")
-    print("="*80)
+    print("=" * 80)
 
     # Load full rankings
     rankings = load_full_rankings()
@@ -113,7 +120,7 @@ def create_all_replicates(n_replicates=5, sample_size=400):
     samples_created = []
 
     for i in range(n_replicates):
-        print(f"\n--- Replicate {i+1}/{n_replicates} ---")
+        print(f"\n--- Replicate {i + 1}/{n_replicates} ---")
 
         # Different random seed for each
         random_state = 2000 + i
@@ -126,20 +133,20 @@ def create_all_replicates(n_replicates=5, sample_size=400):
         sample['replicate'] = i + 1
 
         # Save
-        output_file = output_dir / f"replicate_{i+1}_n{sample_size}.csv"
+        output_file = output_dir / f"replicate_{i + 1}_n{sample_size}.csv"
         sample.to_csv(output_file, index=False)
 
         print(f"  ✓ Created sample: {len(sample)} researchers")
-        print(f"  ✓ Field distribution:")
-        print(f"     - Book-heavy: {(sample['field_type']=='book_heavy').sum()}")
-        print(f"     - Journal-heavy: {(sample['field_type']=='journal_heavy').sum()}")
+        print("  ✓ Field distribution:")
+        print(f"     - Book-heavy: {(sample['field_type'] == 'book_heavy').sum()}")
+        print(f"     - Journal-heavy: {(sample['field_type'] == 'journal_heavy').sum()}")
         print(f"  ✓ Saved to: {output_file}")
 
         samples_created.append({
             'replicate': i + 1,
             'n': len(sample),
-            'book_heavy': (sample['field_type']=='book_heavy').sum(),
-            'journal_heavy': (sample['field_type']=='journal_heavy').sum(),
+            'book_heavy': (sample['field_type'] == 'book_heavy').sum(),
+            'journal_heavy': (sample['field_type'] == 'journal_heavy').sum(),
             'random_seed': random_state
         })
 
@@ -147,18 +154,20 @@ def create_all_replicates(n_replicates=5, sample_size=400):
     metadata_df = pd.DataFrame(samples_created)
     metadata_df.to_csv(output_dir / "replicate_metadata.csv", index=False)
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("✓ ALL REPLICATES CREATED")
-    print("="*80)
+    print("=" * 80)
     print(f"\nSamples saved to: {output_dir}/")
-    print(f"\nNext steps:")
-    print(f"  1. Match each replicate to OpenAlex (run match_replicates_to_openalex.py)")
-    print(f"  2. Calculate effect sizes for each (run analyze_replicates.py)")
-    print(f"  3. Compare across replicates (run compare_replicates.py)")
+    print("\nNext steps:")
+    print("  1. Match each replicate to OpenAlex (run match_replicates_to_openalex.py)")
+    print("  2. Calculate effect sizes for each (run analyze_replicates.py)")
+    print("  3. Compare across replicates (run compare_replicates.py)")
+
 
 def main():
     """Main execution."""
     create_all_replicates(n_replicates=5, sample_size=400)
+
 
 if __name__ == "__main__":
     main()

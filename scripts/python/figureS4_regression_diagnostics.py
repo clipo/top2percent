@@ -14,6 +14,7 @@ import numpy as np
 from pathlib import Path
 import statsmodels.api as sm
 from scipy import stats
+from scipy.signal import savgol_filter
 
 # Set style
 sns.set_style("whitegrid")
@@ -25,7 +26,7 @@ data_dir = Path(__file__).parent.parent.parent / "data"
 df = pd.read_csv(data_dir / "openalex_comprehensive_data.csv")
 
 # Filter to matched researchers
-df = df[df['openalex_found'] == True].copy()
+df = df[df['openalex_found'].eq(True)].copy()
 
 # Clean data
 df = df[df['coverage_ratio'].notna() & (df['coverage_ratio'] <= 1.5)]
@@ -69,7 +70,6 @@ ax1.set_ylabel('Residuals', fontsize=11, fontweight='bold')
 ax1.set_title('(a) Residuals vs Fitted Values', fontsize=12, fontweight='bold', loc='left', pad=15)
 
 # Add loess smooth
-from scipy.signal import savgol_filter
 sorted_indices = np.argsort(predictions)
 sorted_predictions = predictions.iloc[sorted_indices]
 sorted_residuals = residuals.iloc[sorted_indices]
@@ -103,9 +103,9 @@ ax4 = axes[1, 1]
 ax4.hist(standardized_residuals, bins=50, color='#0072B2', alpha=0.7, edgecolor='black', linewidth=0.5)
 ax4.axvline(0, color='red', linestyle='--', linewidth=2)
 x_range = np.linspace(standardized_residuals.min(), standardized_residuals.max(), 100)
-ax4.plot(x_range, stats.norm.pdf(x_range) * len(standardized_residuals) *
-         (standardized_residuals.max() - standardized_residuals.min()) / 50,
-         color='red', linewidth=2, label='Normal distribution')
+resid_range = standardized_residuals.max() - standardized_residuals.min()
+normal_curve = stats.norm.pdf(x_range) * len(standardized_residuals) * resid_range / 50
+ax4.plot(x_range, normal_curve, color='red', linewidth=2, label='Normal distribution')
 ax4.set_xlabel('Standardized Residuals', fontsize=11, fontweight='bold')
 ax4.set_ylabel('Frequency', fontsize=11, fontweight='bold')
 ax4.set_title('(d) Distribution of Residuals', fontsize=12, fontweight='bold', loc='left', pad=15)
@@ -119,11 +119,11 @@ plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S5 saved: {output_path}")
 
 # Print regression summary
-print(f"\nRegression Model Summary:")
+print("\nRegression Model Summary:")
 print(f"  R²: {model.rsquared:.3f}")
 print(f"  Adjusted R²: {model.rsquared_adj:.3f}")
 print(f"  F-statistic: {model.fvalue:.2f} (p < 0.001)")
-print(f"\nCoefficients:")
+print("\nCoefficients:")
 for var in X.columns:
     if var != 'const':
         coef = model.params[var]

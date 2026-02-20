@@ -16,7 +16,7 @@ import pandas as pd
 import requests
 import time
 import json
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 from datetime import datetime
 import os
 
@@ -227,14 +227,14 @@ def calculate_metrics(works: List[Dict]) -> Dict:
     total_citations = df['cited_by_count'].sum()
 
     # By type
-    books = df[df['is_book'] == True]
-    articles = df[df['is_book'] == False]
+    books = df[df['is_book']]
+    articles = df[~df['is_book']]
 
     # By publisher
     publisher_counts = df['publisher_group'].value_counts().to_dict()
 
     # Open access
-    oa_works = df[df['is_oa'] == True]
+    oa_works = df[df['is_oa']]
 
     # Elsevier-specific
     elsevier_works = df[df['publisher_group'] == 'Elsevier']
@@ -311,7 +311,7 @@ def process_sample(sample_df: pd.DataFrame, checkpoint_file: str = 'fetch_checkp
         author_data = search_openalex_author(name, institution)
 
         if not author_data:
-            print(f"  ❌ Not found in OpenAlex")
+            print("  ❌ Not found in OpenAlex")
             results.append({
                 'sample_id': sample_id,
                 'authfull': name,
@@ -330,17 +330,17 @@ def process_sample(sample_df: pd.DataFrame, checkpoint_file: str = 'fetch_checkp
         # Extract author info
         openalex_id = author_data.get('id', '')
         openalex_name = author_data.get('display_name', '')
-        openalex_summary = author_data.get('summary_stats', {}) or {}
+        # summary_stats available via author_data.get('summary_stats', {}) if needed
 
         print(f"  ✓ Found: {openalex_name}")
         print(f"  OpenAlex ID: {openalex_id}")
 
         # Fetch all works
-        print(f"  Fetching publications...")
+        print("  Fetching publications...")
         works = fetch_all_works(openalex_id)
 
         if not works:
-            print(f"  ⚠️  No publications found")
+            print("  ⚠️  No publications found")
             results.append({
                 'sample_id': sample_id,
                 'authfull': name,
@@ -452,20 +452,20 @@ def main():
     duration = (end_time - start_time).total_seconds() / 60
 
     print(f"\n{'=' * 80}")
-    print(f"✓ DATA COLLECTION COMPLETE")
+    print("✓ DATA COLLECTION COMPLETE")
     print(f"{'=' * 80}")
     print(f"\nResults saved to: {output_file}")
-    print(f"Individual works saved to: openalex_works/ directory")
+    print("Individual works saved to: openalex_works/ directory")
     print(f"Total time: {duration:.1f} minutes")
 
     # Summary statistics
-    found = results_df[results_df['openalex_found'] == True]
-    not_found = results_df[results_df['openalex_found'] == False]
+    found = results_df[results_df['openalex_found']]
+    not_found = results_df[~results_df['openalex_found']]
 
     print(f"\n{'=' * 80}")
-    print(f"SUMMARY")
+    print("SUMMARY")
     print(f"{'=' * 80}")
-    print(f"\nMatching:")
+    print("\nMatching:")
     print(f"  Found in OpenAlex: {len(found)} ({len(found) / len(results_df) * 100:.1f}%)")
     print(f"  Not found: {len(not_found)} ({len(not_found) / len(results_df) * 100:.1f}%)")
 
@@ -475,19 +475,19 @@ def main():
         print(f"  Median citation coverage: {found['citation_coverage'].median():.1%}")
         print(f"  Mean publication coverage: {found['coverage_ratio'].mean():.1%}")
 
-        print(f"\nPublisher Distribution:")
+        print("\nPublisher Distribution:")
         print(f"  Median Elsevier %: {found['elsevier_pct'].median():.1f}%")
         print(f"  Median Wiley %: {found['wiley_pct'].median():.1f}%")
         print(f"  Median Springer Nature %: {found['springer_pct'].median():.1f}%")
         print(f"  Median OA publishers %: {found['oa_publisher_pct'].median():.1f}%")
 
-        print(f"\nPublication Types:")
+        print("\nPublication Types:")
         print(f"  Median book %: {found['books_pct'].median():.1f}%")
         print(f"  Median open access %: {found['oa_pct'].median():.1f}%")
 
         # By field type
         print(f"\n{'=' * 80}")
-        print(f"BY FIELD TYPE")
+        print("BY FIELD TYPE")
         print(f"{'=' * 80}")
 
         for field_type in ['book_heavy', 'mixed', 'journal_heavy']:
@@ -501,10 +501,10 @@ def main():
         # Clean up checkpoint file
         if os.path.exists('fetch_checkpoint.csv'):
             os.remove('fetch_checkpoint.csv')
-            print(f"\n✓ Checkpoint file removed")
+            print("\n✓ Checkpoint file removed")
 
-    print(f"\nNext step: Run analysis scripts to test for bias")
-    print(f"  python3 analyze_coverage_bias.py")
+    print("\nNext step: Run analysis scripts to test for bias")
+    print("  python3 analyze_coverage_bias.py")
 
 
 if __name__ == "__main__":

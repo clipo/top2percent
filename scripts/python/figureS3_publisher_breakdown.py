@@ -23,7 +23,7 @@ data_dir = Path(__file__).parent.parent.parent / "data"
 df = pd.read_csv(data_dir / "openalex_comprehensive_data.csv")
 
 # Filter to matched researchers
-df = df[df['openalex_found'] == True].copy()
+df = df[df['openalex_found'].eq(True)].copy()
 
 # Calculate publisher percentages by field type
 publishers = ['elsevier', 'wiley', 'springer', 'oxford', 'cambridge']
@@ -67,8 +67,8 @@ for i, (field, label, color) in enumerate(zip(field_types, field_labels, colors)
     for bar in bars:
         height = bar.get_height()
         if height > 0.5:  # Only label if visible
-            ax.text(bar.get_x() + bar.get_width()/2., height,
-                   f'{height:.1f}%', ha='center', va='bottom', fontsize=9)
+            ax.text(bar.get_x() + bar.get_width() / 2., height,
+                    f'{height:.1f}%', ha='center', va='bottom', fontsize=9)
 
 ax.set_xlabel('Publisher', fontsize=12, fontweight='bold')
 ax.set_ylabel('Median % of Publications', fontsize=12, fontweight='bold')
@@ -86,7 +86,7 @@ plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S3 saved: {output_path}")
 
 # Print summary table
-print(f"\nPublisher Distribution by Field (Median %):")
+print("\nPublisher Distribution by Field (Median %):")
 print(pivot_df.to_string())
 
 plt.close()

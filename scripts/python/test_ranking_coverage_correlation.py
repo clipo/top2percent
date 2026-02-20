@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test if Ranking Position Correlates with Coverage
+Test if Ranking Position Correlates with Coverage.
 
 This addresses the sampling circularity criticism:
 - If lower-ranked researchers (within top 2%) have worse coverage
@@ -8,18 +8,18 @@ This addresses the sampling circularity criticism:
 - Provides evidence beyond the sampled population
 """
 
-import pandas as pd
-from scipy.stats import spearmanr, pearsonr
 import numpy as np
+import pandas as pd
 from pathlib import Path
+from scipy.stats import spearmanr, pearsonr
 
 # Set up paths relative to script location
 script_dir = Path(__file__).parent
 data_dir = script_dir.parent.parent / 'data'
 
-print("="*80)
+print("=" * 80)
 print("RANKING POSITION VS COVERAGE CORRELATION")
-print("="*80)
+print("=" * 80)
 print("\nTesting if ranking position correlates with coverage...")
 print("(Would suggest exclusion bias if lower ranks have worse coverage)")
 print()
@@ -35,74 +35,76 @@ print(f"Loaded {len(openalex)} researchers from openalex_comprehensive_data.csv"
 merged = sample.merge(openalex[['authfull', 'coverage_ratio', 'elsevier_pct', 'books_pct']],
                       on='authfull', how='inner')
 
-print(f"\n✓ Merged: {len(merged)} researchers with both ranking and coverage data")
+print(f"\nMerged: {len(merged)} researchers with both ranking and coverage data")
 
 # Remove any NaN values
 valid = merged[['rank_global', 'rank_in_field', 'coverage_ratio']].dropna()
 merged_valid = merged.loc[valid.index]
 
-print(f"✓ Valid data: {len(merged_valid)} researchers")
+print(f"Valid data: {len(merged_valid)} researchers")
 
 # ============================================================================
 # CORRELATION ANALYSIS
 # ============================================================================
 
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("CORRELATION: RANKING POSITION VS COVERAGE")
-print("="*80)
+print("=" * 80)
 
 # Global rank vs coverage
 # Note: Higher rank number = worse rank (e.g., rank 100,000 is worse than rank 1,000)
-# So negative correlation would mean: worse rank → worse coverage
+# So negative correlation would mean: worse rank -> worse coverage
 rho_global, p_global = spearmanr(merged_valid['rank_global'], merged_valid['coverage_ratio'])
 r_global, p_global_pearson = pearsonr(merged_valid['rank_global'], merged_valid['coverage_ratio'])
 
-print(f"\n**Global Rank vs Coverage**:")
-print(f"  Spearman ρ = {rho_global:.3f}, p = {p_global:.4f}")
+print("\n**Global Rank vs Coverage**:")
+print(f"  Spearman rho = {rho_global:.3f}, p = {p_global:.4f}")
 print(f"  Pearson r = {r_global:.3f}, p = {p_global_pearson:.4f}")
 
 if p_global < 0.001:
     if rho_global < 0:
-        print(f"  ✓ SIGNIFICANT NEGATIVE correlation")
-        print(f"    → Lower-ranked researchers have worse coverage")
-        print(f"    → Suggests exclusion bias affects who makes the ranking")
+        print("  SIGNIFICANT NEGATIVE correlation")
+        print("    -> Lower-ranked researchers have worse coverage")
+        print("    -> Suggests exclusion bias affects who makes the ranking")
     else:
-        print(f"  ! Positive correlation (unexpected)")
+        print("  ! Positive correlation (unexpected)")
 else:
-    print(f"  No significant correlation")
+    print("  No significant correlation")
 
 # Field rank vs coverage
 rho_field, p_field = spearmanr(merged_valid['rank_in_field'], merged_valid['coverage_ratio'])
 r_field, p_field_pearson = pearsonr(merged_valid['rank_in_field'], merged_valid['coverage_ratio'])
 
-print(f"\n**Field Rank vs Coverage**:")
-print(f"  Spearman ρ = {rho_field:.3f}, p = {p_field:.4f}")
+print("\n**Field Rank vs Coverage**:")
+print(f"  Spearman rho = {rho_field:.3f}, p = {p_field:.4f}")
 print(f"  Pearson r = {r_field:.3f}, p = {p_field_pearson:.4f}")
 
 if p_field < 0.001:
     if rho_field < 0:
-        print(f"  ✓ SIGNIFICANT NEGATIVE correlation")
-        print(f"    → Lower-ranked researchers have worse coverage")
-        print(f"    → Pattern holds within fields")
+        print("  SIGNIFICANT NEGATIVE correlation")
+        print("    -> Lower-ranked researchers have worse coverage")
+        print("    -> Pattern holds within fields")
     else:
-        print(f"  ! Positive correlation (unexpected)")
+        print("  ! Positive correlation (unexpected)")
 else:
-    print(f"  No significant correlation")
+    print("  No significant correlation")
 
 # ============================================================================
 # QUANTILE ANALYSIS
 # ============================================================================
 
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("COVERAGE BY RANKING QUARTILE")
-print("="*80)
+print("=" * 80)
 
 # Divide into quartiles by global rank
-merged_valid['rank_quartile'] = pd.qcut(merged_valid['rank_global'],
-                                         q=4,
-                                         labels=['Top 25%', 'Q2', 'Q3', 'Bottom 25%'])
+merged_valid['rank_quartile'] = pd.qcut(
+    merged_valid['rank_global'],
+    q=4,
+    labels=['Top 25%', 'Q2', 'Q3', 'Bottom 25%']
+)
 
-print(f"\n**Coverage by Global Rank Quartile**:")
+print("\n**Coverage by Global Rank Quartile**:")
 for quartile in ['Top 25%', 'Q2', 'Q3', 'Bottom 25%']:
     q_data = merged_valid[merged_valid['rank_quartile'] == quartile]
     median_cov = q_data['coverage_ratio'].median() * 100
@@ -111,46 +113,50 @@ for quartile in ['Top 25%', 'Q2', 'Q3', 'Bottom 25%']:
     print(f"  {quartile:12s}: {median_cov:5.1f}% median, {mean_cov:5.1f}% mean (n={n})")
 
 # Calculate difference
-top_quartile_cov = merged_valid[merged_valid['rank_quartile'] == 'Top 25%']['coverage_ratio'].median() * 100
-bottom_quartile_cov = merged_valid[merged_valid['rank_quartile'] == 'Bottom 25%']['coverage_ratio'].median() * 100
+top_quartile_cov = (
+    merged_valid[merged_valid['rank_quartile'] == 'Top 25%']['coverage_ratio'].median() * 100
+)
+bottom_quartile_cov = (
+    merged_valid[merged_valid['rank_quartile'] == 'Bottom 25%']['coverage_ratio'].median() * 100
+)
 quartile_diff = top_quartile_cov - bottom_quartile_cov
 
 print(f"\n  Difference (Top 25% - Bottom 25%): {quartile_diff:.1f} percentage points")
 
 if quartile_diff > 0:
-    print(f"  ✓ Top-ranked researchers have better coverage")
-    print(f"    → Consistent with exclusion bias hypothesis")
+    print("  Top-ranked researchers have better coverage")
+    print("    -> Consistent with exclusion bias hypothesis")
 
 # ============================================================================
 # BY FIELD TYPE
 # ============================================================================
 
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("CORRELATION BY FIELD TYPE")
-print("="*80)
+print("=" * 80)
 
 for field_type in ['book_heavy', 'mixed', 'journal_heavy']:
     field_data = merged_valid[merged_valid['field_type'] == field_type]
     if len(field_data) > 20:  # Need enough data
         rho, p = spearmanr(field_data['rank_global'], field_data['coverage_ratio'])
         print(f"\n{field_type}:")
-        print(f"  ρ = {rho:.3f}, p = {p:.4f} (n={len(field_data)})")
+        print(f"  rho = {rho:.3f}, p = {p:.4f} (n={len(field_data)})")
         if p < 0.05 and rho < 0:
-            print(f"  ✓ Negative correlation within {field_type} fields")
+            print(f"  Negative correlation within {field_type} fields")
 
 # ============================================================================
 # SUMMARY
 # ============================================================================
 
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("SUMMARY AND IMPLICATIONS")
-print("="*80)
+print("=" * 80)
 
 print(f"""
 **Finding**: Ranking position correlates with coverage
 
-Global rank correlation: ρ={rho_global:.3f} (p={p_global:.4f})
-Field rank correlation: ρ={rho_field:.3f} (p={p_field:.4f})
+Global rank correlation: rho={rho_global:.3f} (p={p_global:.4f})
+Field rank correlation: rho={rho_field:.3f} (p={p_field:.4f})
 
 Coverage by quartile:
   Top 25% (best ranks): {top_quartile_cov:.1f}% median coverage
@@ -162,7 +168,7 @@ Coverage by quartile:
 
 if rho_global < -0.1 and p_global < 0.001:
     print("""
-✓ SIGNIFICANT EVIDENCE OF EXCLUSION BIAS
+SIGNIFICANT EVIDENCE OF EXCLUSION BIAS
 
 Even within the top 2%, lower-ranked researchers have systematically worse
 coverage. This suggests that poor coverage affects not just ranking position
@@ -199,8 +205,8 @@ results = pd.DataFrame({
 })
 
 results.to_csv(data_dir / 'ranking_coverage_correlation_results.csv', index=False)
-print("\n✓ Saved: ranking_coverage_correlation_results.csv")
+print("\nSaved: ranking_coverage_correlation_results.csv")
 
-print("\n" + "="*80)
+print("\n" + "=" * 80)
 print("COMPLETE")
-print("="*80)
+print("=" * 80)

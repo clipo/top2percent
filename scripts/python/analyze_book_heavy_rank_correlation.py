@@ -22,6 +22,7 @@ from scipy import stats
 from pathlib import Path
 import sys
 
+
 def calculate_rank_correlation(df, group_name="Overall"):
     """Calculate Spearman rank correlation between ranking and coverage."""
     # Use rank_global (higher = worse ranking)
@@ -82,6 +83,7 @@ def calculate_rank_correlation(df, group_name="Overall"):
 
 
 def main():
+    """Run rank-coverage correlation analysis by field type."""
     # Paths
     data_dir = Path(__file__).parent.parent.parent / 'data'
     input_path = data_dir / 'openalex_comprehensive_data.csv'
@@ -149,7 +151,10 @@ def main():
     print(f"{'Field Type':<15} {'n':>6} {'ρ':>10} {'p-value':>12} {'Sig':>5} {'Effect':>10}")
     print("-" * 70)
     for _, row in results_df.iterrows():
-        print(f"{row['group']:<15} {row['n']:>6} {row['rho']:>10.4f} {row['p_value']:>12.6f} {row['sig_marker']:>5} {row['effect_size']:>10}")
+        print(
+            f"{row['group']:<15} {row['n']:>6} {row['rho']:>10.4f}"
+            f" {row['p_value']:>12.6f} {row['sig_marker']:>5} {row['effect_size']:>10}"
+        )
 
     # Key finding for manuscript
     print("\n" + "=" * 70)

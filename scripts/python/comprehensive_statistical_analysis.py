@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Comprehensive Statistical Analysis with Multiple Comparisons Correction
-and Non-parametric Effect Sizes
+and Non-parametric Effect Sizes.
 
 Addresses reviewer concerns:
 1. Multiple comparisons correction (Bonferroni, Holm-Bonferroni)
@@ -13,12 +13,16 @@ Outputs:
 - Console summary for manuscript
 """
 
-import pandas as pd
+import warnings
+from pathlib import Path
+
 import numpy as np
+import pandas as pd
 from scipy import stats
 from scipy.stats import mannwhitneyu, kruskal
-import warnings
+
 warnings.filterwarnings('ignore')
+
 
 def cliffs_delta(x, y):
     """
@@ -77,7 +81,6 @@ def rank_biserial(x, y):
     r = 1 - (2U) / (n1 * n2)
 
     Where U is the Mann-Whitney U statistic.
-    Equivalent to: r = 2 * (mean_rank_x / n - 0.5)
 
     Returns: r_rb, interpretation
     """
@@ -97,7 +100,7 @@ def rank_biserial(x, y):
     U, _ = mannwhitneyu(x, y, alternative='two-sided')
 
     # Rank-biserial correlation
-    r_rb = 1 - (2*U) / (n1 * n2)
+    r_rb = 1 - (2 * U) / (n1 * n2)
 
     # Interpret (same as Cliff's delta)
     abs_r = abs(r_rb)
@@ -141,17 +144,15 @@ def cohens_d(x, y):
 
 def main():
     """Run comprehensive statistical analysis."""
-
-    print("="*80)
+    print("=" * 80)
     print("COMPREHENSIVE STATISTICAL ANALYSIS")
     print("Multiple Comparisons Correction + Non-parametric Effect Sizes")
-    print("="*80)
+    print("=" * 80)
     print()
 
     # Load data
     print("Loading data...")
     # Use Path for cross-platform compatibility
-    from pathlib import Path
     script_dir = Path(__file__).parent
     data_dir = script_dir.parent.parent / 'data'
     df = pd.read_csv(data_dir / 'openalex_comprehensive_data.csv')
@@ -187,8 +188,8 @@ def main():
     diff = med_high - med_low
 
     print(f"  High Elsevier (>{elsevier_median:.1f}%): n={len(high_elsevier)}, median={med_high:.3f}")
-    print(f"  Low Elsevier (≤{elsevier_median:.1f}%): n={len(low_elsevier)}, median={med_low:.3f}")
-    print(f"  Difference: {diff:.3f} ({diff*100:.1f} pp)")
+    print(f"  Low Elsevier (<={elsevier_median:.1f}%): n={len(low_elsevier)}, median={med_low:.3f}")
+    print(f"  Difference: {diff:.3f} ({diff * 100:.1f} pp)")
     print(f"  Mann-Whitney U: p={p_mw:.2e}")
     print(f"  Cohen's d: {d:.3f}")
     print(f"  Cliff's delta: {cliff_d:.3f} ({cliff_interp})")
@@ -231,7 +232,7 @@ def main():
 
     print(f"  Book-heavy: n={len(book_heavy)}, median={med_book:.3f}")
     print(f"  Journal-heavy: n={len(journal_heavy)}, median={med_journal:.3f}")
-    print(f"  Difference: {diff:.3f} ({diff*100:.1f} pp)")
+    print(f"  Difference: {diff:.3f} ({diff * 100:.1f} pp)")
     print(f"  Mann-Whitney U: p={p_mw:.2e}")
     print(f"  Cohen's d: {d:.3f}")
     print(f"  Cliff's delta: {cliff_d:.3f} ({cliff_interp})")
@@ -294,7 +295,7 @@ def main():
     rho, p_spearman = stats.spearmanr(books_data['books_pct'], books_data['coverage_ratio'])
 
     print(f"  n={len(books_data)}")
-    print(f"  Spearman ρ: {rho:.3f}")
+    print(f"  Spearman rho: {rho:.3f}")
     print(f"  p-value: {p_spearman:.2e}")
     print()
 
@@ -334,8 +335,8 @@ def main():
     diff = med_high_oa - med_low_oa
 
     print(f"  High OA (>{oa_median:.1f}%): n={len(high_oa)}, median={med_high_oa:.3f}")
-    print(f"  Low OA (≤{oa_median:.1f}%): n={len(low_oa)}, median={med_low_oa:.3f}")
-    print(f"  Difference: {diff:.3f} ({diff*100:.1f} pp)")
+    print(f"  Low OA (<={oa_median:.1f}%): n={len(low_oa)}, median={med_low_oa:.3f}")
+    print(f"  Difference: {diff:.3f} ({diff * 100:.1f} pp)")
     print(f"  Mann-Whitney U: p={p_mw:.2e}")
     print(f"  Cohen's d: {d:.3f}")
     print(f"  Cliff's delta: {cliff_d:.3f} ({cliff_interp})")
@@ -366,9 +367,9 @@ def main():
     # Multiple Comparisons Correction
     # ========================================================================
 
-    print("="*80)
+    print("=" * 80)
     print("MULTIPLE COMPARISONS CORRECTION")
-    print("="*80)
+    print("=" * 80)
     print()
 
     df_results = pd.DataFrame(results)
@@ -383,8 +384,8 @@ def main():
     df_results['bonferroni_threshold'] = bonferroni_threshold
     df_results['bonferroni_significant'] = df_results['p_value'] < bonferroni_threshold
 
-    print(f"Bonferroni correction:")
-    print(f"  Family-wise α = {alpha}")
+    print("Bonferroni correction:")
+    print(f"  Family-wise alpha = {alpha}")
     print(f"  Per-test threshold = {bonferroni_threshold:.4f}")
     print(f"  Significant tests: {df_results['bonferroni_significant'].sum()}/{n_tests}")
     print()
@@ -403,15 +404,15 @@ def main():
 
     df_results['holm_bonferroni_significant'] = holm_significant
 
-    print(f"Holm-Bonferroni correction (sequential):")
-    print(f"  Family-wise α = {alpha}")
+    print("Holm-Bonferroni correction (sequential):")
+    print(f"  Family-wise alpha = {alpha}")
     print(f"  Significant tests: {sum(holm_significant)}/{n_tests}")
     print()
 
     # Summary table
-    print("="*80)
+    print("=" * 80)
     print("SUMMARY TABLE")
-    print("="*80)
+    print("=" * 80)
     print()
 
     print(f"{'Test':<40} {'p-value':<12} {'Bonferroni':<12} {'Holm-Bonf.':<12}")
@@ -420,8 +421,8 @@ def main():
     for _, row in df_results.iterrows():
         test_name = row['test_name'][:39]
         p_val = f"{row['p_value']:.2e}"
-        bonf = "✓ SIG" if row['bonferroni_significant'] else "✗ NS"
-        holm = "✓ SIG" if row['holm_bonferroni_significant'] else "✗ NS"
+        bonf = "SIG" if row['bonferroni_significant'] else "NS"
+        holm = "SIG" if row['holm_bonferroni_significant'] else "NS"
 
         print(f"{test_name:<40} {p_val:<12} {bonf:<12} {holm:<12}")
 
@@ -429,27 +430,27 @@ def main():
 
     # Save results
     df_results.to_csv(data_dir / 'comprehensive_statistics.csv', index=False)
-    print(f"✓ Saved: comprehensive_statistics.csv")
+    print("Saved: comprehensive_statistics.csv")
 
     # ========================================================================
     # Effect Size Comparison
     # ========================================================================
 
     print()
-    print("="*80)
+    print("=" * 80)
     print("EFFECT SIZE COMPARISON (Parametric vs Non-parametric)")
-    print("="*80)
+    print("=" * 80)
     print()
 
     # Filter to tests with effect sizes
     effect_tests = df_results[df_results['cohens_d'].notna()].copy()
 
-    print("{:<40} {:<12} {:<12} {:<12}".format("Test", "Cohen's d", "Cliff's δ", "Agreement"))
+    print("{:<40} {:<12} {:<12} {:<12}".format("Test", "Cohen's d", "Cliff's d", "Agreement"))
     print("-" * 80)
 
     for _, row in effect_tests.iterrows():
         test_name = row['test_name'][:39]
-        d = f"{row['cohens_d']:.3f}"
+        d_str = f"{row['cohens_d']:.3f}"
         cliff = f"{row['cliffs_delta']:.3f}"
 
         # Check agreement
@@ -458,17 +459,17 @@ def main():
 
         # Both large?
         if d_val > 0.8 and cliff_val > 0.474:
-            agreement = "✓ Both large"
+            agreement = "Both large"
         # Both medium+?
         elif d_val > 0.5 and cliff_val > 0.33:
-            agreement = "✓ Both med+"
+            agreement = "Both med+"
         # Disagreement?
         elif (d_val > 0.8 and cliff_val < 0.33) or (d_val < 0.5 and cliff_val > 0.474):
-            agreement = "✗ Disagree"
+            agreement = "Disagree"
         else:
             agreement = "~ Similar"
 
-        print(f"{test_name:<40} {d:<12} {cliff:<12} {agreement:<12}")
+        print(f"{test_name:<40} {d_str:<12} {cliff:<12} {agreement:<12}")
 
     print()
 
@@ -477,16 +478,16 @@ def main():
                                       'cliff_interpretation', 'rank_biserial',
                                       'rb_interpretation']].copy()
     effect_comparison.to_csv(data_dir / 'effect_sizes_comparison.csv', index=False)
-    print(f"✓ Saved: effect_sizes_comparison.csv")
+    print("Saved: effect_sizes_comparison.csv")
 
     # ========================================================================
     # Manuscript-Ready Summary
     # ========================================================================
 
     print()
-    print("="*80)
+    print("=" * 80)
     print("MANUSCRIPT-READY SUMMARY")
-    print("="*80)
+    print("=" * 80)
     print()
 
     print("KEY FINDINGS:")
@@ -499,14 +500,14 @@ def main():
         if row['bonferroni_significant']:
             test = row['test_name']
             p = row['p_value']
-            print(f"   ✓ {test}")
+            print(f"   {test}")
             print(f"     p={p:.2e} (< {bonferroni_threshold:.4f})")
 
             # Add effect size if available
             if not np.isnan(row['cliffs_delta']):
-                cliff = row['cliffs_delta']
+                cliff_val = row['cliffs_delta']
                 interp = row['cliff_interpretation']
-                print(f"     Cliff's δ={cliff:.3f} ({interp} effect)")
+                print(f"     Cliff's delta={cliff_val:.3f} ({interp} effect)")
 
             print()
 
@@ -516,13 +517,13 @@ def main():
 
     for _, row in effect_tests.iterrows():
         test = row['test_name']
-        cliff = row['cliffs_delta']
+        cliff_val = row['cliffs_delta']
         interp = row['cliff_interpretation']
-        d = row['cohens_d']
+        d_val = row['cohens_d']
 
         print(f"   {test}:")
-        print(f"     Cohen's d = {d:.3f} (parametric)")
-        print(f"     Cliff's δ = {cliff:.3f} ({interp}, non-parametric)")
+        print(f"     Cohen's d = {d_val:.3f} (parametric)")
+        print(f"     Cliff's delta = {cliff_val:.3f} ({interp}, non-parametric)")
         print()
 
     print()
@@ -531,20 +532,22 @@ def main():
     print("-" * 80)
     print()
     print("All primary effects remain statistically significant after Bonferroni")
-    print(f"correction for {n_tests} hypothesis tests (family-wise α=0.05, per-test")
+    print(f"correction for {n_tests} hypothesis tests (family-wise alpha=0.05, per-test")
     print(f"threshold={bonferroni_threshold:.4f}). For skewed bibliometric distributions,")
     print("we report Cliff's delta alongside Cohen's d. The Elsevier effect shows")
-    print(f"δ={effect_tests[effect_tests['test']=='Elsevier_high_vs_low']['cliffs_delta'].values[0]:.3f} (large),")
-    print(f"the book effect shows δ={effect_tests[effect_tests['test']=='Book_heavy_vs_journal_heavy']['cliffs_delta'].values[0]:.3f} (large),")
+    elsevier_delta = effect_tests[effect_tests['test'] == 'Elsevier_high_vs_low']['cliffs_delta'].values[0]
+    book_delta = effect_tests[effect_tests['test'] == 'Book_heavy_vs_journal_heavy']['cliffs_delta'].values[0]
+    print(f"delta={elsevier_delta:.3f} (large),")
+    print(f"the book effect shows delta={book_delta:.3f} (large),")
     print("confirming substantial effects even with non-parametric measures robust")
     print("to outliers and skewness.")
     print()
     print("-" * 80)
 
     print()
-    print("="*80)
-    print("✓ ANALYSIS COMPLETE")
-    print("="*80)
+    print("=" * 80)
+    print("ANALYSIS COMPLETE")
+    print("=" * 80)
     print()
     print("Output files:")
     print("  - comprehensive_statistics.csv")

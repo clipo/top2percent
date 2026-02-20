@@ -148,10 +148,10 @@ def generate_case_study_table():
 
     df = pd.DataFrame(CASE_STUDIES)
 
-    print("="*80)
+    print("=" * 80)
     print("AWARD WINNERS CASE STUDIES")
     print("Direct Evidence of Exclusion Bias")
-    print("="*80)
+    print("=" * 80)
     print()
 
     print("High-profile researchers likely excluded from 'top 2%' rankings:")
@@ -170,9 +170,9 @@ def generate_case_study_table():
 def generate_manuscript_text():
     """Generate manuscript-ready text describing the issue."""
 
-    print("="*80)
+    print("=" * 80)
     print("MANUSCRIPT-READY TEXT")
-    print("="*80)
+    print("=" * 80)
     print()
 
     text = """
@@ -229,9 +229,9 @@ def save_case_studies():
 
     df.to_csv('award_winners_case_studies.csv', index=False)
 
-    print("="*80)
+    print("=" * 80)
     print("SAVED RESULTS")
-    print("="*80)
+    print("=" * 80)
     print()
     print("✓ award_winners_case_studies.csv")
     print()
@@ -268,10 +268,10 @@ def save_case_studies():
 def main():
     """Generate award winners case studies."""
 
-    print("="*80)
+    print("=" * 80)
     print("AWARD WINNERS EXCLUSION - CASE STUDY APPROACH")
     print("Addressing Reviewer Criticism #2")
-    print("="*80)
+    print("=" * 80)
     print()
 
     print("Since we don't have access to the full 230,333-researcher Ioannidis")
@@ -280,17 +280,17 @@ def main():
     print()
 
     # Generate table
-    df = generate_case_study_table()
+    generate_case_study_table()
 
     # Generate manuscript text
-    manuscript_text = generate_manuscript_text()
+    generate_manuscript_text()
 
     # Save results
     save_case_studies()
 
-    print("="*80)
+    print("=" * 80)
     print("NEXT STEPS")
-    print("="*80)
+    print("=" * 80)
     print()
     print("1. Verify 1-2 specific cases manually:")
     print("   - Search OpenAlex for their profiles")

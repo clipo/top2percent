@@ -57,12 +57,13 @@ import numpy as np
 from scipy import stats
 import json
 
+
 def load_data(filename='data/openalex_comprehensive_data.csv'):
     """Load the comprehensive evidence table (n=600 sample)."""
     df = pd.read_csv(filename)
 
     # Filter to successfully matched researchers
-    df = df[df['openalex_found'] == True].copy()
+    df = df[df['openalex_found']].copy()
 
     # Clean data: drop NaN values and cap unrealistic coverage ratios
     initial_n = len(df)
@@ -97,13 +98,13 @@ def test_hypothesis_1_publisher_bias(df):
     print("Scopus coverage?")
 
     # Overall correlation
-    correlation = df[['elsevier_pct', 'coverage_ratio']].corr().iloc[0, 1]
+    # Correlation matrix computed via Pearson test below
     n = len(df)
 
     # Pearson correlation test
     r, p_value = stats.pearsonr(df['elsevier_pct'], df['coverage_ratio'])
 
-    print(f"\n--- Overall Correlation ---")
+    print("\n--- Overall Correlation ---")
     print(f"Correlation (Elsevier % vs Coverage): r = {r:.3f}")
     print(f"Sample size: n = {n}")
     print(f"p-value: {p_value:.6f}")
@@ -122,7 +123,7 @@ def test_hypothesis_1_publisher_bias(df):
     high_elsevier = df[df['elsevier_pct'] > median_elsevier]
     low_elsevier = df[df['elsevier_pct'] <= median_elsevier]
 
-    print(f"\n--- Group Comparison ---")
+    print("\n--- Group Comparison ---")
     print(f"High Elsevier group (>{median_elsevier:.1f}%): n={len(high_elsevier)}")
     print(f"  Median coverage: {high_elsevier['coverage_ratio'].median():.2%}")
     print(f"  Mean coverage: {high_elsevier['coverage_ratio'].mean():.2%}")
@@ -186,7 +187,7 @@ def test_hypothesis_2_book_bias(df):
     # Overall correlation
     r, p_value = stats.pearsonr(df['books_pct'], df['coverage_ratio'])
 
-    print(f"\n--- Overall Correlation ---")
+    print("\n--- Overall Correlation ---")
     print(f"Correlation (Book % vs Coverage): r = {r:.3f}")
     print(f"p-value: {p_value:.6f}")
 
@@ -199,7 +200,7 @@ def test_hypothesis_2_book_bias(df):
         print("✓ No significant correlation")
 
     # Within field types
-    print(f"\n--- Within Field Types ---")
+    print("\n--- Within Field Types ---")
 
     for field_type in ['book_heavy', 'mixed', 'journal_heavy']:
         subset = df[df['field_type'] == field_type]
@@ -228,7 +229,7 @@ def test_hypothesis_2_book_bias(df):
                 alternative='less'
             )
 
-            print(f"\n--- Book-Heavy Fields Only ---")
+            print("\n--- Book-Heavy Fields Only ---")
             print(f"High book % (>{median_books:.1f}%): coverage = {high_books['coverage_ratio'].median():.2%}")
             print(f"Low book % (≤{median_books:.1f}%): coverage = {low_books['coverage_ratio'].median():.2%}")
             print(f"Mann-Whitney U test: p = {p_mw:.4f}")
@@ -254,7 +255,7 @@ def test_hypothesis_3_oa_penalty(df):
     # Correlation
     r, p_value = stats.pearsonr(df['oa_publisher_pct'], df['coverage_ratio'])
 
-    print(f"\n--- Overall Correlation ---")
+    print("\n--- Overall Correlation ---")
     print(f"Correlation (OA Publisher % vs Coverage): r = {r:.3f}")
     print(f"p-value: {p_value:.6f}")
 
@@ -267,8 +268,8 @@ def test_hypothesis_3_oa_penalty(df):
         print("✓ No significant correlation")
 
     # Specific OA publishers
-    print(f"\n--- Specific OA Publishers ---")
-    print(f"PLOS:")
+    print("\n--- Specific OA Publishers ---")
+    print("PLOS:")
     print(f"  Researchers publishing in PLOS: {len(df[df['plos_count'] > 0])}")
     if len(df[df['plos_count'] > 0]) > 5:
         plos_pubs = df[df['plos_count'] > 0]
@@ -276,7 +277,7 @@ def test_hypothesis_3_oa_penalty(df):
         print(f"  Median coverage (PLOS authors): {plos_pubs['coverage_ratio'].median():.2%}")
         print(f"  Median coverage (non-PLOS): {no_plos['coverage_ratio'].median():.2%}")
 
-    print(f"\nFrontiers:")
+    print("\nFrontiers:")
     print(f"  Researchers publishing in Frontiers: {len(df[df['frontiers_count'] > 0])}")
     if len(df[df['frontiers_count'] > 0]) > 5:
         frontiers_pubs = df[df['frontiers_count'] > 0]
@@ -303,7 +304,7 @@ def test_hypothesis_4_field_bias(df):
     print("\nDo book-heavy fields have worse coverage than journal-heavy fields?")
 
     # Summary by field type
-    print(f"\n--- Coverage by Field Type ---")
+    print("\n--- Coverage by Field Type ---")
 
     field_stats = {}
     for field_type in ['book_heavy', 'mixed', 'journal_heavy']:
@@ -328,19 +329,19 @@ def test_hypothesis_4_field_bias(df):
 
     h_stat, p_value = stats.kruskal(book_heavy, mixed, journal_heavy)
 
-    print(f"\n--- Statistical Test ---")
+    print("\n--- Statistical Test ---")
     print(f"Kruskal-Wallis H test: H = {h_stat:.3f}, p = {p_value:.6f}")
 
     if p_value < 0.05:
         print("*** SIGNIFICANT FIELD DIFFERENCES DETECTED ***")
 
         # Post-hoc pairwise comparisons
-        print(f"\n--- Post-hoc Pairwise Comparisons ---")
+        print("\n--- Post-hoc Pairwise Comparisons ---")
 
         # Book-heavy vs Journal-heavy
         stat_bj, p_bj = stats.mannwhitneyu(book_heavy, journal_heavy, alternative='less')
         diff_bj = book_heavy.median() - journal_heavy.median()
-        print(f"\nBook-heavy vs Journal-heavy:")
+        print("\nBook-heavy vs Journal-heavy:")
         print(f"  Median difference: {diff_bj:.2%}")
         print(f"  p-value: {p_bj:.6f}")
         if p_bj < 0.05:
@@ -349,14 +350,14 @@ def test_hypothesis_4_field_bias(df):
         # Book-heavy vs Mixed
         stat_bm, p_bm = stats.mannwhitneyu(book_heavy, mixed, alternative='less')
         diff_bm = book_heavy.median() - mixed.median()
-        print(f"\nBook-heavy vs Mixed:")
+        print("\nBook-heavy vs Mixed:")
         print(f"  Median difference: {diff_bm:.2%}")
         print(f"  p-value: {p_bm:.6f}")
 
         # Mixed vs Journal-heavy
         stat_mj, p_mj = stats.mannwhitneyu(mixed, journal_heavy, alternative='less')
         diff_mj = mixed.median() - journal_heavy.median()
-        print(f"\nMixed vs Journal-heavy:")
+        print("\nMixed vs Journal-heavy:")
         print(f"  Median difference: {diff_mj:.2%}")
         print(f"  p-value: {p_mj:.6f}")
     else:
@@ -383,7 +384,6 @@ def multivariate_analysis(df):
 
     try:
         from sklearn.linear_model import LinearRegression
-        from sklearn.preprocessing import StandardScaler
 
         # Prepare data
         X = df[['elsevier_pct', 'books_pct', 'oa_publisher_pct']].copy()
@@ -401,14 +401,14 @@ def multivariate_analysis(df):
         r_squared = model.score(X, y)
 
         print(f"\nModel R²: {r_squared:.3f}")
-        print(f"\nCoefficients:")
+        print("\nCoefficients:")
         for i, col in enumerate(X.columns):
             coef = model.coef_[i]
             print(f"  {col:25s}: {coef:+.4f}")
             if col == 'elsevier_pct' and coef > 0.001:
-                print(f"    → 10% more Elsevier = {coef*10:.2%} better coverage")
+                print(f"    → 10% more Elsevier = {coef * 10:.2%} better coverage")
             elif col == 'books_pct' and coef < -0.001:
-                print(f"    → 10% more books = {abs(coef*10):.2%} worse coverage")
+                print(f"    → 10% more books = {abs(coef * 10):.2%} worse coverage")
 
         print(f"\nIntercept: {model.intercept_:.4f}")
 
@@ -504,6 +504,7 @@ def main():
     # Save results to JSON
     # Convert numpy types to Python types for JSON serialization
     def convert_types(obj):
+        """Convert numpy types to native Python types for JSON serialization."""
         if isinstance(obj, (np.bool_, bool)):
             return bool(obj)
         elif isinstance(obj, np.integer):
@@ -524,7 +525,7 @@ def main():
     with open('analysis_results.json', 'w') as f:
         json.dump(results_clean, f, indent=2)
 
-    print(f"\n✓ Detailed results saved to: analysis_results.json")
+    print("\n✓ Detailed results saved to: analysis_results.json")
 
     # Final verdict
     print("\n" + "=" * 80)

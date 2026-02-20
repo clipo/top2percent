@@ -1,5 +1,5 @@
 """
-Extract ORCID from OpenAlex for Matched Researchers
+Extract ORCID from OpenAlex for Matched Researchers.
 
 This script:
 1. Reads our matched OpenAlex data
@@ -11,10 +11,13 @@ This script:
 This addresses potential reviewer concerns about matching accuracy.
 """
 
+import json
+import time
+
 import pandas as pd
 import requests
-import time
-import json
+from scipy import stats
+from scipy.stats import spearmanr
 
 print("=" * 80)
 print("ORCID EXTRACTION AND VALIDATION")
@@ -23,7 +26,7 @@ print("=" * 80)
 # Load matched data
 print("\nLoading matched OpenAlex data...")
 df = pd.read_csv('reproducibility_package/data/openalex_comprehensive_data.csv')
-print(f"✓ Loaded {len(df)} matched researchers")
+print(f"Loaded {len(df)} matched researchers")
 
 # Initialize ORCID column
 df['orcid'] = None
@@ -81,13 +84,13 @@ for idx, row in df.iterrows():
     # Rate limiting
     time.sleep(0.1)
 
-print(f"\n✓ Complete")
-print(f"  Researchers with ORCID: {orcid_found} ({orcid_found/len(df)*100:.1f}%)")
-print(f"  Researchers without ORCID: {orcid_missing} ({orcid_missing/len(df)*100:.1f}%)")
+print("\nComplete")
+print(f"  Researchers with ORCID: {orcid_found} ({orcid_found / len(df) * 100:.1f}%)")
+print(f"  Researchers without ORCID: {orcid_missing} ({orcid_missing / len(df) * 100:.1f}%)")
 
 # Save enhanced data
 df.to_csv('openalex_data_with_orcid.csv', index=False)
-print(f"\n✓ Saved: openalex_data_with_orcid.csv")
+print("\nSaved: openalex_data_with_orcid.csv")
 
 # ============================================================================
 # ORCID COVERAGE ANALYSIS
@@ -99,14 +102,14 @@ print("=" * 80)
 
 # Overall coverage
 has_orcid = df['orcid'].notna()
-print(f"\nOverall ORCID coverage: {has_orcid.sum()}/{len(df)} ({has_orcid.sum()/len(df)*100:.1f}%)")
+print(f"\nOverall ORCID coverage: {has_orcid.sum()}/{len(df)} ({has_orcid.sum() / len(df) * 100:.1f}%)")
 
 # By field type
 print("\nORCID coverage by field type:")
 for field_type in df['field_type'].unique():
     field_df = df[df['field_type'] == field_type]
     field_orcid = field_df['orcid'].notna().sum()
-    print(f"  {field_type}: {field_orcid}/{len(field_df)} ({field_orcid/len(field_df)*100:.1f}%)")
+    print(f"  {field_type}: {field_orcid}/{len(field_df)} ({field_orcid / len(field_df) * 100:.1f}%)")
 
 # By region
 if 'region' in df.columns:
@@ -114,7 +117,7 @@ if 'region' in df.columns:
     for region in df['region'].dropna().unique():
         region_df = df[df['region'] == region]
         region_orcid = region_df['orcid'].notna().sum()
-        print(f"  {region}: {region_orcid}/{len(region_df)} ({region_orcid/len(region_df)*100:.1f}%)")
+        print(f"  {region}: {region_orcid}/{len(region_df)} ({region_orcid / len(region_df) * 100:.1f}%)")
 
 # ============================================================================
 # SUBSET ANALYSIS: ORCID-VERIFIED MATCHES ONLY
@@ -129,9 +132,11 @@ print(f"\nAnalyzing {len(orcid_subset)} researchers with ORCID (high-confidence 
 
 # Coverage statistics
 print("\nScopus coverage statistics (ORCID subset):")
-print(f"  Median: {orcid_subset['coverage_ratio'].median()*100:.1f}%")
-print(f"  Mean: {orcid_subset['coverage_ratio'].mean()*100:.1f}%")
-print(f"  IQR: {orcid_subset['coverage_ratio'].quantile(0.25)*100:.1f}% - {orcid_subset['coverage_ratio'].quantile(0.75)*100:.1f}%")
+print(f"  Median: {orcid_subset['coverage_ratio'].median() * 100:.1f}%")
+print(f"  Mean: {orcid_subset['coverage_ratio'].mean() * 100:.1f}%")
+iqr_low = orcid_subset['coverage_ratio'].quantile(0.25) * 100
+iqr_high = orcid_subset['coverage_ratio'].quantile(0.75) * 100
+print(f"  IQR: {iqr_low:.1f}% - {iqr_high:.1f}%")
 
 # Elsevier bias in ORCID subset
 print("\nElsevier bias analysis (ORCID subset):")
@@ -144,11 +149,10 @@ low_cov = low_elsevier['coverage_ratio'].median() * 100
 diff = high_cov - low_cov
 
 print(f"  High Elsevier (>{elsevier_median:.1f}%): {high_cov:.1f}% median coverage")
-print(f"  Low Elsevier (≤{elsevier_median:.1f}%): {low_cov:.1f}% median coverage")
+print(f"  Low Elsevier (<={elsevier_median:.1f}%): {low_cov:.1f}% median coverage")
 print(f"  Difference: {diff:.1f} percentage points")
 
 # Statistical test
-from scipy import stats
 u_stat, p_val = stats.mannwhitneyu(
     high_elsevier['coverage_ratio'].dropna(),
     low_elsevier['coverage_ratio'].dropna()
@@ -156,13 +160,12 @@ u_stat, p_val = stats.mannwhitneyu(
 print(f"  Mann-Whitney U test: p={p_val:.4f}")
 
 if p_val < 0.001:
-    print(f"  ✓ HIGHLY SIGNIFICANT: Elsevier bias persists in ORCID-verified subset")
+    print("  HIGHLY SIGNIFICANT: Elsevier bias persists in ORCID-verified subset")
 else:
-    print(f"  ✗ Not significant in ORCID subset")
+    print("  Not significant in ORCID subset")
 
 # Book bias in ORCID subset
 print("\nBook bias analysis (ORCID subset):")
-from scipy.stats import spearmanr
 # Need to align the arrays - drop NA from both in same rows
 valid_mask = orcid_subset['books_pct'].notna() & orcid_subset['coverage_ratio'].notna()
 books_valid = orcid_subset.loc[valid_mask, 'books_pct']
@@ -171,9 +174,9 @@ corr, p_val = spearmanr(books_valid, coverage_valid)
 print(f"  Correlation (books_pct vs coverage): r={corr:.3f}, p={p_val:.4f}")
 
 if p_val < 0.001:
-    print(f"  ✓ HIGHLY SIGNIFICANT: Book bias persists in ORCID-verified subset")
+    print("  HIGHLY SIGNIFICANT: Book bias persists in ORCID-verified subset")
 else:
-    print(f"  ✗ Not significant in ORCID subset")
+    print("  Not significant in ORCID subset")
 
 # Field type differences
 print("\nField type differences (ORCID subset):")
@@ -197,6 +200,10 @@ all_books_valid = df.loc[all_valid_mask, 'books_pct']
 all_coverage_valid = df.loc[all_valid_mask, 'coverage_ratio']
 all_corr = spearmanr(all_books_valid, all_coverage_valid)[0]
 
+_high_els_median = df[df['elsevier_pct'] > df['elsevier_pct'].median()]['coverage_ratio'].median()
+_low_els_median = df[df['elsevier_pct'] <= df['elsevier_pct'].median()]['coverage_ratio'].median()
+_elsevier_bias_all_pp = (_high_els_median - _low_els_median) * 100
+
 comparison = {
     'Dataset': ['All matches', 'ORCID-verified only'],
     'N': [len(df), len(orcid_subset)],
@@ -205,8 +212,7 @@ comparison = {
         orcid_subset['coverage_ratio'].median() * 100
     ],
     'Elsevier bias (pp)': [
-        (df[df['elsevier_pct'] > df['elsevier_pct'].median()]['coverage_ratio'].median() -
-         df[df['elsevier_pct'] <= df['elsevier_pct'].median()]['coverage_ratio'].median()) * 100,
+        _elsevier_bias_all_pp,
         diff
     ],
     'Book correlation': [
@@ -223,7 +229,8 @@ print("KEY FINDINGS")
 print("=" * 80)
 
 print(f"""
-1. ORCID coverage: {has_orcid.sum()}/{len(df)} ({has_orcid.sum()/len(df)*100:.1f}%) of matched researchers have ORCID
+1. ORCID coverage: {has_orcid.sum()}/{len(df)} ({has_orcid.sum() / len(df) * 100:.1f}%)
+   of matched researchers have ORCID
    - This represents HIGH-CONFIDENCE matches (unique identifier)
    - Provides subset for sensitivity analysis
 
@@ -249,9 +256,9 @@ print(f"""
 # Save summary statistics
 summary = {
     'total_matched': len(df),
-    'with_orcid': has_orcid.sum(),
-    'orcid_percentage': has_orcid.sum()/len(df)*100,
-    'orcid_subset_median_coverage': orcid_subset['coverage_ratio'].median()*100,
+    'with_orcid': int(has_orcid.sum()),
+    'orcid_percentage': has_orcid.sum() / len(df) * 100,
+    'orcid_subset_median_coverage': orcid_subset['coverage_ratio'].median() * 100,
     'orcid_subset_elsevier_bias_pp': diff,
     'orcid_subset_elsevier_p_value': p_val,
     'orcid_subset_book_correlation': corr,
@@ -260,7 +267,7 @@ summary = {
 with open('orcid_validation_summary.json', 'w') as f:
     json.dump(summary, f, indent=2)
 
-print("\n✓ Saved: orcid_validation_summary.json")
+print("\nSaved: orcid_validation_summary.json")
 
 print("\n" + "=" * 80)
 print("COMPLETE")

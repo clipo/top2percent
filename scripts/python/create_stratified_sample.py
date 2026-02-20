@@ -10,11 +10,12 @@ Sample designed for publication in Nature/Science or Scientometrics.
 """
 
 import pandas as pd
-import numpy as np
-from pathlib import Path
 
 # Dataset path
-DATASET_PATH = "August 2025 data-update for Updated science-wide a/Table_1_Authors_career_2024_pubs_since_1788_wopp_extracted_202508.xlsx"
+DATASET_PATH = (
+    "August 2025 data-update for Updated science-wide a/"
+    "Table_1_Authors_career_2024_pubs_since_1788_wopp_extracted_202508.xlsx"
+)
 
 # Field classifications based on publication norms
 FIELD_CLASSIFICATIONS = {
@@ -55,13 +56,13 @@ def load_dataset():
     """Load the full career-long author dataset."""
     print(f"Loading dataset from: {DATASET_PATH}")
     df = pd.read_excel(DATASET_PATH, sheet_name='Data')
-    print(f"✓ Loaded {len(df):,} researchers")
+    print(f"Loaded {len(df):,} researchers")
     return df
 
 
 def identify_anomalies(field_df):
     """
-    Identify researchers who are in global top 2% but outside field's top 2%.
+    Identify researchers in global top 2% but outside field's top 2%.
 
     These are the "impossible" researchers who suggest systematic bias.
     """
@@ -85,7 +86,7 @@ def sample_from_field(field_df, field_name, n_per_group=6):
     samples = []
 
     if len(field_df) == 0:
-        print(f"  ⚠️  No data for {field_name}")
+        print(f"  WARNING: No data for {field_name}")
         return pd.DataFrame()
 
     field_df = field_df.sort_values('rank sm-subfield-1')
@@ -118,9 +119,9 @@ def sample_from_field(field_df, field_name, n_per_group=6):
         sample_anomalies = anomalies.sample(n_sample, random_state=42)
         sample_anomalies['sample_stratum'] = 'anomaly'
         samples.append(sample_anomalies)
-        print(f"  Anomalies: sampled {n_sample} from {len(anomalies)} ⚠️")
+        print(f"  Anomalies: sampled {n_sample} from {len(anomalies)} WARNING")
     else:
-        print(f"  Anomalies: none found ✓")
+        print("  Anomalies: none found")
 
     if samples:
         result = pd.concat(samples, ignore_index=False)
@@ -144,9 +145,9 @@ def create_stratified_sample(df, n_per_group=6):
     all_samples = []
 
     for field_type, fields in FIELD_CLASSIFICATIONS.items():
-        print(f"\n{'='*80}")
+        print("\n" + "=" * 80)
         print(f"FIELD TYPE: {field_type.upper()}")
-        print(f"{'='*80}")
+        print("=" * 80)
 
         for field in fields:
             field_df = df[df['sm-subfield-1'] == field].copy()
@@ -169,9 +170,7 @@ def create_stratified_sample(df, n_per_group=6):
 
 
 def add_metadata(sample_df):
-    """
-    Add useful metadata for the study.
-    """
+    """Add useful metadata for the study."""
     sample_df['sample_id'] = range(1, len(sample_df) + 1)
 
     # Extract country if available
@@ -195,9 +194,7 @@ def add_metadata(sample_df):
 
 
 def save_sample(sample_df, output_file='comprehensive_sample.csv'):
-    """
-    Save the sample with clear documentation.
-    """
+    """Save the sample with clear documentation."""
     # Select relevant columns for the study
     columns_to_keep = [
         'sample_id',
@@ -220,58 +217,56 @@ def save_sample(sample_df, output_file='comprehensive_sample.csv'):
     output_df = sample_df[columns_to_keep].copy()
     output_df.to_csv(output_file, index=False)
 
-    print(f"\n{'='*80}")
+    print("\n" + "=" * 80)
     print(f"Sample saved to: {output_file}")
-    print(f"{'='*80}")
+    print("=" * 80)
 
     return output_file
 
 
 def print_sample_summary(sample_df):
-    """
-    Print detailed summary of the sample composition.
-    """
-    print(f"\n{'='*80}")
-    print(f"SAMPLE SUMMARY")
-    print(f"{'='*80}")
+    """Print detailed summary of the sample composition."""
+    print("\n" + "=" * 80)
+    print("SAMPLE SUMMARY")
+    print("=" * 80)
 
     print(f"\nTotal sample size: {len(sample_df)} researchers")
 
     # By field type
-    print(f"\n--- By Field Type ---")
+    print("\n--- By Field Type ---")
     field_type_counts = sample_df['field_type'].value_counts()
     for field_type, count in field_type_counts.items():
         pct = count / len(sample_df) * 100
         print(f"  {field_type:20s}: {count:3d} ({pct:5.1f}%)")
 
     # By stratum
-    print(f"\n--- By Sampling Stratum ---")
+    print("\n--- By Sampling Stratum ---")
     stratum_counts = sample_df['sample_stratum'].value_counts()
     for stratum, count in stratum_counts.items():
         pct = count / len(sample_df) * 100
         print(f"  {stratum:20s}: {count:3d} ({pct:5.1f}%)")
 
     # By specific field
-    print(f"\n--- By Specific Field (top 10) ---")
+    print("\n--- By Specific Field (top 10) ---")
     field_counts = sample_df['sm-subfield-1'].value_counts().head(10)
     for field, count in field_counts.items():
         print(f"  {field:40s}: {count:2d}")
 
     # Geographic distribution
     if 'country' in sample_df.columns:
-        print(f"\n--- By Country (top 10) ---")
+        print("\n--- By Country (top 10) ---")
         country_counts = sample_df['country'].value_counts().head(10)
         for country, count in country_counts.items():
             print(f"  {country:20s}: {count:3d}")
 
     # Metrics summary
-    print(f"\n--- Scopus Metrics (Median) ---")
+    print("\n--- Scopus Metrics (Median) ---")
     print(f"  Publications:  {sample_df['scopus_pubs'].median():.0f}")
     print(f"  Citations:     {sample_df['scopus_citations'].median():.0f}")
     print(f"  h-index:       {sample_df['scopus_h_index'].median():.0f}")
 
     # By field type
-    print(f"\n--- Median Metrics by Field Type ---")
+    print("\n--- Median Metrics by Field Type ---")
     for field_type in ['book_heavy', 'mixed', 'journal_heavy']:
         subset = sample_df[sample_df['field_type'] == field_type]
         if len(subset) > 0:
@@ -281,39 +276,38 @@ def print_sample_summary(sample_df):
             print(f"    h-index:       {subset['scopus_h_index'].median():.0f}")
 
     # Statistical power note
-    print(f"\n{'='*80}")
-    print(f"STATISTICAL POWER")
-    print(f"{'='*80}")
-    print(f"\nWith n={len(sample_df)}, assuming equal group sizes:")
-    print(f"  - Can detect correlations r > 0.20 (80% power, α=0.05)")
-    print(f"  - Can detect group differences d > 0.40 (medium effect)")
-    print(f"  - Adequate for multivariate regression with ~5 predictors")
-    print(f"\n✓ Sample size is sufficient for publication-quality analysis")
+    print("\n" + "=" * 80)
+    print("STATISTICAL POWER")
+    print("=" * 80)
+    n = len(sample_df)
+    print(f"\nWith n={n}, assuming equal group sizes:")
+    print("  - Can detect correlations r > 0.20 (80% power, alpha=0.05)")
+    print("  - Can detect group differences d > 0.40 (medium effect)")
+    print("  - Adequate for multivariate regression with ~5 predictors")
+    print("\nSample size is sufficient for publication-quality analysis")
 
 
 def main():
-    """
-    Main execution: Create comprehensive stratified sample.
-    """
-    print("="*80)
+    """Create comprehensive stratified sample for publisher bias study."""
+    print("=" * 80)
     print("COMPREHENSIVE STRATIFIED SAMPLE CREATION")
     print("Publisher Bias Study - Publication-Ready Design")
-    print("="*80)
+    print("=" * 80)
 
     # Load dataset
     df = load_dataset()
 
     # Create sample
-    print(f"\nCreating stratified sample...")
-    print(f"  - 3 field types (book-heavy, mixed, journal-heavy)")
-    print(f"  - 3 strata per field (top, bottom, anomaly)")
-    print(f"  - 6 researchers per stratum (target)")
-    print(f"  - Expected total: ~150-200 researchers")
+    print("\nCreating stratified sample...")
+    print("  - 3 field types (book-heavy, mixed, journal-heavy)")
+    print("  - 3 strata per field (top, bottom, anomaly)")
+    print("  - 6 researchers per stratum (target)")
+    print("  - Expected total: ~150-200 researchers")
 
     sample_df = create_stratified_sample(df, n_per_group=6)
 
     if len(sample_df) == 0:
-        print("\n❌ Failed to create sample!")
+        print("\nFailed to create sample!")
         return
 
     # Add metadata
@@ -323,11 +317,11 @@ def main():
     print_sample_summary(sample_df)
 
     # Save
-    output_file = save_sample(sample_df, 'comprehensive_sample.csv')
+    save_sample(sample_df, 'comprehensive_sample.csv')
 
     # Save a detailed version with all columns for reference
     sample_df.to_csv('comprehensive_sample_full.csv', index=False)
-    print(f"Full data saved to: comprehensive_sample_full.csv")
+    print("Full data saved to: comprehensive_sample_full.csv")
 
     # Create a research log
     with open('SAMPLE_CREATION_LOG.md', 'w') as f:
@@ -361,13 +355,14 @@ def main():
         f.write("4. Generate figures: `Rscript create_figures.R`\n")
         f.write("5. Write manuscript: See `PUBLICATION_ROADMAP.md`\n")
 
-    print(f"\nResearch log saved to: SAMPLE_CREATION_LOG.md")
+    print("Research log saved to: SAMPLE_CREATION_LOG.md")
 
-    print(f"\n{'='*80}")
-    print("✓ SAMPLE CREATION COMPLETE")
-    print(f"{'='*80}")
+    print("\n" + "=" * 80)
+    print("SAMPLE CREATION COMPLETE")
+    print("=" * 80)
     print(f"\nNext step: Fetch OpenAlex data for all {len(sample_df)} researchers")
-    print(f"Estimated time: {len(sample_df) * 2 / 60:.1f} minutes (with API delays)")
+    est_time = len(sample_df) * 2 / 60
+    print(f"Estimated time: {est_time:.1f} minutes (with API delays)")
 
 
 if __name__ == "__main__":

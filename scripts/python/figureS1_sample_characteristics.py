@@ -44,7 +44,8 @@ for i, v in enumerate(field_counts.values):
 # Get top 10 countries
 country_counts = df['country'].value_counts().head(10)
 
-ax2.barh(range(len(country_counts)), country_counts.values, color='#0072B2', alpha=0.8, edgecolor='black', linewidth=1.5)
+ax2.barh(range(len(country_counts)), country_counts.values,
+         color='#0072B2', alpha=0.8, edgecolor='black', linewidth=1.5)
 ax2.set_yticks(range(len(country_counts)))
 ax2.set_yticklabels(country_counts.index, fontsize=10)
 ax2.set_xlabel('Number of Researchers', fontsize=12, fontweight='bold')
@@ -65,7 +66,7 @@ plt.savefig(pdf_path, bbox_inches='tight')
 print(f"✓ Figure S1 saved: {output_path}")
 
 # Print summary statistics
-print(f"\nSample Summary:")
+print("\nSample Summary:")
 print(f"  Total: {len(df)} researchers")
 print(f"  Field distribution: {dict(field_counts)}")
 print(f"  Countries represented: {df['country'].nunique()}")

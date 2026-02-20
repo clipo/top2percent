@@ -5,13 +5,14 @@ This will take approximately 3-4 hours (550 researchers × ~25 seconds each)
 Progress will be saved incrementally so we can resume if interrupted.
 """
 import pandas as pd
-import numpy as np
 import requests
 import time
 import json
 from pathlib import Path
 
+
 def calculate_h_index(citations_list):
+    """Calculate the h-index from a list of citation counts."""
     if not citations_list or len(citations_list) == 0:
         return 0
     sorted_cites = sorted(citations_list, reverse=True)
@@ -23,7 +24,9 @@ def calculate_h_index(citations_list):
             break
     return h
 
+
 def calculate_hm_index(citations_list, num_authors_list):
+    """Calculate the hm-index (authorship-adjusted h-index) from citation and author counts."""
     if not citations_list or len(citations_list) == 0:
         return 0
     adjusted_cites = []
@@ -33,6 +36,7 @@ def calculate_hm_index(citations_list, num_authors_list):
         else:
             adjusted_cites.append(0)
     return calculate_h_index(adjusted_cites)
+
 
 def fetch_author_metrics(openalex_id, max_works=200):
     """Fetch metrics for one author"""
@@ -110,25 +114,26 @@ def fetch_author_metrics(openalex_id, max_works=200):
             'n_works': len(works)
         }
 
-    except Exception as e:
+    except Exception:
         return None
+
 
 # Output files
 OUTPUT_FILE = 'researcher_metrics_all_550.csv'
 PROGRESS_FILE = 'fetch_progress.json'
 LOG_FILE = 'fetch_all_550.log'
 
-print("="*80)
+print("=" * 80)
 print("FETCHING METRICS FOR ALL 550 MATCHED RESEARCHERS")
-print("="*80)
-print(f"\nEstimated time: 3-4 hours")
+print("=" * 80)
+print("\nEstimated time: 3-4 hours")
 print(f"Progress saved to: {PROGRESS_FILE}")
 print(f"Results saved to: {OUTPUT_FILE}")
 print(f"Log saved to: {LOG_FILE}")
 
 # Load data
 df = pd.read_csv('reproducibility_package/data/openalex_comprehensive_data.csv')
-df_matched = df[df['openalex_found'] == True].copy()
+df_matched = df[df['openalex_found']].copy()
 
 print(f"\nTotal researchers to process: {len(df_matched)}")
 
@@ -137,7 +142,7 @@ existing_data = []
 processed_ids = set()
 
 if Path(OUTPUT_FILE).exists():
-    print(f"\n✓ Found existing results file")
+    print("\n✓ Found existing results file")
     existing_df = pd.read_csv(OUTPUT_FILE)
     existing_data = existing_df.to_dict('records')
     processed_ids = set(existing_df['openalex_id'].values)
@@ -175,7 +180,7 @@ for idx, (_, row) in enumerate(df_matched.iterrows()):
         progress_pct = idx / len(df_matched) * 100
 
         print(f"\n[{time.strftime('%H:%M:%S')}] Progress: {idx}/{len(df_matched)} ({progress_pct:.1f}%)")
-        print(f"  Elapsed: {elapsed/60:.1f} min | ETA: {remaining/60:.1f} min")
+        print(f"  Elapsed: {elapsed / 60:.1f} min | ETA: {remaining / 60:.1f} min")
         print(f"  Success: {success_count} | Failed: {fail_count}")
 
         # Save progress
@@ -222,11 +227,11 @@ for idx, (_, row) in enumerate(df_matched.iterrows()):
 # Final save
 elapsed = time.time() - start_time
 
-print(f"\n{'='*80}")
+print(f"\n{'=' * 80}")
 print("COMPLETE")
-print("="*80)
-print(f"\nTotal time: {elapsed/3600:.2f} hours ({elapsed/60:.1f} minutes)")
-print(f"Successfully fetched: {success_count}/{len(df_matched)} ({success_count/len(df_matched)*100:.1f}%)")
+print("=" * 80)
+print(f"\nTotal time: {elapsed / 3600:.2f} hours ({elapsed / 60:.1f} minutes)")
+print(f"Successfully fetched: {success_count}/{len(df_matched)} ({success_count / len(df_matched) * 100:.1f}%)")
 print(f"Failed: {fail_count}")
 
 if existing_data:
@@ -235,7 +240,7 @@ if existing_data:
     print(f"\n✓ Final results saved to: {OUTPUT_FILE}")
 
     # Summary statistics
-    print(f"\nSummary statistics:")
+    print("\nSummary statistics:")
     print(final_df[['nc', 'h', 'hm', 'ncs', 'ncsf', 'ncsfl']].describe())
 else:
     print("\n✗ No metrics fetched")
@@ -248,6 +253,6 @@ print(f"\n✓ Log saved to: {LOG_FILE}")
 # Clean up progress file
 if Path(PROGRESS_FILE).exists():
     Path(PROGRESS_FILE).unlink()
-    print(f"✓ Cleaned up progress file")
+    print("✓ Cleaned up progress file")
 
-print(f"\nReady for composite score calculation!")
+print("\nReady for composite score calculation!")

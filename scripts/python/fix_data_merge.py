@@ -18,7 +18,9 @@ import pandas as pd
 import sys
 from pathlib import Path
 
+
 def main():
+    """Fix data merge issues to recover researchers with coverage data."""
     # Paths
     data_dir = Path(__file__).parent.parent.parent / 'data'
     comp_path = data_dir / 'openalex_comprehensive_data.csv'
@@ -77,9 +79,10 @@ def main():
     # Verify institution match (sanity check)
     inst_mismatch = 0
     if 'institution' in merged.columns and 'institution_sample' in merged.columns:
-        inst_match = ((merged['institution'].isna()) |
-                      (merged['institution_sample'].isna()) |
-                      (merged['institution'] == merged['institution_sample']))
+        inst_na = merged['institution'].isna()
+        sample_na = merged['institution_sample'].isna()
+        inst_eq = merged['institution'] == merged['institution_sample']
+        inst_match = inst_na | sample_na | inst_eq
         inst_mismatch = (~inst_match).sum()
 
     if inst_mismatch > 0:
@@ -114,9 +117,9 @@ def main():
     print("\n--- Step 4: Recalculating coverage_ratio ---")
 
     # Coverage = scopus_pubs / total_works (capped at 1.0)
-    valid_mask = (merged['scopus_pubs'].notna() &
-                  merged['total_works'].notna() &
-                  (merged['total_works'] > 0))
+    has_scopus = merged['scopus_pubs'].notna()
+    has_works = merged['total_works'].notna() & (merged['total_works'] > 0)
+    valid_mask = has_scopus & has_works
 
     merged.loc[valid_mask, 'coverage_ratio'] = (
         merged.loc[valid_mask, 'scopus_pubs'] / merged.loc[valid_mask, 'total_works']
@@ -157,7 +160,7 @@ def main():
 
     # Coverage statistics
     coverage_stats = merged['coverage_ratio'].describe()
-    print(f"\nCoverage ratio statistics:")
+    print("\nCoverage ratio statistics:")
     print(f"  Mean: {coverage_stats['mean']:.3f}")
     print(f"  Median: {coverage_stats['50%']:.3f}")
     print(f"  Std: {coverage_stats['std']:.3f}")
@@ -176,6 +179,7 @@ def main():
 
     print("\nDone!")
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())
