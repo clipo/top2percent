@@ -40,7 +40,8 @@ required_packages <- list(
   tidyverse = "2.0.0",
   ggdist = "3.3.0",
   patchwork = "1.1.0",
-  betareg = "3.1.0"
+  betareg = "3.1.0",
+  broom = "1.0.0"
 )
 
 # Function to check and install packages
