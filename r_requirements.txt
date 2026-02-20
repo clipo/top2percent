@@ -17,6 +17,7 @@ tidyverse
 ggdist
 ggrepel
 scales
+patchwork
 
 # Base analysis (from original frequentist package)
 ggplot2
@@ -25,3 +26,4 @@ tidyr
 readr
 broom
 ggpubr
+betareg
