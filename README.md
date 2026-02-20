@@ -25,7 +25,7 @@ This will:
 1. Check system requirements (Python 3.12+, R 4.3+)
 2. Install all dependencies
 3. Run all analyses (frequentist + optionally Bayesian)
-4. Generate all figures (6 main + 7 supplementary + Bayesian diagnostics)
+4. Generate all figures (6 main + 13 supplementary + Bayesian diagnostics)
 
 **Estimated time**: ~5-10 minutes (without Bayesian); ~1-2 hours (with full Bayesian)
 
@@ -55,10 +55,15 @@ This will:
 
 ### Ranking Instability
 
-- **Correlation**: Spearman ρ = 0.567 (Scopus vs OpenAlex rankings using same formula)
-- **Median shift**: 143,277 positions when using complete data
-- **Maximum shift**: 1.2 million positions (Ernst Gombrich, art history)
+- **Correlation**: Spearman ρ = 0.695 (Scopus vs OpenAlex rankings using same formula, n=538)
+- **Median shift**: 142,276 positions when using complete data
+- **Maximum shift**: 1,210,020 positions (Ernst Gombrich, art history)
 - **Implication**: Same formula, different data → dramatically different rankings
+
+### University Adoption
+
+- **123 universities** across **32 countries** (2022-2025) use the rankings in official communications
+- No evidence of declining adoption despite scholarly criticism
 
 ---
 
@@ -67,7 +72,10 @@ This will:
 ```
 top2percent/
 ├── README.md                      # This file
+├── LICENSE                        # CC0 1.0 Universal
 ├── REPRODUCE_ALL.sh               # Master reproduction script
+├── ANALYSIS_SUMMARY.txt           # Statistical results summary
+├── analysis_results.json          # Machine-readable results
 ├── requirements.txt               # Python dependencies
 ├── r_requirements.txt             # R dependencies (including Bayesian)
 ├── install_r_dependencies.R       # R package installer
@@ -85,76 +93,84 @@ top2percent/
 │   ├── scopus_vs_openalex_rankings.csv       # Ranking comparison
 │   ├── award_winners_case_studies.csv        # Nobel/Pulitzer cases
 │   ├── citation_quality_*.csv                # Journal impact controls
-│   ├── university_adoption/                  # Institutional adoption data
+│   ├── university_adoption/                  # 123 universities, 32 countries
 │   └── robustness_analysis/                  # 5-replicate robustness data
 │
 ├── scripts/                       # Analysis scripts
 │   ├── python/                    # Python scripts
-│   │   ├── create_stratified_sample.py        # Step 1: Create sample from Ioannidis data
+│   │   ├── create_stratified_sample.py        # Step 1: Create sample
 │   │   ├── fetch_openalex_comprehensive.py    # Step 2: Fetch OpenAlex data
-│   │   ├── create_replicate_samples.py        # Step 3: Create robustness replicates
-│   │   ├── match_replicates_to_openalex.py    # Step 4: Match replicates to OpenAlex
-│   │   ├── figure_4_university_adoption.py    # Figure generation
-│   │   ├── create_manuscript_visualizations.py
-│   │   ├── figureS1-S6*.py                    # Supplementary figure scripts
+│   │   ├── create_replicate_samples.py        # Step 3: Create replicates
+│   │   ├── match_replicates_to_openalex.py    # Step 4: Match replicates
+│   │   ├── fix_data_merge.py                  # Fix Scopus data recovery
+│   │   ├── comprehensive_statistical_analysis.py
+│   │   ├── figure_4_university_adoption.py    # Figure 1
+│   │   ├── create_manuscript_visualizations.py # Figure 5
+│   │   ├── figureS1_sample_characteristics.py # Figure S1
+│   │   ├── figureS2_coverage_distribution.py  # Figure S2
+│   │   ├── figureS3_publisher_breakdown.py    # Figure S3
+│   │   ├── figureS4_regression_diagnostics.py # Figure S4 (OLS diagnostics)
+│   │   ├── figureS5_oa_analysis.py            # Figure S4 (OA analysis)
+│   │   ├── figureS6_extreme_cases.py          # Figure S6
 │   │   └── ...
+│   ├── data_collection/           # Data collection scripts
+│   │   ├── create_stratified_sample.py
+│   │   └── fetch_openalex_comprehensive.py
 │   └── R/                         # R scripts
-│       ├── figures_1_2_3_coverage_analysis.R
-│       └── bayesian/              # Bayesian analysis (10 scripts)
-│           ├── run_all.R          # Master Bayesian script
+│       ├── figures_1_2_3_coverage_analysis.R   # Figures 2, 3, 4
+│       └── bayesian/              # Bayesian analysis pipeline
+│           ├── run_all.R          # Master script
+│           ├── 00_install_deps.R
 │           ├── 01_data_preparation.R
 │           ├── 02_main_regression_model.R
 │           ├── 03_hierarchical_field_model.R
 │           ├── 04_hypothesis_tests.R
 │           ├── 05_model_comparison.R
-│           ├── 06_posterior_visualization.R
-│           ├── 07_frequentist_comparison.R
-│           ├── 08_run_all_replicates.R
-│           └── 09_manuscript_tables.R
+│           ├── 06_posterior_visualization.R   # Figure 6, Figures S8-S9
+│           ├── 07_frequentist_comparison.R    # Figure S11
+│           ├── 08_run_all_replicates.R        # Figure S13
+│           └── 09_manuscript_tables.R         # Tables B1-B5
 │
-├── figures/                       # All figures
-│   ├── main/                      # Main manuscript figures (1-5)
+├── figures/                       # All generated figures
+│   ├── main/                      # Main manuscript figures (1-6)
 │   │   ├── Figure1_University_Adoption.png/.pdf
 │   │   ├── Figure2_Coverage_by_Field.png/.pdf
 │   │   ├── Figure3_Elsevier_vs_Coverage.png/.pdf
 │   │   ├── Figure4_Books_vs_Coverage.png/.pdf
-│   │   └── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
-│   ├── supplementary/             # Supplementary figures (S1-S7)
-│   │   ├── FigureS1_Sample_Characteristics.png/.pdf
+│   │   ├── Figure5_Scopus_vs_OpenAlex_Rankings.png/.pdf
+│   │   └── Figure6_Bayesian_Hypothesis_Tests.png/.pdf
+│   ├── supplementary/             # SI Appendix figures (S1-S13)
+│   │   ├── FigureS1_Sample_Characteristics.png
 │   │   ├── FigureS2_Coverage_Distribution.png
 │   │   ├── FigureS3_Publisher_Breakdown.png
 │   │   ├── FigureS4_OA_Analysis.png
 │   │   ├── FigureS5_Regression_Diagnostics.png
 │   │   ├── FigureS6_Extreme_Cases.png
-│   │   └── FigureS7_Ranking_Changes_Distribution.png/.pdf
-│   └── bayesian/                  # Bayesian analysis figures
-│       ├── key_hypotheses.png/.pdf           # Figure 6 in manuscript
+│   │   ├── FigureS7_Ranking_Changes_Distribution.png
+│   │   ├── FigureS8_Elsevier_Posterior.png
+│   │   ├── FigureS9_Field_Type_Posteriors.png
+│   │   ├── FigureS10_MCMC_Diagnostics.png
+│   │   ├── FigureS11_Bayesian_vs_Frequentist.png
+│   │   ├── FigureS12_Prior_Sensitivity.png
+│   │   └── FigureS13_Replicate_Robustness.png
+│   └── bayesian/                  # Bayesian diagnostic figures
+│       ├── key_hypotheses.png/.pdf
 │       ├── Figure_B1_posterior_distributions.png/.pdf
 │       ├── Figure_B2_hierarchical_effects.png/.pdf
-│       ├── Figure_B3_pp_checks.pdf
 │       ├── Figure_B4_bayesian_vs_frequentist.png/.pdf
-│       ├── trace_plots.pdf                   # MCMC diagnostics
-│       ├── rhat_diagnostic.png/.pdf          # Convergence
-│       ├── ess_diagnostic.png/.pdf           # Effective sample size
-│       └── replicate_posteriors.png/.pdf     # Robustness
+│       ├── rhat_diagnostic.png/.pdf
+│       ├── ess_diagnostic.png/.pdf
+│       └── replicate_posteriors.png/.pdf
 │
 ├── results/                       # Analysis results
 │   └── bayesian/
 │       ├── manuscript_tables/     # Tables B1-B5 (CSV)
-│       │   ├── Table_B1_Main_Results.csv
-│       │   ├── Table_B2_Frequentist_Comparison.csv
-│       │   ├── Table_B3_Field_Effects.csv
-│       │   ├── Table_B4_Prior_Sensitivity.csv
-│       │   └── Table_B5_Replicate_Robustness.csv
-│       └── model_summaries/       # Detailed model output
+│       └── model_summaries/       # Detailed model output (10 CSVs)
 │
-├── tables/                        # Generated tables (CSV)
-│   ├── Table1_Summary.csv
-│   ├── table_summary_statistics.csv
-│   └── extreme_ranking_improvements.csv
-│
-└── docs/                          # Documentation
-    └── SCRIPT_INDEX.md            # Detailed script documentation
+└── tables/                        # Summary tables (CSV)
+    ├── Table1_Summary.csv
+    ├── table_summary_statistics.csv
+    └── extreme_ranking_improvements.csv
 ```
 
 ---
@@ -174,16 +190,7 @@ top2percent/
 pip install -r requirements.txt
 ```
 
-**Contents of requirements.txt**:
-```
-pandas>=2.0
-numpy>=1.24
-scipy>=1.11
-statsmodels>=0.14
-matplotlib>=3.7
-seaborn>=0.12
-requests>=2.31
-```
+Key packages: pandas, numpy, scipy, statsmodels, matplotlib, seaborn, requests, openpyxl
 
 ### R Packages (Base Analysis)
 
@@ -191,7 +198,7 @@ requests>=2.31
 Rscript install_r_dependencies.R
 ```
 
-**Key packages**: ggplot2, dplyr, tidyr, readr, scales, ggrepel
+Key packages: ggplot2, dplyr, tidyr, readr, scales, ggrepel
 
 ### R Packages (Bayesian Analysis)
 
@@ -232,28 +239,24 @@ The Ioannidis "top 2% scientists" dataset is included in the repository:
 #### Step 2: Create Stratified Sample
 
 ```bash
-cd scripts/python
-python create_stratified_sample.py
+python3 scripts/python/create_stratified_sample.py
 ```
 
-This creates `comprehensive_sample.csv` (600 researchers stratified by field type and ranking position).
+Creates `data/comprehensive_sample.csv` (600 researchers stratified by field type and ranking position).
 
 #### Step 3: Fetch OpenAlex Data
 
 ```bash
-python fetch_openalex_comprehensive.py
+python3 scripts/python/fetch_openalex_comprehensive.py
 ```
 
-This queries the OpenAlex API for each researcher (~3-4 hours) and creates `openalex_comprehensive_data.csv` with:
-- Publication counts by publisher (Elsevier, Wiley, Springer, etc.)
-- Publication types (books, articles, chapters)
-- Coverage ratios (Scopus vs OpenAlex)
+Queries the OpenAlex API for each researcher (~3-4 hours) and creates `data/openalex_comprehensive_data.csv`.
 
 #### Step 4: Create Replicate Samples (Optional)
 
 ```bash
-python create_replicate_samples.py
-python match_replicates_to_openalex.py
+python3 scripts/python/create_replicate_samples.py
+python3 scripts/python/match_replicates_to_openalex.py
 ```
 
 Creates 5 independent samples (n=400 each) for robustness analysis.
@@ -261,7 +264,6 @@ Creates 5 independent samples (n=400 each) for robustness analysis.
 #### Step 5: Run Analysis
 
 ```bash
-cd ../..
 ./REPRODUCE_ALL.sh
 ```
 
@@ -272,7 +274,7 @@ cd ../..
 #### Step 1: Verify Setup
 
 ```bash
-python -c "import pandas; import scipy; import matplotlib; print('Python OK')"
+python3 -c "import pandas; import scipy; import matplotlib; print('Python OK')"
 Rscript -e "library(ggplot2); library(dplyr); print('R OK')"
 ```
 
@@ -287,23 +289,19 @@ Generates: Figures 2, 3, 4 (coverage by field, Elsevier effect, book effect)
 #### Step 3: Generate Main Figures (Python)
 
 ```bash
-cd scripts/python
-python figure_4_university_adoption.py          # Figure 1
-python create_manuscript_visualizations.py      # Figure 5
-cd ../..
+python3 scripts/python/figure_4_university_adoption.py     # Figure 1
+python3 scripts/python/create_manuscript_visualizations.py  # Figure 5
 ```
 
 #### Step 4: Generate Supplementary Figures
 
 ```bash
-cd scripts/python
-python figureS1_sample_characteristics.py
-python figureS2_coverage_distribution.py
-python figureS3_publisher_breakdown.py
-python figureS4_regression_diagnostics.py
-python figureS5_oa_analysis.py
-python figureS6_extreme_cases.py
-cd ../..
+python3 scripts/python/figureS1_sample_characteristics.py
+python3 scripts/python/figureS2_coverage_distribution.py
+python3 scripts/python/figureS3_publisher_breakdown.py
+python3 scripts/python/figureS4_regression_diagnostics.py
+python3 scripts/python/figureS5_oa_analysis.py
+python3 scripts/python/figureS6_extreme_cases.py
 ```
 
 #### Step 5: Bayesian Analysis (Optional, ~1-2 hours)
@@ -316,9 +314,9 @@ Rscript run_all.R --quick   # Quick mode (~20 min, fewer iterations)
 ```
 
 Generates:
-- Figure 6 (key_hypotheses.png) - Bayesian hypothesis tests
-- Supplementary Figures S8-S13 (MCMC diagnostics, sensitivity)
-- Tables B1-B5 (manuscript_tables/)
+- Figure 6 (`key_hypotheses.png`) - Bayesian hypothesis tests
+- Supplementary Figures S8-S13 (posteriors, MCMC diagnostics, sensitivity, robustness)
+- Tables B1-B5 (`results/bayesian/manuscript_tables/`)
 
 ---
 
@@ -326,32 +324,32 @@ Generates:
 
 | Figure | Description | Script |
 |--------|-------------|--------|
-| **Figure 1** | University adoption of rankings (2022-2024) | `figure_4_university_adoption.py` |
+| **Figure 1** | University adoption of rankings (2022-2025) | `figure_4_university_adoption.py` |
 | **Figure 2** | Scopus coverage by field type (box plots) | `figures_1_2_3_coverage_analysis.R` |
-| **Figure 3** | Elsevier % vs coverage (scatterplot) | `figures_1_2_3_coverage_analysis.R` |
-| **Figure 4** | Book % vs coverage (scatterplot) | `figures_1_2_3_coverage_analysis.R` |
+| **Figure 3** | Elsevier % vs coverage ratio (scatterplot) | `figures_1_2_3_coverage_analysis.R` |
+| **Figure 4** | Book % vs coverage ratio (scatterplot) | `figures_1_2_3_coverage_analysis.R` |
 | **Figure 5** | Scopus vs OpenAlex ranking comparison | `create_manuscript_visualizations.py` |
-| **Figure 6** | Bayesian hypothesis tests (posteriors) | `06_posterior_visualization.R` |
+| **Figure 6** | Bayesian hypothesis tests (posteriors) | `bayesian/06_posterior_visualization.R` |
 
 ---
 
 ## Supplementary Figures
 
-| Figure | Description |
-|--------|-------------|
-| **S1** | Sample characteristics (field distribution, geography) |
-| **S2** | Coverage distribution histograms |
-| **S3** | Publisher breakdown by field type |
-| **S4** | Open access publisher analysis |
-| **S5** | Regression diagnostics |
-| **S6** | Extreme undercounting cases |
-| **S7** | Ranking changes distribution |
-| **S8** | Elsevier effect posterior (detailed) |
-| **S9** | Field type effect posteriors |
-| **S10** | MCMC diagnostics (trace plots, R-hat) |
-| **S11** | Bayesian vs frequentist comparison |
-| **S12** | Prior sensitivity analysis |
-| **S13** | Robustness across 5 independent replicates |
+| Figure | Description | Script |
+|--------|-------------|--------|
+| **S1** | Sample characteristics (field distribution, geography) | `figureS1_sample_characteristics.py` |
+| **S2** | Coverage distribution histograms | `figureS2_coverage_distribution.py` |
+| **S3** | Publisher breakdown by field type | `figureS3_publisher_breakdown.py` |
+| **S4** | Open access publisher analysis | `figureS5_oa_analysis.py` |
+| **S5** | Regression diagnostics (OLS) | `figureS4_regression_diagnostics.py` |
+| **S6** | Extreme undercounting cases | `figureS6_extreme_cases.py` |
+| **S7** | Ranking changes distribution | `create_manuscript_visualizations.py` |
+| **S8** | Posterior distributions for main effects | `bayesian/06_posterior_visualization.R` |
+| **S9** | Field-level random effects | `bayesian/06_posterior_visualization.R` |
+| **S10** | MCMC convergence diagnostics | `bayesian/06_posterior_visualization.R` |
+| **S11** | Bayesian vs frequentist comparison | `bayesian/07_frequentist_comparison.R` |
+| **S12** | Prior sensitivity analysis | `bayesian/06_posterior_visualization.R` |
+| **S13** | Robustness across 5 independent replicates | `bayesian/08_run_all_replicates.R` |
 
 ---
 
@@ -365,6 +363,20 @@ Generates:
 | `openalex_comprehensive_data.csv` | Matched to OpenAlex with valid coverage ratios | 564 |
 | `openalex_data_with_orcid.csv` | ORCID-verified subset for validation | 362 |
 | `scopus_vs_openalex_rankings.csv` | Ranking comparison using same formula | 541 |
+
+### University Adoption Data
+
+| File | Description |
+|------|-------------|
+| `university_adoption/university_adoption_data.csv` | Aggregated adoption metrics by year (2022-2025) |
+| `university_adoption/university_details.csv` | 123 individual university records across 32 countries |
+
+### Robustness Data
+
+| File | Description |
+|------|-------------|
+| `robustness_analysis/replicates/replicate_*_n400.csv` | 5 independent samples (n=400 each) |
+| `robustness_analysis/openalex_matched/replicate_*_openalex_data.csv` | OpenAlex-matched replicate data |
 
 ### Key Variables
 
@@ -390,10 +402,10 @@ coverage_ratio ~ elsevier_pct_z + books_pct_z + oa_pct_z + field_type
 ### MCMC Settings
 
 - **Chains**: 4
-- **Warmup**: 2,000 iterations
-- **Sampling**: 4,000 iterations per chain
-- **Total samples**: 16,000 post-warmup
-- **Priors**: Weakly informative Normal(0, 2.5)
+- **Warmup**: 1,000 iterations
+- **Sampling**: 3,000 iterations per chain
+- **Total samples**: 12,000 post-warmup
+- **Priors**: Weakly informative Normal(0, 1)
 
 ### Convergence Diagnostics
 
@@ -424,17 +436,17 @@ coverage_ratio ~ elsevier_pct_z + books_pct_z + oa_pct_z + field_type
 - **362 researchers (60.3%)** have unique ORCID identifiers
 - **359 with valid coverage data** used for verification
 - **Bias persists** in ORCID-verified subset:
-  - Elsevier effect: 26.4 pp (vs 30.6 pp full sample)
-  - Book bias: r = -0.503 (vs r = -0.534 full sample)
+  - Elsevier effect: 23.6 pp (vs 30.6 pp full sample)
+  - Book bias: ρ = -0.503 (vs ρ = -0.534 full sample)
   - Field-type gap: 32.3 pp (vs 43.6 pp full sample)
 - **Conclusion**: Findings not artifacts of name-matching errors
 
 ### Robustness Analysis
 
-- **5 independent replicate samples** (n=400 each)
-- **Total: 2,000 researchers** matched to OpenAlex
-- **All replicates significant** (p < 0.001)
-- **Effect size stability**: SD < 0.10 across replicates
+- **5 independent replicate samples** (n=400 each, unstratified)
+- **All replicates**: P(Direction) >= 99.98% for Elsevier effect
+- **Pooled Elsevier effect**: mean β = 0.169 (± 0.038 SD), range [0.129, 0.217]
+- **Conclusion**: Effects are robust and replicable
 
 ---
 
@@ -483,9 +495,9 @@ If you use this package, please cite:
 @article{lipo2026publisher,
   title={Publisher Bias in Widely-Used Scientist Rankings},
   author={Lipo, Carl P. and DiNapoli, Robert J. and Andrus, Benjamin},
-  journal={PNAS},
+  journal={Proceedings of the National Academy of Sciences},
   year={2026},
-  note={Submitted -- [DOI pending]}
+  note={Under review}
 }
 ```
 
@@ -514,7 +526,6 @@ And the source data:
 
 - **Code**: MIT License
 - **Data**: CC-BY 4.0
-- **Manuscript**: All rights reserved
 
 ---
 
@@ -526,6 +537,4 @@ Questions about reproducibility? Contact Carl Lipo (clipo@binghamton.edu)
 
 ---
 
-**Package created**: February 2026
-
-**Last updated**: February 4, 2026 (Version 4.1 - Clean Reproducibility Package)
+**Last updated**: February 20, 2026 (Version 5.0 - PNAS Submission)

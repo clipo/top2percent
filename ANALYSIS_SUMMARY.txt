@@ -1,21 +1,64 @@
-SCOPUS COVERAGE BIAS ANALYSIS - RESULTS SUMMARY
+PUBLISHER BIAS IN WIDELY-USED SCIENTIST RANKINGS - RESULTS SUMMARY
 ================================================================================
 
-Sample size                    564
-Median coverage ratio          45.3%
-Median Elsevier %              6.0%
-Median book %                  15.4%
-Median OA %                    0.0%
+Lipo, DiNapoli, Andrus (2026)
 
-H1 (Publisher bias)            DETECTED
-H1 correlation                 r = 0.477, p = 0.0000
-H1 effect size                 d = 1.025
+SAMPLE
+--------------------------------------------------------------------------------
+Total sample                   600 researchers (stratified random)
+Successfully matched           564 (to OpenAlex)
+ORCID-verified subset          362 (60.3%)
+Ranking replication sample     538
 
-H2 (Book bias)                 DETECTED
-H2 correlation                 r = -0.467, p = 0.0000
+COVERAGE STATISTICS
+--------------------------------------------------------------------------------
+Overall median coverage        45.3%
+Book-heavy fields (n=186)      32.6% median (IQR: 22.8%-44.9%)
+Mixed fields (n=204)           40.5% median (IQR: 28.2%-55.6%)
+Journal-heavy fields (n=174)   76.2% median (IQR: 59.4%-90.1%)
+Field-type gap                 43.6 percentage points
 
-H3 (OA penalty)                Not detected
-H3 correlation                 r = 0.226, p = 0.0000
+BAYESIAN ANALYSIS (Beta regression, logit link)
+--------------------------------------------------------------------------------
+H1 (Elsevier Effect)           beta = +0.156, 95% CrI [0.081, 0.231]
+  P(Direction) = 100.0%        ROPE = 7.3%         Evidence: STRONG
 
-H4 (Field bias)                DETECTED
-H4 test                        H = 182.884, p = 0.0000
+H2 (Book Effect)               beta = -0.081, 95% CrI [-0.164, -0.000]
+  P(Direction) = 97.5%         ROPE = 67.5%         Evidence: Weak
+
+H3 (OA Effect)                 beta = +0.011, 95% CrI [-0.053, 0.074]
+  P(Direction) = 63.6%         ROPE = 99.7%         Evidence: Inconclusive
+
+H4a (Book-heavy vs Journal)    beta = -0.967, 95% CrI [-1.173, -0.763]
+  P(Direction) = 100.0%        ROPE = 0.0%          Evidence: STRONG
+
+H4b (Mixed vs Journal)         beta = -0.754, 95% CrI [-0.934, -0.573]
+  P(Direction) = 100.0%        ROPE = 0.0%          Evidence: STRONG
+
+H4c (Book-heavy vs Mixed)      beta = -0.214, 95% CrI [-0.370, -0.060]
+  P(Direction) = 99.6%         ROPE = 7.6%          Evidence: STRONG
+
+FREQUENTIST ANALYSIS
+--------------------------------------------------------------------------------
+H1 (Publisher bias)            r = 0.477, p < 0.0001, Cohen's d = 1.025
+H2 (Book bias)                 r = -0.534, p < 0.0001
+H3 (OA penalty)               Not detected (r = 0.226)
+H4 (Field bias)                Kruskal-Wallis H = 182.884, p < 0.0001
+
+RANKING INSTABILITY
+--------------------------------------------------------------------------------
+Spearman correlation           rho = 0.695 (Scopus vs OpenAlex, n=538)
+Median position shift          142,276 positions
+Maximum shift                  1,210,020 positions (Ernst Gombrich)
+
+ROBUSTNESS (5 independent replicates, n=400 each)
+--------------------------------------------------------------------------------
+Pooled Elsevier effect         mean beta = 0.169 (+/- 0.038 SD)
+Range                          [0.129, 0.217]
+All P(Direction)               >= 99.98%
+
+UNIVERSITY ADOPTION
+--------------------------------------------------------------------------------
+Universities documented        123 across 32 countries (2022-2025)
+Institution types              R1 (68), Regional (16), International (25),
+                               Medical (8), Research Institute (4), Business (2)

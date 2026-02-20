@@ -3,8 +3,9 @@
 # REPRODUCE_ALL.sh
 #
 # Complete reproduction script for "Publisher Bias in Widely-Used Scientist Rankings"
+# Lipo, DiNapoli, Andrus (2026)
 #
-# This script reproduces all analyses and figures from scratch.
+# This script reproduces all analyses and figures from the pre-generated data files.
 #
 # Usage:
 #   chmod +x REPRODUCE_ALL.sh
@@ -22,6 +23,7 @@ NC='\033[0m' # No Color
 echo "================================================================================"
 echo "COMPLETE REPRODUCIBILITY PACKAGE"
 echo "Publisher Bias in Widely-Used Scientist Rankings"
+echo "Lipo, DiNapoli, Andrus (2026)"
 echo "================================================================================"
 echo ""
 
@@ -105,13 +107,18 @@ echo ""
 DATA_FILES=(
     "data/comprehensive_sample.csv"
     "data/openalex_comprehensive_data.csv"
+    "data/openalex_data_with_orcid.csv"
+    "data/openalex_rankings_full.csv"
+    "data/scopus_vs_openalex_rankings.csv"
     "data/university_adoption/university_adoption_data.csv"
+    "data/university_adoption/university_details.csv"
 )
 
 ALL_PRESENT=true
 for file in "${DATA_FILES[@]}"; do
     if [ -f "$file" ]; then
-        echo -e "${GREEN}✓${NC} $file"
+        LINES=$(wc -l < "$file" | tr -d ' ')
+        echo -e "${GREEN}✓${NC} $file ($LINES lines)"
     else
         echo -e "${RED}✗${NC} $file NOT FOUND"
         ALL_PRESENT=false
@@ -120,7 +127,7 @@ done
 
 if [ "$ALL_PRESENT" = false ]; then
     echo ""
-    echo -e "${RED}ERROR: Missing data files${NC}"
+    echo -e "${RED}ERROR: Missing data files. See README.md for data collection instructions.${NC}"
     exit 1
 fi
 
@@ -130,94 +137,97 @@ echo ""
 # STEP 4b: Fix Data Merge Issues
 # ============================================================================
 echo "================================================================================"
-echo "STEP 4b: Fixing Data Merge Issues"
+echo "STEP 4b: Recovering Scopus Publication Counts"
 echo "================================================================================"
 echo ""
 
-echo "Recovering missing Scopus data..."
-cd scripts/python
-python3 fix_data_merge.py
-cd ../..
+echo "Recovering missing Scopus data from source dataset..."
+python3 scripts/python/fix_data_merge.py
 
 echo ""
-echo -e "${GREEN}✓${NC} Data merge fixed (n=564 with coverage)"
+echo -e "${GREEN}✓${NC} Data merge fixed (n=564 with valid coverage)"
 echo ""
 
 # ============================================================================
 # STEP 5: Generate Main Figures
 # ============================================================================
 echo "================================================================================"
-echo "STEP 5: Generating Main Figures"
+echo "STEP 5: Generating Main Figures (1-5)"
 echo "================================================================================"
 echo ""
 
-echo "Generating Figures 2-4 (R)..."
+echo "Generating Figures 2-4 (R: coverage by field, Elsevier effect, book effect)..."
 Rscript scripts/R/figures_1_2_3_coverage_analysis.R
 
-echo "Generating Figure 1 (Python)..."
-cd scripts/python
-python3 figure_4_university_adoption.py
-cd ../..
-
-echo "Generating Figure 5 (Python)..."
-cd scripts/python
-python3 create_manuscript_visualizations.py 2>/dev/null || echo "  (visualization script not found, skipping)"
-cd ../..
+echo ""
+echo "Generating Figure 1 (Python: university adoption 2022-2025)..."
+python3 scripts/python/figure_4_university_adoption.py
 
 echo ""
-echo -e "${GREEN}✓${NC} Main figures generated"
+echo "Generating Figure 5 (Python: Scopus vs OpenAlex rankings)..."
+python3 scripts/python/create_manuscript_visualizations.py 2>/dev/null || echo -e "  ${YELLOW}(visualization script had issues, skipping)${NC}"
+
+echo ""
+echo -e "${GREEN}✓${NC} Main figures 1-5 generated"
 echo ""
 
 # ============================================================================
-# STEP 6: Generate Supplementary Figures
+# STEP 6: Generate Supplementary Figures (S1-S7)
 # ============================================================================
 echo "================================================================================"
-echo "STEP 6: Generating Supplementary Figures"
+echo "STEP 6: Generating Supplementary Figures (S1-S7)"
 echo "================================================================================"
 echo ""
 
-cd scripts/python
+SUPP_SCRIPTS=(
+    "figureS1_sample_characteristics.py"
+    "figureS2_coverage_distribution.py"
+    "figureS3_publisher_breakdown.py"
+    "figureS4_regression_diagnostics.py"
+    "figureS5_oa_analysis.py"
+    "figureS6_extreme_cases.py"
+)
 
-for script in figureS1_sample_characteristics.py figureS2_coverage_distribution.py \
-              figureS3_publisher_breakdown.py figureS4_regression_diagnostics.py \
-              figureS5_oa_analysis.py figureS6_extreme_cases.py; do
-    if [ -f "$script" ]; then
+for script in "${SUPP_SCRIPTS[@]}"; do
+    if [ -f "scripts/python/$script" ]; then
         echo "  Running $script..."
-        python3 "$script" 2>/dev/null || echo "    (warning: $script had issues)"
+        python3 "scripts/python/$script" 2>/dev/null || echo -e "    ${YELLOW}(warning: $script had issues)${NC}"
     fi
 done
 
-cd ../..
-
 echo ""
-echo -e "${GREEN}✓${NC} Supplementary figures generated"
+echo -e "${GREEN}✓${NC} Supplementary figures S1-S7 generated"
 echo ""
 
 # ============================================================================
-# STEP 6b: Analyze Rank-Coverage Correlation by Field Type
+# STEP 6b: Run Statistical Analyses
 # ============================================================================
 echo "================================================================================"
-echo "STEP 6b: Analyzing Rank-Coverage Correlation by Field Type"
+echo "STEP 6b: Running Statistical Analyses"
 echo "================================================================================"
 echo ""
 
-cd scripts/python
-python3 analyze_book_heavy_rank_correlation.py
-cd ../..
+echo "Running comprehensive statistical analysis..."
+python3 scripts/python/comprehensive_statistical_analysis.py 2>/dev/null || echo -e "  ${YELLOW}(statistical analysis had issues)${NC}"
 
 echo ""
-echo -e "${GREEN}✓${NC} Book-heavy rank correlation analysis complete"
+echo "Analyzing rank-coverage correlation by field type..."
+python3 scripts/python/analyze_book_heavy_rank_correlation.py 2>/dev/null || echo -e "  ${YELLOW}(correlation analysis had issues)${NC}"
+
+echo ""
+echo -e "${GREEN}✓${NC} Statistical analyses complete"
 echo ""
 
 # ============================================================================
-# STEP 7: Bayesian Analysis (Optional)
+# STEP 7: Bayesian Analysis (Optional - generates Figure 6 + Figures S8-S13)
 # ============================================================================
 echo "================================================================================"
 echo "STEP 7: Bayesian Analysis (Optional)"
 echo "================================================================================"
 echo ""
 echo "The Bayesian analysis takes ~1-2 hours for full MCMC sampling."
-echo "Results are already included in results/bayesian/"
+echo "It generates: Figure 6, Supplementary Figures S8-S13, Tables B1-B5."
+echo "Pre-computed results are already included in results/bayesian/"
 echo ""
 
 read -p "Run Bayesian analysis? (y/N) " -n 1 -r
@@ -231,13 +241,16 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         Rscript run_all.R --quick
         cd ../../..
         echo -e "${GREEN}✓${NC} Bayesian analysis completed"
+        echo "  Generated: Figure 6 (key_hypotheses.png)"
+        echo "  Generated: Supplementary Figures S8-S13"
+        echo "  Generated: Tables B1-B5 (results/bayesian/manuscript_tables/)"
     else
         echo -e "${YELLOW}WARNING: brms not installed${NC}"
         echo "Install with: Rscript -e \"install.packages('brms')\""
-        echo "Skipping Bayesian analysis..."
+        echo "Skipping Bayesian analysis (pre-computed results still available)..."
     fi
 else
-    echo "Skipping Bayesian analysis (pre-computed results available)"
+    echo "Skipping Bayesian analysis (pre-computed results available in results/bayesian/)"
 fi
 
 echo ""
@@ -253,24 +266,28 @@ echo -e "${GREEN}All analyses and figures successfully generated!${NC}"
 echo ""
 echo "Generated outputs:"
 echo ""
-echo "Main Figures (figures/):"
-echo "  Figure 1: University adoption (2022-2024)"
-echo "  Figure 2: Coverage by field type"
-echo "  Figure 3: Elsevier publisher bias"
-echo "  Figure 4: Book publication bias"
-echo "  Figure 5: Scopus vs OpenAlex rankings"
+echo "Main Figures (figures/main/):"
+echo "  Figure 1: University adoption of rankings (2022-2025, 123 universities)"
+echo "  Figure 2: Scopus coverage by field type (box plots)"
+echo "  Figure 3: Elsevier percentage vs coverage ratio"
+echo "  Figure 4: Book percentage vs coverage ratio"
+echo "  Figure 5: Scopus vs OpenAlex ranking comparison"
+echo "  Figure 6: Bayesian hypothesis tests (requires Step 7, or see pre-computed)"
 echo ""
 echo "Supplementary Figures (figures/supplementary/):"
-echo "  Figures S1-S7"
+echo "  S1-S7:  Sample characteristics, coverage distribution, publisher breakdown,"
+echo "          OA analysis, regression diagnostics, extreme cases, ranking changes"
+echo "  S8-S13: Bayesian posteriors, field effects, MCMC diagnostics, frequentist"
+echo "          comparison, prior sensitivity, replicate robustness (requires Step 7)"
 echo ""
 echo "Bayesian Results (results/bayesian/):"
 echo "  Tables B1-B5 (manuscript_tables/)"
 echo "  Model summaries (model_summaries/)"
-echo "  Figures B1-B4 (figures/bayesian/)"
 echo ""
 echo "Data (data/):"
 echo "  comprehensive_sample.csv (600 researchers)"
-echo "  openalex_comprehensive_data.csv (570 matched)"
+echo "  openalex_comprehensive_data.csv (564 matched, valid coverage)"
+echo "  university_adoption/ (123 universities across 32 countries)"
 echo "  robustness_analysis/ (2,000 researchers across 5 replicates)"
 echo ""
 echo "================================================================================"

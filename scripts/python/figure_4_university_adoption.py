@@ -6,7 +6,7 @@ STANDALONE VERSION for reproducibility package.
 This script does not require the main project package installation.
 
 Creates visualizations showing temporal, geographic, and institutional patterns
-of university adoption of the rankings for marketing purposes (2022-2024).
+of university adoption of the rankings for marketing purposes (2022-2025).
 
 Usage:
     python generate_figure4_adoption_standalone.py
@@ -105,15 +105,19 @@ def create_main_figure(data: dict, output_path: Path):
 
     # Create figure
     fig = plt.figure(figsize=(15, 12))
+    years = sorted(data["yearly_totals"]["year"].unique())
+    year_range = f"{min(years)}-{max(years)}"
+
     fig.suptitle(
-        'University Adoption of Stanford/Elsevier "Top 2% Scientists" List for Marketing\n(2022-2024)',
+        f'University Adoption of Stanford/Elsevier "Top 2% Scientists" List for Marketing\n({year_range})',
         fontsize=16,
         fontweight="bold",
     )
 
     # Panel A: Yearly totals
     ax1 = plt.subplot(2, 2, 1)
-    colors1 = ["#2E86AB", "#A23B72", "#F18F01"]
+    n_years = len(years)
+    colors1 = ["#2E86AB", "#A23B72", "#F18F01", "#7B68EE"][:n_years]
     bars1 = ax1.bar(
         data["yearly_totals"]["year"], data["yearly_totals"]["total"], color=colors1, width=0.6
     )
@@ -125,13 +129,17 @@ def create_main_figure(data: dict, output_path: Path):
             ha="center",
             fontweight="bold",
         )
-    ax1.set_ylim(0, 25)
+    max_yearly = data["yearly_totals"]["total"].max()
+    ax1.set_ylim(0, max_yearly * 1.3)
+    ax1.set_xticks(years)
+    ax1.set_xticklabels([str(y) for y in years])
     ax1.set_xlabel("Year", fontsize=11)
     ax1.set_ylabel("Number of Universities", fontsize=11)
     ax1.set_title("(a) Documented Universities Using the Metric", fontweight="bold", fontsize=12, loc="left")
+    note_y = max_yearly * 1.15
     ax1.text(
-        2023,
-        23,
+        np.mean(years),
+        note_y,
         "*Numbers represent minimum documented cases\nActual adoption likely much higher",
         ha="center",
         fontsize=9,
@@ -170,11 +178,12 @@ def create_main_figure(data: dict, output_path: Path):
     )
     for x, y in zip(data["cumulative_data"]["year"], data["cumulative_data"]["cumulative"]):
         ax3.text(x, y + 2, str(int(y)), ha="center", fontweight="bold")
-    ax3.set_ylim(0, 65)
+    max_cumulative = data["cumulative_data"]["cumulative"].max()
+    ax3.set_ylim(0, max_cumulative * 1.15)
     ax3.set_xlabel("Year", fontsize=11)
     ax3.set_ylabel("Cumulative Universities", fontsize=11)
     ax3.set_title("(c) Cumulative Growth in Documented Adoption", fontweight="bold", fontsize=12, loc="left")
-    ax3.set_xticks([2022, 2023, 2024])
+    ax3.set_xticks(years)
     note_text = (
         "Note: Year represents documented examples from press releases and official announcements. "
         "Actual adoption rates are likely significantly higher as many universities include "
@@ -194,7 +203,7 @@ def create_main_figure(data: dict, output_path: Path):
 
     # Panel D: Institution type
     ax4 = plt.subplot(2, 2, 4)
-    x = np.arange(len([2022, 2023, 2024]))
+    x = np.arange(n_years)
     width = 0.25
     types = ["R1 Research", "Regional", "International"]
     colors4 = ["#7B68EE", "#FF6B6B", "#4ECDC4"]
@@ -209,7 +218,7 @@ def create_main_figure(data: dict, output_path: Path):
     ax4.set_ylabel("Number of Universities", fontsize=11)
     ax4.set_title("(d) Adoption by Institution Type", fontweight="bold", fontsize=12, loc="left")
     ax4.set_xticks(x)
-    ax4.set_xticklabels([2022, 2023, 2024])
+    ax4.set_xticklabels(years)
     ax4.legend()
 
     plt.tight_layout()
