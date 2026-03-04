@@ -537,4 +537,4 @@ Questions about reproducibility? Contact Carl Lipo (clipo@binghamton.edu)
 
 ---
 
-**Last updated**: February 20, 2026 (Version 5.0 - PNAS Submission)
+**Last updated**: February 20, 2026 (Version 5.0 - Initial Submission)
