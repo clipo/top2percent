@@ -2,7 +2,7 @@
 
 ## Publisher Bias in Widely-Used Scientist Rankings
 
-**Authors**: Carl P. Lipo, Robert J. DiNapoli, Benjamin Andrus
+**Authors**: Carl P. Lipo, Beau DiNapoli, Benjamin Andrus
 
 **Affiliation**: Binghamton University
 
@@ -494,8 +494,8 @@ If you use this package, please cite:
 ```bibtex
 @article{lipo2026publisher,
   title={Publisher Bias in Widely-Used Scientist Rankings},
-  author={Lipo, Carl P. and DiNapoli, Robert J. and Andrus, Benjamin},
-  journal={Proceedings of the National Academy of Sciences},
+  author={Lipo, Carl P. and DiNapoli, Beau and Andrus, Benjamin},
+  journal={Research Evaluation},
   year={2026},
   note={Under review}
 }
@@ -537,4 +537,4 @@ Questions about reproducibility? Contact Carl Lipo (clipo@binghamton.edu)
 
 ---
 
-**Last updated**: February 20, 2026 (Version 5.0 - Initial Submission)
+**Last updated**: March 7, 2026 (Version 6.0 - Research Evaluation Submission)
