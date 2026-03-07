@@ -531,7 +531,7 @@ And the source data:
 
 ## Contact
 
-Questions about reproducibility? Contact Carl Lipo (clipo@binghamton.edu)
+Questions about reproducibility or this code? Contact Carl Lipo (clipo@binghamton.edu)
 
 **GitHub**: https://github.com/clipo/top2percent
 
