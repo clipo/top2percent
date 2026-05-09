@@ -27,7 +27,11 @@ print("=" * 80)
 # Set up paths relative to script location
 script_dir = Path(__file__).parent
 data_dir = script_dir / ".." / ".." / "data"
-output_dir = script_dir / ".." / ".." / "figures"
+figures_root = script_dir / ".." / ".." / "figures"
+output_dir = figures_root / "main"
+supp_dir = figures_root / "supplementary"
+output_dir.mkdir(parents=True, exist_ok=True)
+supp_dir.mkdir(parents=True, exist_ok=True)
 tables_dir = script_dir / ".." / ".." / "tables"
 tables_dir.mkdir(exist_ok=True)
 
@@ -186,8 +190,8 @@ for i, (idx, row) in enumerate(field_stats.iterrows()):
     )
 
 plt.tight_layout()
-plt.savefig(output_dir / 'FigureS11_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
-plt.savefig(output_dir / 'FigureS11_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
+plt.savefig(supp_dir / 'FigureS11_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig(supp_dir / 'FigureS11_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
 print("\nSaved: FigureS11_Ranking_Changes_Distribution.png")
 print("Saved: FigureS11_Ranking_Changes_Distribution.pdf")
 

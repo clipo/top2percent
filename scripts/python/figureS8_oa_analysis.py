@@ -177,7 +177,7 @@ if 'plos_count' in df.columns and 'frontiers_count' in df.columns:
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS8_OA_Analysis.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "supplementary" / "FigureS8_OA_Analysis.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S8 saved: {output_path}")
 

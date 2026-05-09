@@ -18,7 +18,7 @@
 #' - results/model_summaries/main_model_summary.csv
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/02_main_regression_model.R
+#'   Rscript scripts/R/bayesian/02_main_regression_model.R
 
 # =============================================================================
 # SETUP
@@ -38,7 +38,7 @@ cat("BAYESIAN BETA REGRESSION MODEL\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -59,7 +59,7 @@ cat(sprintf("Using %d cores for parallel chains\n\n", parallel::detectCores()))
 # =============================================================================
 
 cat("Loading prepared data...\n")
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
 cat(sprintf("  Loaded %d observations\n\n", nrow(df)))
 
 # =============================================================================
@@ -126,7 +126,7 @@ fit_default <- brm(
   iter = 4000,
   warmup = 1000,
   seed = 42,
-  file = "bayesian-redo/models/main_beta_default",
+  file = "results/bayesian/models/main_beta_default",
   file_refit = "on_change"
 )
 
@@ -157,7 +157,7 @@ fit_skeptical <- brm(
   iter = 4000,
   warmup = 1000,
   seed = 42,
-  file = "bayesian-redo/models/main_beta_skeptical",
+  file = "results/bayesian/models/main_beta_skeptical",
   file_refit = "on_change"
 )
 
@@ -181,7 +181,7 @@ fit_diffuse <- brm(
   iter = 4000,
   warmup = 1000,
   seed = 42,
-  file = "bayesian-redo/models/main_beta_diffuse",
+  file = "results/bayesian/models/main_beta_diffuse",
   file_refit = "on_change"
 )
 
@@ -246,8 +246,8 @@ comparison_wide <- all_summaries %>%
 print(comparison_wide)
 
 # Save comparison
-write_csv(all_summaries, "bayesian-redo/results/model_summaries/prior_sensitivity_comparison.csv")
-cat("\nSaved: bayesian-redo/results/model_summaries/prior_sensitivity_comparison.csv\n")
+write_csv(all_summaries, "results/bayesian/model_summaries/prior_sensitivity_comparison.csv")
+cat("\nSaved: results/bayesian/model_summaries/prior_sensitivity_comparison.csv\n")
 
 # =============================================================================
 # KEY FINDINGS SUMMARY
@@ -318,8 +318,8 @@ main_summary <- tibble(
   ci_upper = fixef(fit_default)[, "Q97.5"]
 )
 
-write_csv(main_summary, "bayesian-redo/results/model_summaries/main_model_summary.csv")
-cat("Saved: bayesian-redo/results/model_summaries/main_model_summary.csv\n")
+write_csv(main_summary, "results/bayesian/model_summaries/main_model_summary.csv")
+cat("Saved: results/bayesian/model_summaries/main_model_summary.csv\n")
 
 # =============================================================================
 # DONE
@@ -330,9 +330,9 @@ cat("MAIN MODEL FITTING COMPLETE\n")
 cat("===============================================================================\n\n")
 
 cat("Models saved:\n")
-cat("  - bayesian-redo/models/main_beta_default.rds\n")
-cat("  - bayesian-redo/models/main_beta_skeptical.rds\n")
-cat("  - bayesian-redo/models/main_beta_diffuse.rds\n\n")
+cat("  - results/bayesian/models/main_beta_default.rds\n")
+cat("  - results/bayesian/models/main_beta_skeptical.rds\n")
+cat("  - results/bayesian/models/main_beta_diffuse.rds\n\n")
 
 cat("Next steps:\n")
 cat("  1. Run 03_hierarchical_field_model.R to add random effects\n")

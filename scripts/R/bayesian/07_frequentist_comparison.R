@@ -15,7 +15,7 @@
 #' - figures/Figure_B4_bayesian_vs_frequentist.pdf
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/07_frequentist_comparison.R
+#'   Rscript scripts/R/bayesian/07_frequentist_comparison.R
 
 # =============================================================================
 # SETUP
@@ -40,7 +40,7 @@ cat("FREQUENTIST VS BAYESIAN COMPARISON\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -56,8 +56,8 @@ if (!file.exists(data_file)) {
 
 # Load data and Bayesian model
 cat("Loading data and Bayesian model...\n")
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
-fit_bayes <- readRDS("bayesian-redo/models/main_beta_default.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
+fit_bayes <- readRDS("results/bayesian/models/main_beta_default.rds")
 
 # =============================================================================
 # FIT FREQUENTIST BETA REGRESSION
@@ -215,9 +215,9 @@ fig_b4 <- plot_data %>%
   ) +
   theme(legend.position = "bottom")
 
-ggsave("bayesian-redo/figures/Figure_B4_bayesian_vs_frequentist.pdf",
+ggsave("figures/bayesian/Figure_B4_bayesian_vs_frequentist.pdf",
        fig_b4, width = 10, height = 7)
-ggsave("bayesian-redo/figures/Figure_B4_bayesian_vs_frequentist.png",
+ggsave("figures/bayesian/Figure_B4_bayesian_vs_frequentist.png",
        fig_b4, width = 10, height = 7, dpi = 300)
 # Also save as Figure S2 for supplementary materials
 ggsave("figures/supplementary/FigureS2_Bayesian_vs_Frequentist.pdf",
@@ -275,7 +275,7 @@ cat("\n=========================================================================
 cat("SAVING RESULTS\n")
 cat("===============================================================================\n\n")
 
-write_csv(comparison, "bayesian-redo/results/model_summaries/frequentist_vs_bayesian.csv")
+write_csv(comparison, "results/bayesian/model_summaries/frequentist_vs_bayesian.csv")
 cat("Saved: frequentist_vs_bayesian.csv\n")
 
 # Create summary for manuscript
@@ -290,7 +290,7 @@ manuscript_table <- comparison %>%
   )
 
 write_csv(manuscript_table,
-          "bayesian-redo/results/model_summaries/manuscript_comparison_table.csv")
+          "results/bayesian/model_summaries/manuscript_comparison_table.csv")
 cat("Saved: manuscript_comparison_table.csv\n")
 
 # =============================================================================

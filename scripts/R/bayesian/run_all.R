@@ -13,9 +13,9 @@
 #'   9. Replicate analysis (optional, time-intensive)
 #'
 #' Usage:
-#'   Rscript bayesian-redo/run_all.R           # Full analysis (excl. replicates)
-#'   Rscript bayesian-redo/run_all.R --full    # Full analysis incl. replicates
-#'   Rscript bayesian-redo/run_all.R --quick   # Just main model
+#'   Rscript scripts/R/bayesian/run_all.R           # Full analysis (excl. replicates)
+#'   Rscript scripts/R/bayesian/run_all.R --full    # Full analysis incl. replicates
+#'   Rscript scripts/R/bayesian/run_all.R --quick   # Just main model
 #'
 #' Estimated times:
 #'   --quick: ~15-30 minutes
@@ -42,17 +42,14 @@ get_script_dir <- function() {
   if (length(file_arg) > 0) {
     return(dirname(normalizePath(sub("^--file=", "", file_arg))))
   }
-  return("bayesian-redo")
+  # Fallback: assume invocation from the repo root.
+  return(file.path(getwd(), "scripts", "R", "bayesian"))
 }
 
 script_dir <- get_script_dir()
 
-# Set working directory to project root
-if (basename(script_dir) == "bayesian-redo") {
-  project_root <- dirname(script_dir)
-} else {
-  project_root <- file.path(script_dir, "..")
-}
+# Repo layout: scripts/R/bayesian/run_all.R lives 3 levels under project root.
+project_root <- normalizePath(file.path(script_dir, "..", "..", ".."))
 setwd(project_root)
 project_root <- getwd()
 
@@ -94,7 +91,7 @@ cat("===========================================================================
 # Check if brms is installed
 if (!requireNamespace("brms", quietly = TRUE)) {
   cat("Installing dependencies...\n")
-  run_script("bayesian-redo/R/00_install_deps.R", "Install Dependencies")
+  run_script("scripts/R/bayesian/00_install_deps.R", "Install Dependencies")
 } else {
   cat("Dependencies already installed.\n")
   cat(sprintf("  brms version: %s\n", as.character(packageVersion("brms"))))
@@ -108,11 +105,11 @@ cat("\n=========================================================================
 cat("STEP 2: DATA PREPARATION\n")
 cat("===============================================================================\n")
 
-if (!file.exists("bayesian-redo/results/data_prepared.rds")) {
-  run_script("bayesian-redo/R/01_data_preparation.R", "Data Preparation")
+if (!file.exists("results/bayesian/data_prepared.rds")) {
+  run_script("scripts/R/bayesian/01_data_preparation.R", "Data Preparation")
 } else {
   cat("Data already prepared. Loading...\n")
-  df <- readRDS("bayesian-redo/results/data_prepared.rds")
+  df <- readRDS("results/bayesian/data_prepared.rds")
   cat(sprintf("  Loaded %d observations\n", nrow(df)))
 }
 
@@ -124,7 +121,7 @@ cat("\n=========================================================================
 cat("STEP 3: MAIN BETA REGRESSION MODEL\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/02_main_regression_model.R", "Main Beta Regression (3 prior variants)")
+run_script("scripts/R/bayesian/02_main_regression_model.R", "Main Beta Regression (3 prior variants)")
 
 if (run_mode == "quick") {
   cat("\n>>> Quick mode: Stopping after main model <<<\n")
@@ -141,7 +138,7 @@ cat("\n=========================================================================
 cat("STEP 4: HIERARCHICAL MODELS\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/03_hierarchical_field_model.R", "Hierarchical Field Models")
+run_script("scripts/R/bayesian/03_hierarchical_field_model.R", "Hierarchical Field Models")
 
 # =============================================================================
 # STEP 5: BAYESIAN HYPOTHESIS TESTS
@@ -151,7 +148,7 @@ cat("\n=========================================================================
 cat("STEP 5: BAYESIAN HYPOTHESIS TESTS\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/04_hypothesis_tests.R", "Bayesian Hypothesis Tests")
+run_script("scripts/R/bayesian/04_hypothesis_tests.R", "Bayesian Hypothesis Tests")
 
 # =============================================================================
 # STEP 6: MODEL COMPARISON
@@ -161,7 +158,7 @@ cat("\n=========================================================================
 cat("STEP 6: MODEL COMPARISON (LOO-CV)\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/05_model_comparison.R", "Model Comparison")
+run_script("scripts/R/bayesian/05_model_comparison.R", "Model Comparison")
 
 # =============================================================================
 # STEP 7: VISUALIZATIONS
@@ -171,7 +168,7 @@ cat("\n=========================================================================
 cat("STEP 7: POSTERIOR VISUALIZATIONS\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/06_posterior_visualization.R", "Posterior Visualizations")
+run_script("scripts/R/bayesian/06_posterior_visualization.R", "Posterior Visualizations")
 
 # =============================================================================
 # STEP 8: FREQUENTIST COMPARISON
@@ -181,7 +178,7 @@ cat("\n=========================================================================
 cat("STEP 8: FREQUENTIST COMPARISON\n")
 cat("===============================================================================\n")
 
-run_script("bayesian-redo/R/07_frequentist_comparison.R", "Frequentist Comparison")
+run_script("scripts/R/bayesian/07_frequentist_comparison.R", "Frequentist Comparison")
 
 # =============================================================================
 # STEP 9: REPLICATE ANALYSIS (OPTIONAL)
@@ -193,7 +190,7 @@ if (run_mode == "full") {
   cat("===============================================================================\n")
   cat("WARNING: This step takes 2-4 hours!\n\n")
 
-  run_script("bayesian-redo/R/08_run_all_replicates.R", "Replicate Analysis")
+  run_script("scripts/R/bayesian/08_run_all_replicates.R", "Replicate Analysis")
 } else {
   cat("\n===============================================================================\n")
   cat("STEP 9: REPLICATE ANALYSIS (SKIPPED)\n")
@@ -218,19 +215,19 @@ cat(sprintf("End time: %s\n", end_time))
 cat(sprintf("Total duration: %.1f minutes\n\n", duration))
 
 cat("Generated outputs:\n")
-cat("\nModels (bayesian-redo/models/):\n")
-model_files <- list.files("bayesian-redo/models", pattern = "\\.rds$")
+cat("\nModels (results/bayesian/models/):\n")
+model_files <- list.files("scripts/R/bayesian/models", pattern = "\\.rds$")
 for (f in model_files) cat(sprintf("  - %s\n", f))
 
-cat("\nResults (bayesian-redo/results/):\n")
-result_files <- list.files("bayesian-redo/results", pattern = "\\.csv$", recursive = TRUE)
+cat("\nResults (results/bayesian/):\n")
+result_files <- list.files("scripts/R/bayesian/results", pattern = "\\.csv$", recursive = TRUE)
 for (f in result_files) cat(sprintf("  - %s\n", f))
 
-cat("\nFigures (bayesian-redo/figures/):\n")
-fig_files <- list.files("bayesian-redo/figures", pattern = "\\.(pdf|png)$")
+cat("\nFigures (figures/bayesian/):\n")
+fig_files <- list.files("scripts/R/bayesian/figures", pattern = "\\.(pdf|png)$")
 for (f in fig_files) cat(sprintf("  - %s\n", f))
 
 cat("\n===============================================================================\n")
-cat("See bayesian-redo/METHODS.md for detailed methods documentation.\n")
-cat("See bayesian-redo/README.md for reproduction instructions.\n")
+cat("See scripts/R/bayesian/METHODS.md for detailed methods documentation.\n")
+cat("See scripts/R/bayesian/README.md for reproduction instructions.\n")
 cat("===============================================================================\n")

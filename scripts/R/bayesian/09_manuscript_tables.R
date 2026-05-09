@@ -12,7 +12,7 @@
 #' - results/manuscript_tables/Table_B5_Replicate_Robustness.csv (if available)
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/09_manuscript_tables.R
+#'   Rscript scripts/R/bayesian/09_manuscript_tables.R
 
 # =============================================================================
 # SETUP
@@ -25,7 +25,7 @@ cat("GENERATING MANUSCRIPT TABLES\n")
 cat("===============================================================================\n\n")
 
 # Get project root
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -39,8 +39,8 @@ if (!file.exists(data_file)) {
   }
 }
 
-results_dir <- "bayesian-redo/results/model_summaries"
-output_dir <- "bayesian-redo/results/manuscript_tables"
+results_dir <- "results/bayesian/model_summaries"
+output_dir <- "results/bayesian/manuscript_tables"
 
 # =============================================================================
 # TABLE B1: MAIN BAYESIAN RESULTS (Hypothesis Tests)
@@ -214,9 +214,9 @@ fig_s12 <- fig_s12_data %>%
     legend.title = element_text(face = "bold")
   )
 
-ggsave("bayesian-redo/figures/Figure_S12_prior_sensitivity.pdf",
+ggsave("figures/bayesian/Figure_S12_prior_sensitivity.pdf",
        fig_s12, width = 10, height = 6)
-ggsave("bayesian-redo/figures/Figure_S12_prior_sensitivity.png",
+ggsave("figures/bayesian/Figure_S12_prior_sensitivity.png",
        fig_s12, width = 10, height = 6, dpi = 300)
 # Also save to supplementary figures directory
 ggsave("figures/supplementary/FigureS4_Prior_Sensitivity.pdf",

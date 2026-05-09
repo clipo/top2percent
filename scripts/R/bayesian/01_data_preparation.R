@@ -16,7 +16,7 @@
 #' - data_summary.csv: Summary statistics
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/01_data_preparation.R
+#'   Rscript scripts/R/bayesian/01_data_preparation.R
 
 library(tidyverse)
 
@@ -33,7 +33,7 @@ if (!file.exists(data_file)) {
   file_arg <- grep("--file=", args, value = TRUE)
   if (length(file_arg) > 0) {
     script_path <- sub("--file=", "", file_arg)
-    # Go up from bayesian-redo/R/ or bayesian-redo/
+    # Go up from scripts/R/bayesian/ or scripts/R/bayesian/
     project_root <- normalizePath(file.path(dirname(script_path), ".."))
     if (basename(dirname(script_path)) == "R") {
       project_root <- normalizePath(file.path(dirname(script_path), "../.."))
@@ -197,12 +197,12 @@ cat("SAVING PREPARED DATA\n")
 cat("===============================================================================\n\n")
 
 # Save as RDS for efficient R loading
-saveRDS(df, "bayesian-redo/results/data_prepared.rds")
-cat("Saved: bayesian-redo/results/data_prepared.rds\n")
+saveRDS(df, "results/bayesian/data_prepared.rds")
+cat("Saved: results/bayesian/data_prepared.rds\n")
 
 # Save summary statistics
-write_csv(field_summary, "bayesian-redo/results/model_summaries/data_summary_by_field.csv")
-cat("Saved: bayesian-redo/results/model_summaries/data_summary_by_field.csv\n")
+write_csv(field_summary, "results/bayesian/model_summaries/data_summary_by_field.csv")
+cat("Saved: results/bayesian/model_summaries/data_summary_by_field.csv\n")
 
 # Save variable summary
 var_summary <- df %>%
@@ -218,8 +218,8 @@ var_summary <- df %>%
     n_fields = n_distinct(field_f),
     n_countries = n_distinct(country_f)
   )
-write_csv(var_summary, "bayesian-redo/results/model_summaries/variable_summary.csv")
-cat("Saved: bayesian-redo/results/model_summaries/variable_summary.csv\n")
+write_csv(var_summary, "results/bayesian/model_summaries/variable_summary.csv")
+cat("Saved: results/bayesian/model_summaries/variable_summary.csv\n")
 
 # =============================================================================
 # PREPARE DATA FOR EACH REPLICATE (for later use)
@@ -268,8 +268,8 @@ if (length(replicate_files) > 0) {
   }
 
   # Save all replicates
-  saveRDS(replicates, "bayesian-redo/results/replicates_prepared.rds")
-  cat("\nSaved: bayesian-redo/results/replicates_prepared.rds\n")
+  saveRDS(replicates, "results/bayesian/replicates_prepared.rds")
+  cat("\nSaved: results/bayesian/replicates_prepared.rds\n")
 
 } else {
   cat("No replicate files found (this is OK for initial analysis)\n")

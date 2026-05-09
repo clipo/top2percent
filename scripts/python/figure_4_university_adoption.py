@@ -293,7 +293,7 @@ def main():
         if args.output_dir:
             output_dir = Path(args.output_dir)
         else:
-            output_dir = script_dir / ".." / ".." / "figures"
+            output_dir = script_dir / ".." / ".." / "figures" / "main"
 
         # Ensure directories exist
         if not data_dir.exists():

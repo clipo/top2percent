@@ -21,7 +21,7 @@
 #' - results/model_summaries/field_random_effects.csv
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/03_hierarchical_field_model.R
+#'   Rscript scripts/R/bayesian/03_hierarchical_field_model.R
 
 # =============================================================================
 # SETUP
@@ -41,7 +41,7 @@ cat("HIERARCHICAL BAYESIAN MODELS\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -59,7 +59,7 @@ cat(sprintf("Using %d cores\n\n", parallel::detectCores()))
 
 # Load data
 cat("Loading prepared data...\n")
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
 cat(sprintf("  %d observations\n", nrow(df)))
 cat(sprintf("  %d unique fields\n", n_distinct(df$field_f)))
 cat("\n")
@@ -100,7 +100,7 @@ fit_field_intercept <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95),
   seed = 42,
-  file = "bayesian-redo/models/hierarchical_field_intercept",
+  file = "results/bayesian/models/hierarchical_field_intercept",
   file_refit = "on_change"
 )
 
@@ -145,7 +145,7 @@ fit_field_slope <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95),
   seed = 42,
-  file = "bayesian-redo/models/hierarchical_field_slope",
+  file = "results/bayesian/models/hierarchical_field_slope",
   file_refit = "on_change"
 )
 
@@ -183,7 +183,7 @@ cat("MODEL COMPARISON\n")
 cat("===============================================================================\n\n")
 
 # Load main model for comparison
-fit_main <- readRDS("bayesian-redo/models/main_beta_default.rds")
+fit_main <- readRDS("results/bayesian/models/main_beta_default.rds")
 
 # Compare fixed effects across models
 cat("Fixed effects comparison:\n\n")
@@ -228,16 +228,16 @@ cat("===========================================================================
 
 # Save field effects
 write_csv(field_effects_df,
-          "bayesian-redo/results/model_summaries/field_random_intercepts.csv")
+          "results/bayesian/model_summaries/field_random_intercepts.csv")
 cat("Saved: field_random_intercepts.csv\n")
 
 write_csv(field_slopes_df,
-          "bayesian-redo/results/model_summaries/field_elsevier_slopes.csv")
+          "results/bayesian/model_summaries/field_elsevier_slopes.csv")
 cat("Saved: field_elsevier_slopes.csv\n")
 
 # Save model comparison
 write_csv(comparison,
-          "bayesian-redo/results/model_summaries/hierarchical_model_comparison.csv")
+          "results/bayesian/model_summaries/hierarchical_model_comparison.csv")
 cat("Saved: hierarchical_model_comparison.csv\n")
 
 # Save variance components from field slope model
@@ -251,7 +251,7 @@ var_components <- tibble(
   variance = sd_estimate^2
 )
 write_csv(var_components,
-          "bayesian-redo/results/model_summaries/variance_components.csv")
+          "results/bayesian/model_summaries/variance_components.csv")
 cat("Saved: variance_components.csv\n")
 
 # =============================================================================
@@ -287,8 +287,8 @@ cat("HIERARCHICAL MODEL FITTING COMPLETE\n")
 cat("===============================================================================\n\n")
 
 cat("Models saved:\n")
-cat("  - bayesian-redo/models/hierarchical_field_intercept.rds\n")
-cat("  - bayesian-redo/models/hierarchical_field_slope.rds\n\n")
+cat("  - results/bayesian/models/hierarchical_field_intercept.rds\n")
+cat("  - results/bayesian/models/hierarchical_field_slope.rds\n\n")
 
 cat("Next steps:\n")
 cat("  1. Run 04_hypothesis_tests.R for formal hypothesis testing\n")

@@ -17,7 +17,7 @@
 #' - figures/Figure_B3_pp_checks.pdf
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/05_model_comparison.R
+#'   Rscript scripts/R/bayesian/05_model_comparison.R
 
 # =============================================================================
 # SETUP
@@ -33,7 +33,7 @@ cat("MODEL COMPARISON (LOO-CV)\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -50,11 +50,11 @@ if (!file.exists(data_file)) {
 # Load all models
 cat("Loading models...\n")
 model_files <- list(
-  "Main (default)" = "bayesian-redo/models/main_beta_default.rds",
-  "Main (skeptical)" = "bayesian-redo/models/main_beta_skeptical.rds",
-  "Main (diffuse)" = "bayesian-redo/models/main_beta_diffuse.rds",
-  "Hierarchical (field)" = "bayesian-redo/models/hierarchical_field_intercept.rds",
-  "Hierarchical (field+slope)" = "bayesian-redo/models/hierarchical_field_slope.rds"
+  "Main (default)" = "results/bayesian/models/main_beta_default.rds",
+  "Main (skeptical)" = "results/bayesian/models/main_beta_skeptical.rds",
+  "Main (diffuse)" = "results/bayesian/models/main_beta_diffuse.rds",
+  "Hierarchical (field)" = "results/bayesian/models/hierarchical_field_intercept.rds",
+  "Hierarchical (field+slope)" = "results/bayesian/models/hierarchical_field_slope.rds"
 )
 
 models <- list()
@@ -164,10 +164,10 @@ cat("===========================================================================
 cat("Generating posterior predictive check plots...\n")
 
 # Load data for grouping
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
 
 # Set up PDF output
-pdf("bayesian-redo/figures/Figure_B3_pp_checks.pdf", width = 12, height = 10)
+pdf("figures/bayesian/Figure_B3_pp_checks.pdf", width = 12, height = 10)
 
 # Plot 1: Density overlay
 p1 <- pp_check(models[[best_model]], type = "dens_overlay", ndraws = 100) +
@@ -202,7 +202,7 @@ print(p4)
 
 dev.off()
 
-cat("Saved: bayesian-redo/figures/Figure_B3_pp_checks.pdf\n")
+cat("Saved: figures/bayesian/Figure_B3_pp_checks.pdf\n")
 
 # =============================================================================
 # MODEL WEIGHTS
@@ -235,11 +235,11 @@ cat("SAVING RESULTS\n")
 cat("===============================================================================\n\n")
 
 # Save comparison table
-write_csv(comparison_df, "bayesian-redo/results/diagnostics/loo_comparison.csv")
+write_csv(comparison_df, "results/bayesian/diagnostics/loo_comparison.csv")
 cat("Saved: loo_comparison.csv\n")
 
 # Save Pareto k summary
-write_csv(k_summary, "bayesian-redo/results/diagnostics/pareto_k_summary.csv")
+write_csv(k_summary, "results/bayesian/diagnostics/pareto_k_summary.csv")
 cat("Saved: pareto_k_summary.csv\n")
 
 # Save model weights
@@ -248,7 +248,7 @@ weights_df <- tibble(
   stacking_weight = as.numeric(stacking_weights),
   pbma_weight = as.numeric(pbma_weights)
 )
-write_csv(weights_df, "bayesian-redo/results/diagnostics/model_weights.csv")
+write_csv(weights_df, "results/bayesian/diagnostics/model_weights.csv")
 cat("Saved: model_weights.csv\n")
 
 # =============================================================================

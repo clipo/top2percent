@@ -18,7 +18,7 @@
 #' - results/posteriors/hypothesis_posteriors.csv
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/04_hypothesis_tests.R
+#'   Rscript scripts/R/bayesian/04_hypothesis_tests.R
 
 # =============================================================================
 # SETUP
@@ -34,7 +34,7 @@ cat("BAYESIAN HYPOTHESIS TESTING\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -50,8 +50,8 @@ if (!file.exists(data_file)) {
 
 # Load models
 cat("Loading fitted models...\n")
-fit_main <- readRDS("bayesian-redo/models/main_beta_default.rds")
-fit_hierarchical <- readRDS("bayesian-redo/models/hierarchical_field_slope.rds")
+fit_main <- readRDS("results/bayesian/models/main_beta_default.rds")
+fit_hierarchical <- readRDS("results/bayesian/models/hierarchical_field_slope.rds")
 cat("  Models loaded successfully\n\n")
 
 # Extract posterior draws
@@ -195,7 +195,7 @@ cat("H3: OPEN ACCESS EFFECT\n")
 cat("===============================================================================\n\n")
 
 # Load data to check for OA variable
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
 
 if ("oa_pct_z" %in% names(df) && !all(is.na(df$oa_pct_z))) {
   cat("Testing: Is there an Open Access penalty?\n")
@@ -215,7 +215,7 @@ if ("oa_pct_z" %in% names(df) && !all(is.na(df$oa_pct_z))) {
     iter = 4000,
     warmup = 1000,
     seed = 42,
-    file = "bayesian-redo/models/main_beta_with_oa",
+    file = "results/bayesian/models/main_beta_with_oa",
     file_refit = "on_change"
   )
 
@@ -345,7 +345,7 @@ cat("\n=========================================================================
 cat("SAVING RESULTS\n")
 cat("===============================================================================\n\n")
 
-write_csv(all_results, "bayesian-redo/results/model_summaries/bayesian_hypothesis_tests.csv")
+write_csv(all_results, "results/bayesian/model_summaries/bayesian_hypothesis_tests.csv")
 cat("Saved: bayesian_hypothesis_tests.csv\n")
 
 # Save posterior draws for key parameters
@@ -356,7 +356,7 @@ posteriors_df <- tibble(
   field_book_heavy = book_heavy_posterior,
   field_mixed = mixed_posterior
 )
-write_csv(posteriors_df, "bayesian-redo/results/posteriors/hypothesis_posteriors.csv")
+write_csv(posteriors_df, "results/bayesian/posteriors/hypothesis_posteriors.csv")
 cat("Saved: hypothesis_posteriors.csv\n")
 
 # =============================================================================

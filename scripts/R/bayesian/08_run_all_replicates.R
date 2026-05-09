@@ -15,7 +15,7 @@
 #' - figures/replicate_posteriors.pdf
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/08_run_all_replicates.R
+#'   Rscript scripts/R/bayesian/08_run_all_replicates.R
 #'
 #' Note: This script takes 2-4 hours to run (5 models x ~20-30 min each)
 
@@ -35,7 +35,7 @@ cat("BAYESIAN ANALYSIS: ALL REPLICATE SAMPLES\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -58,11 +58,11 @@ cat(sprintf("Using %d cores\n\n", parallel::detectCores()))
 
 cat("Loading replicate data...\n")
 
-replicates_file <- "bayesian-redo/results/replicates_prepared.rds"
+replicates_file <- "results/bayesian/replicates_prepared.rds"
 
 if (!file.exists(replicates_file)) {
   cat("Replicate data not found. Running data preparation...\n")
-  source("bayesian-redo/R/01_data_preparation.R")
+  source("scripts/R/bayesian/01_data_preparation.R")
 }
 
 if (file.exists(replicates_file)) {
@@ -105,7 +105,7 @@ for (rep_name in names(replicates)) {
   rep_data <- replicates[[rep_name]]
 
   # Check if model already exists
-  model_file <- sprintf("bayesian-redo/models/replicate_%s",
+  model_file <- sprintf("results/bayesian/models/replicate_%s",
                         gsub("replicate_", "", rep_name))
 
   tryCatch({
@@ -246,11 +246,11 @@ cat("SAVING RESULTS\n")
 cat("===============================================================================\n\n")
 
 write_csv(replicate_results,
-          "bayesian-redo/results/model_summaries/replicate_bayesian_results.csv")
+          "results/bayesian/model_summaries/replicate_bayesian_results.csv")
 cat("Saved: replicate_bayesian_results.csv\n")
 
 write_csv(consistency,
-          "bayesian-redo/results/model_summaries/replicate_consistency_summary.csv")
+          "results/bayesian/model_summaries/replicate_consistency_summary.csv")
 cat("Saved: replicate_consistency_summary.csv\n")
 
 # =============================================================================
@@ -278,9 +278,9 @@ fig_replicates <- replicate_results %>%
   theme_minimal(base_size = 12) +
   theme(plot.title = element_text(face = "bold"))
 
-ggsave("bayesian-redo/figures/replicate_posteriors.pdf",
+ggsave("figures/bayesian/replicate_posteriors.pdf",
        fig_replicates, width = 8, height = 6)
-ggsave("bayesian-redo/figures/replicate_posteriors.png",
+ggsave("figures/bayesian/replicate_posteriors.png",
        fig_replicates, width = 8, height = 6, dpi = 300)
 # Also save as Figure S13 for supplementary materials
 ggsave("figures/supplementary/FigureS13_Replicate_Robustness.pdf",

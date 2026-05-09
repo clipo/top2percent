@@ -9,7 +9,7 @@
 #' All figures saved in both PDF (vector) and PNG (300 DPI) formats.
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/06_posterior_visualization.R
+#'   Rscript scripts/R/bayesian/06_posterior_visualization.R
 
 # =============================================================================
 # SETUP
@@ -42,7 +42,7 @@ cat("POSTERIOR VISUALIZATION\n")
 cat("===============================================================================\n\n")
 
 # Get project root - handle both direct run and sourced contexts
-data_file <- "bayesian-redo/results/data_prepared.rds"
+data_file <- "results/bayesian/data_prepared.rds"
 if (!file.exists(data_file)) {
   args <- commandArgs(trailingOnly = FALSE)
   file_arg <- grep("--file=", args, value = TRUE)
@@ -58,11 +58,11 @@ if (!file.exists(data_file)) {
 
 # Load models
 cat("Loading models...\n")
-fit_main <- readRDS("bayesian-redo/models/main_beta_default.rds")
-fit_hier <- readRDS("bayesian-redo/models/hierarchical_field_slope.rds")
+fit_main <- readRDS("results/bayesian/models/main_beta_default.rds")
+fit_hier <- readRDS("results/bayesian/models/hierarchical_field_slope.rds")
 
 # Load data for context
-df <- readRDS("bayesian-redo/results/data_prepared.rds")
+df <- readRDS("results/bayesian/data_prepared.rds")
 
 # =============================================================================
 # FIGURE B1: POSTERIOR DISTRIBUTIONS FOR MAIN EFFECTS
@@ -121,10 +121,10 @@ fig_b1 <- draws %>%
   ) +
   theme(legend.position = "none")
 
-# Save to both bayesian-redo/figures (legacy) and figures/supplementary (manuscript)
-ggsave("bayesian-redo/figures/Figure_B1_posterior_distributions.pdf",
+# Save to both scripts/R/bayesian/figures (legacy) and figures/supplementary (manuscript)
+ggsave("figures/bayesian/Figure_B1_posterior_distributions.pdf",
        fig_b1, width = 10, height = 7)
-ggsave("bayesian-redo/figures/Figure_B1_posterior_distributions.png",
+ggsave("figures/bayesian/Figure_B1_posterior_distributions.png",
        fig_b1, width = 10, height = 7, dpi = 300)
 # Also save as Figure S7 for supplementary materials
 ggsave("figures/supplementary/FigureS7_Elsevier_Posterior.pdf",
@@ -167,9 +167,9 @@ fig_b2 <- field_summary %>%
     caption = "Points = posterior median, bars = 95% credible interval"
   )
 
-ggsave("bayesian-redo/figures/Figure_B2_hierarchical_effects.pdf",
+ggsave("figures/bayesian/Figure_B2_hierarchical_effects.pdf",
        fig_b2, width = 10, height = 10)
-ggsave("bayesian-redo/figures/Figure_B2_hierarchical_effects.png",
+ggsave("figures/bayesian/Figure_B2_hierarchical_effects.png",
        fig_b2, width = 10, height = 10, dpi = 300)
 # Also save as Figure S9 for supplementary materials
 ggsave("figures/supplementary/FigureS9_Field_Type_Posteriors.pdf",
@@ -218,8 +218,8 @@ fig_rhat <- diag_data %>%
   ) +
   xlim(0.99, 1.02)
 
-ggsave("bayesian-redo/figures/rhat_diagnostic.pdf", fig_rhat, width = 8, height = 5)
-ggsave("bayesian-redo/figures/rhat_diagnostic.png", fig_rhat, width = 8, height = 5, dpi = 300)
+ggsave("figures/bayesian/rhat_diagnostic.pdf", fig_rhat, width = 8, height = 5)
+ggsave("figures/bayesian/rhat_diagnostic.png", fig_rhat, width = 8, height = 5, dpi = 300)
 # Also save as Figure S3 for supplementary materials
 ggsave("figures/supplementary/FigureS3_MCMC_Diagnostics.pdf", fig_rhat, width = 8, height = 5)
 ggsave("figures/supplementary/FigureS3_MCMC_Diagnostics.png", fig_rhat, width = 8, height = 5, dpi = 300)
@@ -242,8 +242,8 @@ fig_ess <- diag_data %>%
   ) +
   theme(legend.position = "bottom")
 
-ggsave("bayesian-redo/figures/ess_diagnostic.pdf", fig_ess, width = 8, height = 5)
-ggsave("bayesian-redo/figures/ess_diagnostic.png", fig_ess, width = 8, height = 5, dpi = 300)
+ggsave("figures/bayesian/ess_diagnostic.pdf", fig_ess, width = 8, height = 5)
+ggsave("figures/bayesian/ess_diagnostic.png", fig_ess, width = 8, height = 5, dpi = 300)
 cat("Saved: ess_diagnostic.pdf/png\n")
 
 # =============================================================================
@@ -258,7 +258,7 @@ mcmc_trace_plot <- mcmc_trace(fit_main, pars = c("b_elsevier_pct_z", "b_books_pc
   labs(title = "MCMC Trace Plots",
        subtitle = "Chains should be well-mixed (no trends, good overlap)")
 
-ggsave("bayesian-redo/figures/trace_plots.pdf",
+ggsave("figures/bayesian/trace_plots.pdf",
        mcmc_trace_plot, width = 10, height = 8)
 cat("Saved: trace_plots.pdf\n")
 
@@ -320,9 +320,9 @@ fig_hypotheses <- key_draws %>%
   theme(legend.position = "none") +
   coord_cartesian(xlim = c(-1.5, 1.5))
 
-ggsave("bayesian-redo/figures/key_hypotheses.pdf",
+ggsave("figures/bayesian/key_hypotheses.pdf",
        fig_hypotheses, width = 10, height = 6)
-ggsave("bayesian-redo/figures/key_hypotheses.png",
+ggsave("figures/bayesian/key_hypotheses.png",
        fig_hypotheses, width = 10, height = 6, dpi = 300)
 cat("Saved: key_hypotheses.pdf/png\n")
 
@@ -342,5 +342,5 @@ cat("  - trace_plots.pdf\n")
 cat("  - key_hypotheses.pdf/png (Figure 6 in main text)\n")
 cat("  - ess_diagnostic.pdf/png\n\n")
 
-cat("All figures saved to: bayesian-redo/figures/ and figures/supplementary/\n")
+cat("All figures saved to: figures/bayesian/ and figures/supplementary/\n")
 cat("\n===============================================================================\n")

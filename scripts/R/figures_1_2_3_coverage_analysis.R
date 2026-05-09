@@ -94,8 +94,8 @@ fig1 <- ggplot(df, aes(x = field_label, y = coverage_ratio, fill = field_label))
 
 # Save as PNG: 10×7 inches, 300 DPI (publication quality)
 # Uses: ggplot2::ggsave()
-ggsave("figures/Figure2_Coverage_by_Field.png", fig1, width = 10, height = 7, dpi = 300)
-ggsave("figures/Figure2_Coverage_by_Field.pdf", fig1, width = 10, height = 7)
+ggsave("figures/main/Figure2_Coverage_by_Field.png", fig1, width = 10, height = 7, dpi = 300)
+ggsave("figures/main/Figure2_Coverage_by_Field.pdf", fig1, width = 10, height = 7)
 cat("✓ Figure 2 saved (PNG + PDF)\n\n")
 
 # FIGURE 3: Elsevier % vs Coverage
@@ -116,8 +116,8 @@ fig2 <- ggplot(df, aes(x = elsevier_pct, y = coverage_ratio, color = field_label
        x = "% Publications in Elsevier Journals", y = "Coverage Ratio") +
   theme_pub
 
-ggsave("figures/Figure3_Elsevier_vs_Coverage.png", fig2, width = 10, height = 7, dpi = 300)
-ggsave("figures/Figure3_Elsevier_vs_Coverage.pdf", fig2, width = 10, height = 7)
+ggsave("figures/main/Figure3_Elsevier_vs_Coverage.png", fig2, width = 10, height = 7, dpi = 300)
+ggsave("figures/main/Figure3_Elsevier_vs_Coverage.pdf", fig2, width = 10, height = 7)
 cat("✓ Figure 3 saved (PNG + PDF)\n\n")
 
 # FIGURE 4: Book % vs Coverage
@@ -138,8 +138,8 @@ fig3 <- ggplot(df, aes(x = books_pct, y = coverage_ratio, color = field_label)) 
        x = "% Publications that are Books/Chapters", y = "Coverage Ratio") +
   theme_pub
 
-ggsave("figures/Figure4_Books_vs_Coverage.png", fig3, width = 10, height = 7, dpi = 300)
-ggsave("figures/Figure4_Books_vs_Coverage.pdf", fig3, width = 10, height = 7)
+ggsave("figures/main/Figure4_Books_vs_Coverage.png", fig3, width = 10, height = 7, dpi = 300)
+ggsave("figures/main/Figure4_Books_vs_Coverage.pdf", fig3, width = 10, height = 7)
 cat("✓ Figure 4 saved (PNG + PDF)\n\n")
 
 # Summary statistics
@@ -159,7 +159,7 @@ cat("✓ Summary table saved\n\n")
 cat("=" , rep("=", 70), "=\n", sep = "")
 cat("FIGURE GENERATION COMPLETE\n")
 cat("=" , rep("=", 70), "=\n\n", sep = "")
-cat("Figures saved to: figures/\n")
+cat("Figures saved to: figures/main/\n")
 cat("  • Figure 2: Coverage by field type\n")
 cat("  • Figure 3: Elsevier % vs Coverage\n")
 cat("  • Figure 4: Book % vs Coverage\n")

@@ -114,7 +114,7 @@ ax4.legend(fontsize=9)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS10_Regression_Diagnostics.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "supplementary" / "FigureS10_Regression_Diagnostics.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 print(f"✓ Figure S10 saved: {output_path}")
 

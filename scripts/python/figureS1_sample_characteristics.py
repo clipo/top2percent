@@ -59,8 +59,8 @@ for i, v in enumerate(country_counts.values):
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS1_Sample_Characteristics.png"
-pdf_path = Path(__file__).parent.parent.parent / "figures" / "FigureS1_Sample_Characteristics.pdf"
+output_path = Path(__file__).parent.parent.parent / "figures" / "supplementary" / "FigureS1_Sample_Characteristics.png"
+pdf_path = Path(__file__).parent.parent.parent / "figures" / "supplementary" / "FigureS1_Sample_Characteristics.pdf"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
 plt.savefig(pdf_path, bbox_inches='tight')
 print(f"✓ Figure S1 saved: {output_path}")

@@ -14,7 +14,7 @@
 #' - bayestestR: Bayesian hypothesis testing utilities
 #'
 #' Usage:
-#'   Rscript bayesian-redo/R/00_install_deps.R
+#'   Rscript scripts/R/bayesian/00_install_deps.R
 #'
 #' Note: Stan requires a C++ toolchain. On Linux, install build-essential.
 #'       On Mac, install Xcode command line tools.
