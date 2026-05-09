@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S5: Regression Diagnostics
+Generate Supplementary Figure S10: Regression Diagnostics
 
 Shows diagnostic plots for the multivariate regression model.
 
-Output: FigureS5_Regression_Diagnostics.png
+Output: FigureS10_Regression_Diagnostics.png
 """
 
 import pandas as pd
@@ -114,9 +114,9 @@ ax4.legend(fontsize=9)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS5_Regression_Diagnostics.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS10_Regression_Diagnostics.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S5 saved: {output_path}")
+print(f"✓ Figure S10 saved: {output_path}")
 
 # Print regression summary
 print("\nRegression Model Summary:")

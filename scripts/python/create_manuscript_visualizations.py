@@ -3,7 +3,7 @@ Create Publication-Ready Visualizations and Tables for Manuscript.
 
 Generates:
 - Figure 5: Scatter plot of Scopus vs OpenAlex rankings
-- Figure S1: Distribution of ranking changes
+- Figure S11: Distribution of ranking changes
 - Tables: Top 10 OpenAlex researchers, summary statistics, extreme cases
 """
 
@@ -186,10 +186,10 @@ for i, (idx, row) in enumerate(field_stats.iterrows()):
     )
 
 plt.tight_layout()
-plt.savefig(output_dir / 'FigureS7_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
-plt.savefig(output_dir / 'FigureS7_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
-print("\nSaved: FigureS7_Ranking_Changes_Distribution.png")
-print("Saved: FigureS7_Ranking_Changes_Distribution.pdf")
+plt.savefig(output_dir / 'FigureS11_Ranking_Changes_Distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig(output_dir / 'FigureS11_Ranking_Changes_Distribution.pdf', bbox_inches='tight')
+print("\nSaved: FigureS11_Ranking_Changes_Distribution.png")
+print("Saved: FigureS11_Ranking_Changes_Distribution.pdf")
 
 # =============================================================================
 # TABLE 1: Top 10 OpenAlex Researchers (LaTeX)

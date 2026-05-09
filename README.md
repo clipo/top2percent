@@ -106,12 +106,16 @@ top2percent/
 │   │   ├── comprehensive_statistical_analysis.py
 │   │   ├── figure_4_university_adoption.py    # Figure 1
 │   │   ├── create_manuscript_visualizations.py # Figure 5
-│   │   ├── figureS1_sample_characteristics.py # Figure S1
-│   │   ├── figureS2_coverage_distribution.py  # Figure S2
-│   │   ├── figureS3_publisher_breakdown.py    # Figure S3
-│   │   ├── figureS4_regression_diagnostics.py # Figure S4 (OLS diagnostics)
-│   │   ├── figureS5_oa_analysis.py            # Figure S4 (OA analysis)
-│   │   ├── figureS6_extreme_cases.py          # Figure S6
+│   │   ├── figureS1_sample_characteristics.py  # Figure S1
+│   │   ├── figureS2_bayesian_vs_frequentist*    # Figure S2 (R script)
+│   │   ├── figureS3_mcmc_diagnostics*           # Figure S3 (R script)
+│   │   ├── figureS4_prior_sensitivity*          # Figure S4 (R script)
+│   │   ├── figureS5_coverage_distribution.py   # Figure S5
+│   │   ├── figureS6_publisher_breakdown.py     # Figure S6
+│   │   ├── figureS7_elsevier_posterior*         # Figure S7 (R script)
+│   │   ├── figureS8_oa_analysis.py             # Figure S8
+│   │   ├── figureS10_regression_diagnostics.py # Figure S10
+│   │   ├── figureS12_extreme_cases.py          # Figure S12
 │   │   └── ...
 │   ├── data_collection/           # Data collection scripts
 │   │   ├── create_stratified_sample.py
@@ -126,10 +130,10 @@ top2percent/
 │           ├── 03_hierarchical_field_model.R
 │           ├── 04_hypothesis_tests.R
 │           ├── 05_model_comparison.R
-│           ├── 06_posterior_visualization.R   # Figure 6, Figures S8-S9
-│           ├── 07_frequentist_comparison.R    # Figure S11
+│           ├── 06_posterior_visualization.R   # Figure 6, Figures S3, S7, S9
+│           ├── 07_frequentist_comparison.R    # Figure S2
 │           ├── 08_run_all_replicates.R        # Figure S13
-│           └── 09_manuscript_tables.R         # Tables B1-B5
+│           └── 09_manuscript_tables.R         # Figure S4, Tables B1-B5
 │
 ├── figures/                       # All generated figures
 │   ├── main/                      # Main manuscript figures (1-6)
@@ -141,17 +145,17 @@ top2percent/
 │   │   └── Figure6_Bayesian_Hypothesis_Tests.png/.pdf
 │   ├── supplementary/             # SI Appendix figures (S1-S13)
 │   │   ├── FigureS1_Sample_Characteristics.png
-│   │   ├── FigureS2_Coverage_Distribution.png
-│   │   ├── FigureS3_Publisher_Breakdown.png
-│   │   ├── FigureS4_OA_Analysis.png
-│   │   ├── FigureS5_Regression_Diagnostics.png
-│   │   ├── FigureS6_Extreme_Cases.png
-│   │   ├── FigureS7_Ranking_Changes_Distribution.png
-│   │   ├── FigureS8_Elsevier_Posterior.png
+│   │   ├── FigureS2_Bayesian_vs_Frequentist.png
+│   │   ├── FigureS3_MCMC_Diagnostics.png
+│   │   ├── FigureS4_Prior_Sensitivity.png
+│   │   ├── FigureS5_Coverage_Distribution.png
+│   │   ├── FigureS6_Publisher_Breakdown.png
+│   │   ├── FigureS7_Elsevier_Posterior.png
+│   │   ├── FigureS8_OA_Analysis.png
 │   │   ├── FigureS9_Field_Type_Posteriors.png
-│   │   ├── FigureS10_MCMC_Diagnostics.png
-│   │   ├── FigureS11_Bayesian_vs_Frequentist.png
-│   │   ├── FigureS12_Prior_Sensitivity.png
+│   │   ├── FigureS10_Regression_Diagnostics.png
+│   │   ├── FigureS11_Ranking_Changes_Distribution.png
+│   │   ├── FigureS12_Extreme_Cases.png
 │   │   └── FigureS13_Replicate_Robustness.png
 │   └── bayesian/                  # Bayesian diagnostic figures
 │       ├── key_hypotheses.png/.pdf
@@ -293,15 +297,16 @@ python3 scripts/python/figure_4_university_adoption.py     # Figure 1
 python3 scripts/python/create_manuscript_visualizations.py  # Figure 5
 ```
 
-#### Step 4: Generate Supplementary Figures
+#### Step 4: Generate Python-Sourced Supplementary Figures
 
 ```bash
-python3 scripts/python/figureS1_sample_characteristics.py
-python3 scripts/python/figureS2_coverage_distribution.py
-python3 scripts/python/figureS3_publisher_breakdown.py
-python3 scripts/python/figureS4_regression_diagnostics.py
-python3 scripts/python/figureS5_oa_analysis.py
-python3 scripts/python/figureS6_extreme_cases.py
+python3 scripts/python/figureS1_sample_characteristics.py   # S1
+python3 scripts/python/figureS5_coverage_distribution.py    # S5
+python3 scripts/python/figureS6_publisher_breakdown.py      # S6
+python3 scripts/python/figureS8_oa_analysis.py              # S8
+python3 scripts/python/figureS10_regression_diagnostics.py  # S10
+python3 scripts/python/figureS12_extreme_cases.py           # S12
+python3 scripts/python/create_manuscript_visualizations.py  # S11 (also Figure 5)
 ```
 
 #### Step 5: Bayesian Analysis (Optional, ~1-2 hours)
@@ -315,7 +320,8 @@ Rscript run_all.R --quick   # Quick mode (~20 min, fewer iterations)
 
 Generates:
 - Figure 6 (`key_hypotheses.png`) - Bayesian hypothesis tests
-- Supplementary Figures S8-S13 (posteriors, MCMC diagnostics, sensitivity, robustness)
+- Supplementary Figures S2, S3, S4, S7, S9, S13 (Bayesian-vs-frequentist, MCMC,
+  prior sensitivity, posteriors, hierarchical effects, replicate robustness)
 - Tables B1-B5 (`results/bayesian/manuscript_tables/`)
 
 ---
@@ -338,17 +344,17 @@ Generates:
 | Figure | Description | Script |
 |--------|-------------|--------|
 | **S1** | Sample characteristics (field distribution, geography) | `figureS1_sample_characteristics.py` |
-| **S2** | Coverage distribution histograms | `figureS2_coverage_distribution.py` |
-| **S3** | Publisher breakdown by field type | `figureS3_publisher_breakdown.py` |
-| **S4** | Open access publisher analysis | `figureS5_oa_analysis.py` |
-| **S5** | Regression diagnostics (OLS) | `figureS4_regression_diagnostics.py` |
-| **S6** | Extreme undercounting cases | `figureS6_extreme_cases.py` |
-| **S7** | Ranking changes distribution | `create_manuscript_visualizations.py` |
-| **S8** | Posterior distributions for main effects | `bayesian/06_posterior_visualization.R` |
+| **S2** | Bayesian vs frequentist comparison | `bayesian/07_frequentist_comparison.R` |
+| **S3** | MCMC convergence diagnostics | `bayesian/06_posterior_visualization.R` |
+| **S4** | Prior sensitivity analysis | `bayesian/09_manuscript_tables.R` |
+| **S5** | Coverage distribution histograms | `figureS5_coverage_distribution.py` |
+| **S6** | Publisher breakdown by field type | `figureS6_publisher_breakdown.py` |
+| **S7** | Posterior distributions for main effects | `bayesian/06_posterior_visualization.R` |
+| **S8** | Open access publisher analysis | `figureS8_oa_analysis.py` |
 | **S9** | Field-level random effects | `bayesian/06_posterior_visualization.R` |
-| **S10** | MCMC convergence diagnostics | `bayesian/06_posterior_visualization.R` |
-| **S11** | Bayesian vs frequentist comparison | `bayesian/07_frequentist_comparison.R` |
-| **S12** | Prior sensitivity analysis | `bayesian/06_posterior_visualization.R` |
+| **S10** | Regression diagnostics (OLS) | `figureS10_regression_diagnostics.py` |
+| **S11** | Ranking changes distribution | `create_manuscript_visualizations.py` |
+| **S12** | Extreme undercounting cases | `figureS12_extreme_cases.py` |
 | **S13** | Robustness across 5 independent replicates | `bayesian/08_run_all_replicates.R` |
 
 ---
@@ -411,7 +417,7 @@ coverage_ratio ~ elsevier_pct_z + books_pct_z + oa_pct_z + field_type
 
 - **R-hat**: All parameters < 1.01
 - **ESS**: All effective sample sizes > 1,000
-- **Trace plots**: Well-mixed chains (see Figure S10)
+- **Trace plots**: Well-mixed chains (see Figure S3)
 
 ### Evidence Classification
 

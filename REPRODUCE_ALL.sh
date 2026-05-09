@@ -172,20 +172,21 @@ echo -e "${GREEN}✓${NC} Main figures 1-5 generated"
 echo ""
 
 # ============================================================================
-# STEP 6: Generate Supplementary Figures (S1-S7)
+# STEP 6: Generate Python-sourced Supplementary Figures
+# (S1, S5, S6, S8, S10, S11, S12 — others come from R bayesian pipeline)
 # ============================================================================
 echo "================================================================================"
-echo "STEP 6: Generating Supplementary Figures (S1-S7)"
+echo "STEP 6: Generating Python-sourced Supplementary Figures"
 echo "================================================================================"
 echo ""
 
 SUPP_SCRIPTS=(
-    "figureS1_sample_characteristics.py"
-    "figureS2_coverage_distribution.py"
-    "figureS3_publisher_breakdown.py"
-    "figureS4_regression_diagnostics.py"
-    "figureS5_oa_analysis.py"
-    "figureS6_extreme_cases.py"
+    "figureS1_sample_characteristics.py"    # S1
+    "figureS5_coverage_distribution.py"     # S5
+    "figureS6_publisher_breakdown.py"       # S6
+    "figureS8_oa_analysis.py"               # S8
+    "figureS10_regression_diagnostics.py"   # S10
+    "figureS12_extreme_cases.py"            # S12
 )
 
 for script in "${SUPP_SCRIPTS[@]}"; do
@@ -196,7 +197,7 @@ for script in "${SUPP_SCRIPTS[@]}"; do
 done
 
 echo ""
-echo -e "${GREEN}✓${NC} Supplementary figures S1-S7 generated"
+echo -e "${GREEN}✓${NC} Python-sourced supplementary figures generated (S1, S5, S6, S8, S10, S12)"
 echo ""
 
 # ============================================================================
@@ -219,14 +220,14 @@ echo -e "${GREEN}✓${NC} Statistical analyses complete"
 echo ""
 
 # ============================================================================
-# STEP 7: Bayesian Analysis (Optional - generates Figure 6 + Figures S8-S13)
+# STEP 7: Bayesian Analysis (Optional - generates Figure 6 + R-sourced supp figures)
 # ============================================================================
 echo "================================================================================"
 echo "STEP 7: Bayesian Analysis (Optional)"
 echo "================================================================================"
 echo ""
 echo "The Bayesian analysis takes ~1-2 hours for full MCMC sampling."
-echo "It generates: Figure 6, Supplementary Figures S8-S13, Tables B1-B5."
+echo "It generates: Figure 6, Supplementary Figures S2, S3, S4, S7, S9, S13, Tables B1-B5."
 echo "Pre-computed results are already included in results/bayesian/"
 echo ""
 
@@ -242,7 +243,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
         cd ../../..
         echo -e "${GREEN}✓${NC} Bayesian analysis completed"
         echo "  Generated: Figure 6 (key_hypotheses.png)"
-        echo "  Generated: Supplementary Figures S8-S13"
+        echo "  Generated: Supplementary Figures S2, S3, S4, S7, S9, S13"
         echo "  Generated: Tables B1-B5 (results/bayesian/manuscript_tables/)"
     else
         echo -e "${YELLOW}WARNING: brms not installed${NC}"
@@ -274,11 +275,20 @@ echo "  Figure 4: Book percentage vs coverage ratio"
 echo "  Figure 5: Scopus vs OpenAlex ranking comparison"
 echo "  Figure 6: Bayesian hypothesis tests (requires Step 7, or see pre-computed)"
 echo ""
-echo "Supplementary Figures (figures/supplementary/):"
-echo "  S1-S7:  Sample characteristics, coverage distribution, publisher breakdown,"
-echo "          OA analysis, regression diagnostics, extreme cases, ranking changes"
-echo "  S8-S13: Bayesian posteriors, field effects, MCMC diagnostics, frequentist"
-echo "          comparison, prior sensitivity, replicate robustness (requires Step 7)"
+echo "Supplementary Figures (figures/supplementary/), in citation order:"
+echo "  S1:  Sample characteristics (field distribution, geography)"
+echo "  S2:  Bayesian vs frequentist comparison (requires Step 7)"
+echo "  S3:  MCMC convergence diagnostics (requires Step 7)"
+echo "  S4:  Prior sensitivity analysis (requires Step 7)"
+echo "  S5:  Coverage distribution histograms"
+echo "  S6:  Publisher breakdown by field type"
+echo "  S7:  Posterior distributions for main effects (requires Step 7)"
+echo "  S8:  Open access publisher analysis"
+echo "  S9:  Field-level random effects (requires Step 7)"
+echo "  S10: Regression diagnostics (OLS)"
+echo "  S11: Ranking changes distribution"
+echo "  S12: Extreme undercounting cases"
+echo "  S13: Robustness across 5 independent replicates (requires Step 7)"
 echo ""
 echo "Bayesian Results (results/bayesian/):"
 echo "  Tables B1-B5 (manuscript_tables/)"

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S6: Extreme Undercounting Cases
+Generate Supplementary Figure S12: Extreme Undercounting Cases
 
 Detailed profiles of the 7 researchers with 300+ publications and ≤10% coverage.
 
-Output: FigureS6_Extreme_Cases.png
+Output: FigureS12_Extreme_Cases.png
 """
 
 import pandas as pd
@@ -127,9 +127,9 @@ if len(extreme_cases) > 0:
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS6_Extreme_Cases.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS12_Extreme_Cases.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S6 saved: {output_path}")
+print(f"✓ Figure S12 saved: {output_path}")
 
 # Print detailed table
 print("\nExtreme Undercounting Cases (300+ publications, <=10% coverage):")

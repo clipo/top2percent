@@ -219,12 +219,12 @@ ggsave("bayesian-redo/figures/Figure_B4_bayesian_vs_frequentist.pdf",
        fig_b4, width = 10, height = 7)
 ggsave("bayesian-redo/figures/Figure_B4_bayesian_vs_frequentist.png",
        fig_b4, width = 10, height = 7, dpi = 300)
-# Also save as Figure S11 for supplementary materials
-ggsave("figures/supplementary/FigureS11_Bayesian_vs_Frequentist.pdf",
+# Also save as Figure S2 for supplementary materials
+ggsave("figures/supplementary/FigureS2_Bayesian_vs_Frequentist.pdf",
        fig_b4, width = 10, height = 7)
-ggsave("figures/supplementary/FigureS11_Bayesian_vs_Frequentist.png",
+ggsave("figures/supplementary/FigureS2_Bayesian_vs_Frequentist.png",
        fig_b4, width = 10, height = 7, dpi = 300)
-cat("Saved: Figure_B4_bayesian_vs_frequentist.pdf/png (also as FigureS11)\n")
+cat("Saved: Figure_B4_bayesian_vs_frequentist.pdf/png (also as FigureS2)\n")
 
 # =============================================================================
 # INTERPRETATION COMPARISON

@@ -169,10 +169,10 @@ table_b4 <- prior_sens %>%
 write_csv(table_b4, file.path(output_dir, "Table_B4_Prior_Sensitivity.csv"))
 cat("  Saved: Table_B4_Prior_Sensitivity.csv\n")
 
-# Generate Figure S12: Prior Sensitivity Visualization
+# Generate Figure S4: Prior Sensitivity Visualization
 library(ggplot2)
 
-cat("Creating Figure S12: Prior Sensitivity Visualization...\n")
+cat("Creating Figure S4: Prior Sensitivity Visualization...\n")
 
 fig_s12_data <- prior_sens %>%
   filter(parameter != "phi", parameter != "Intercept") %>%
@@ -219,11 +219,11 @@ ggsave("bayesian-redo/figures/Figure_S12_prior_sensitivity.pdf",
 ggsave("bayesian-redo/figures/Figure_S12_prior_sensitivity.png",
        fig_s12, width = 10, height = 6, dpi = 300)
 # Also save to supplementary figures directory
-ggsave("figures/supplementary/FigureS12_Prior_Sensitivity.pdf",
+ggsave("figures/supplementary/FigureS4_Prior_Sensitivity.pdf",
        fig_s12, width = 10, height = 6)
-ggsave("figures/supplementary/FigureS12_Prior_Sensitivity.png",
+ggsave("figures/supplementary/FigureS4_Prior_Sensitivity.png",
        fig_s12, width = 10, height = 6, dpi = 300)
-cat("  Saved: Figure_S12_prior_sensitivity.pdf/png (also as FigureS12)\n")
+cat("  Saved: Figure_S12_prior_sensitivity.pdf/png (also as FigureS4)\n")
 
 # =============================================================================
 # TABLE B5: REPLICATE ROBUSTNESS (if available)
@@ -281,7 +281,7 @@ if (file.exists(replicate_file)) {
 }
 
 cat("\nGenerated figures:\n")
-cat("  - FigureS12_Prior_Sensitivity.png/.pdf: Prior sensitivity visualization\n")
+cat("  - FigureS4_Prior_Sensitivity.png/.pdf: Prior sensitivity visualization\n")
 
 cat("\nAll tables are formatted for direct pasting into Word/Google Docs.\n")
 cat("===============================================================================\n")

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S2: Coverage Distribution
+Generate Supplementary Figure S5: Coverage Distribution
 
 Shows histogram of coverage ratios with field-specific distributions.
 
-Output: FigureS2_Coverage_Distribution.png
+Output: FigureS5_Coverage_Distribution.png
 """
 
 import pandas as pd
@@ -73,9 +73,9 @@ ax2.set_xlim(0, 1.5)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS2_Coverage_Distribution.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS5_Coverage_Distribution.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S2 saved: {output_path}")
+print(f"✓ Figure S5 saved: {output_path}")
 
 # Print summary
 print("\nCoverage Statistics by Field:")

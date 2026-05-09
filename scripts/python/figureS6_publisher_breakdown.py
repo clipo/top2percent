@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate Supplementary Figure S3: Publisher Breakdown by Field
+Generate Supplementary Figure S6: Publisher Breakdown by Field
 
 Shows publisher distribution across field types.
 
-Output: FigureS3_Publisher_Breakdown.png
+Output: FigureS6_Publisher_Breakdown.png
 """
 
 import pandas as pd
@@ -81,9 +81,9 @@ ax.set_ylim(0, max(pivot_df.max()) * 1.2)
 plt.tight_layout()
 
 # Save
-output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS3_Publisher_Breakdown.png"
+output_path = Path(__file__).parent.parent.parent / "figures" / "FigureS6_Publisher_Breakdown.png"
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
-print(f"✓ Figure S3 saved: {output_path}")
+print(f"✓ Figure S6 saved: {output_path}")
 
 # Print summary table
 print("\nPublisher Distribution by Field (Median %):")

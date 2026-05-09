@@ -126,12 +126,12 @@ ggsave("bayesian-redo/figures/Figure_B1_posterior_distributions.pdf",
        fig_b1, width = 10, height = 7)
 ggsave("bayesian-redo/figures/Figure_B1_posterior_distributions.png",
        fig_b1, width = 10, height = 7, dpi = 300)
-# Also save as Figure S8 for supplementary materials
-ggsave("figures/supplementary/FigureS8_Elsevier_Posterior.pdf",
+# Also save as Figure S7 for supplementary materials
+ggsave("figures/supplementary/FigureS7_Elsevier_Posterior.pdf",
        fig_b1, width = 10, height = 7)
-ggsave("figures/supplementary/FigureS8_Elsevier_Posterior.png",
+ggsave("figures/supplementary/FigureS7_Elsevier_Posterior.png",
        fig_b1, width = 10, height = 7, dpi = 300)
-cat("Saved: Figure_B1_posterior_distributions.pdf/png (also as FigureS8)\n")
+cat("Saved: Figure_B1_posterior_distributions.pdf/png (also as FigureS7)\n")
 
 # =============================================================================
 # FIGURE B2: HIERARCHICAL FIELD EFFECTS
@@ -220,10 +220,10 @@ fig_rhat <- diag_data %>%
 
 ggsave("bayesian-redo/figures/rhat_diagnostic.pdf", fig_rhat, width = 8, height = 5)
 ggsave("bayesian-redo/figures/rhat_diagnostic.png", fig_rhat, width = 8, height = 5, dpi = 300)
-# Also save as Figure S10 for supplementary materials
-ggsave("figures/supplementary/FigureS10_MCMC_Diagnostics.pdf", fig_rhat, width = 8, height = 5)
-ggsave("figures/supplementary/FigureS10_MCMC_Diagnostics.png", fig_rhat, width = 8, height = 5, dpi = 300)
-cat("Saved: rhat_diagnostic.pdf/png (also as FigureS10)\n")
+# Also save as Figure S3 for supplementary materials
+ggsave("figures/supplementary/FigureS3_MCMC_Diagnostics.pdf", fig_rhat, width = 8, height = 5)
+ggsave("figures/supplementary/FigureS3_MCMC_Diagnostics.png", fig_rhat, width = 8, height = 5, dpi = 300)
+cat("Saved: rhat_diagnostic.pdf/png (also as FigureS3)\n")
 
 # ESS plot
 fig_ess <- diag_data %>%
@@ -335,9 +335,9 @@ cat("VISUALIZATION COMPLETE\n")
 cat("===============================================================================\n\n")
 
 cat("Generated figures:\n")
-cat("  - Figure_B1_posterior_distributions.pdf/png → FigureS8_Elsevier_Posterior\n")
+cat("  - Figure_B1_posterior_distributions.pdf/png → FigureS7_Elsevier_Posterior\n")
 cat("  - Figure_B2_hierarchical_effects.pdf/png → FigureS9_Field_Type_Posteriors\n")
-cat("  - rhat_diagnostic.pdf/png → FigureS10_MCMC_Diagnostics\n")
+cat("  - rhat_diagnostic.pdf/png → FigureS3_MCMC_Diagnostics\n")
 cat("  - trace_plots.pdf\n")
 cat("  - key_hypotheses.pdf/png (Figure 6 in main text)\n")
 cat("  - ess_diagnostic.pdf/png\n\n")
